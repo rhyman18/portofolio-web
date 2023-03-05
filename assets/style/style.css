@@ -178,7 +178,7 @@ aside {
     justify-content: space-between;
 }
 
-date .pesan-nama, .callback, .link, .msg, .submit {
+.pesan-nama, .callback, .link, .msg, .submit {
     display: flex;
     flex-direction: column;
     margin: 0 10px;
@@ -193,7 +193,7 @@ date .pesan-nama, .callback, .link, .msg, .submit {
     justify-content: center;
     width: 100%;
     padding: 12px;
-    margin: 10px 10px 20px 10px;
+    margin: 0 10px 20px 10px;
     border: 1px solid #aeaeae;
     border-radius: 4px;
     box-sizing: border-box;
@@ -377,7 +377,7 @@ date .pesan-nama, .callback, .link, .msg, .submit {
 }
 
 main {
-    padding: 100px 15%;
+    padding: 100px 10%;
     text-align: center;
 }
 
@@ -395,11 +395,10 @@ main {
 
 #post:hover {
     transform: scale(1.1);
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .2);
 }
 
 #post:active {
-    transform: scale(0.9);
+    transform: scale(1);
 }
 
 .post-gambar {
@@ -625,11 +624,36 @@ main {
     .contact {
         background-image: cover;
     }
+
+    .skill {
+        width: 100%;
+    }
+
+    .footer-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer-text {
+        margin-bottom: 15px;
+    }
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (max-width: 768px) {
     .about {
+        padding-top: 30px;
+    }
+
+    main {
+        padding: 50px 25px;
+    }
+
+    .msg textarea {
+        height: 100px;
+    }
+
+    #about {
         padding-top: 50px;
     }
 
@@ -677,6 +701,15 @@ main {
         width: 88%;
         background-color: rgba(14, 39, 55, 0);
         background-image: linear-gradient(to bottom right, rgba(14, 39, 55, 1), rgba(14, 39, 55, 0));
+        color: #2a303b;
+    }
+
+    .contact .info p {
+        color: #000000;
+    }
+
+    .contact .info i {
+        color: #2a303b;
     }
 
     #post {
@@ -708,7 +741,7 @@ main {
     }
 
     .foto-saya img {
-        width: 75%;
+        max-width: 100%;
     }
 }
 
@@ -724,10 +757,6 @@ main {
 
     #welcome h1 {
         font-size: 2em;
-    }
-
-    #tamu {
-        margin-top: 100px;
     }
 
     .pesan-nama {
@@ -768,10 +797,6 @@ main {
 
     .skill-container {
         flex-wrap: wrap;
-    }
-
-    main {
-        padding: 100px 50px;
     }
 }
 
