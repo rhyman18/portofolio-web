@@ -289,6 +289,20 @@ function createPesan(d) {
     buatPesan.appendChild(buatWaktu);
 }
 
+// burger button
+function burger() {
+    const x = document.getElementById('nav-burger');
+    if (x.style.display === 'block') {
+        x.style.display = 'none';
+    } else {
+        x.style.display = 'block';
+    }
+}
+
+function hide() {
+    document.getElementById('nav-burger').style.display = 'none';
+}
+
 // fungsi ketika klik link
 function meluncur(e) {
     const ele = document.getElementById(e);

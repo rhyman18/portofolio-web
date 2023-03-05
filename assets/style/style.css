@@ -99,8 +99,45 @@ nav {
 }
 
 .nav-res {
-    padding: 0 20px;
     display: none;
+    align-self: stretch;
+    align-items: center;
+    padding: 0 30px;
+}
+
+.nav-res:hover {
+    background-color: #1cc3b2;
+}
+
+.nav-res i:hover {
+    color: #EEEEEE;
+}
+
+.nav-res a:active {
+    transform: translateX(--6px);
+}
+
+#nav-burger {
+    display: none;
+    background-color: #0e2737;
+    cursor: pointer;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .2);
+}
+
+#nav-burger a {
+    padding: 14px 16px;
+    color: #EEEEEE;
+    text-decoration: none;
+    font-weight: 500;
+    display: block;
+}
+
+#nav-burger a:hover {
+    background-color: #1cc3b2;
+}
+
+#nav-burger a:active {
+    transform: translateY(4px);
 }
 
 #welcome {

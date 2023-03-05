@@ -34,8 +34,17 @@
                 <a href="https://wa.me/62895384182298"><i class="fa-brands fa-whatsapp fa-xl"
                         style="padding-right: 8px; color: #eeeeee;"></i>Hubungi Saya</a>
             </div>
-            <div class="nav-res"><i class="fa-solid fa-bars fa-2xl"></i></div>
+            <a class="nav-res" href="javascript:void(0);" onclick="burger()"><i class="fa-solid fa-bars fa-2xl"></i></a>
         </nav>
+
+        <!-- navlink responsive -->
+        <div id="nav-burger">
+            <a onclick="meluncur('welcome'); hide()">Home</a>
+            <a onclick="meluncur('about'); hide()">Tentang Saya</a>
+            <a onclick="meluncur('skill'); hide()">Lihat Skill</a>
+            <a onclick="meluncur('project'); hide()">Lihat Project</a>
+            <a onclick="meluncur('tamu'); hide()">Buku Tamu</a>
+        </div>
 
     </header>
 
