@@ -16,293 +16,252 @@
 </head>
 
 <body>
-    <!-- bagian kepala -->
+    <!-- semantic bagian kepala -->
     <header>
-        <!-- navigasi bar -->
-        <nav>
-            <div class="logo">
-                <span>A</span>ri Budiman
-            </div>
-            <div class="nav-link">
-                <a onclick="meluncur('welcome')">Home</a>
-                <a onclick="meluncur('about')">Tentang Saya</a>
-                <a onclick="meluncur('skill')">Lihat Skill</a>
-                <a onclick="meluncur('project')">Lihat Project</a>
-                <a onclick="meluncur('tamu')">Buku Tamu</a>
-            </div>
-            <div class="nav-contact-me">
-                <a href="https://wa.me/62895384182298"><i class="fa-brands fa-whatsapp fa-xl"
-                        style="padding-right: 8px; color: #eeeeee;"></i>Hubungi Saya</a>
-            </div>
-            <a class="nav-res" href="javascript:void(0);" onclick="burger()"><i class="fa-solid fa-bars fa-2xl"></i></a>
-        </nav>
 
-        <!-- navlink responsive -->
-        <div id="nav-burger">
-            <a onclick="meluncur('welcome'); hide()">Home</a>
-            <a onclick="meluncur('about'); hide()">Tentang Saya</a>
-            <a onclick="meluncur('skill'); hide()">Lihat Skill</a>
-            <a onclick="meluncur('project'); hide()">Lihat Project</a>
-            <a onclick="meluncur('tamu'); hide()">Buku Tamu</a>
+        <!-- navigasi bar -->
+        <div class="kepala">
+
+            <!-- navigasi bar sticky di atas -->
+            <nav>
+                <div class="brands">
+                    <h1><span>A</span>ri Budiman</h1>
+                    <a class="nav-res" href="javascript:void(0);"><i class="fa-solid fa-bars fa-2xl"></i></a>
+                </div>
+                <div class="nav-link" id="burger">
+                    <a onclick="meluncur('welcome')">Home</a>
+                    <a onclick="meluncur('about')">Tentang Saya</a>
+                    <a onclick="meluncur('skill')">Lihat Skill</a>
+                    <a onclick="meluncur('project')">Lihat Project</a>
+                    <a onclick="meluncur('tamu')">Buku Tamu</a>
+                </div>
+                <div class="nav-contact-me">
+                    <a href="https://wa.me/62895384182298"><i class="fa-brands fa-whatsapp fa-xl" style="padding-right: 8px; color: #eeeeee;"></i>Hubungi Saya</a>
+                </div>
+            </nav>
+
+        </div>
+
+        <!-- bagian sambutan -->
+        <div id="welcome">
+            <p>Web Portofolio</p>
+            <h1>Selamat Datang di Rumah Ari Budiman</h1>
+            <a onclick="meluncur('about')">Kepoin Yuk</a>
         </div>
 
     </header>
 
-    <!-- bagian sambutan -->
-    <section id="welcome">
-        <p>Web Portofolio</p>
-        <h1>Selamat Datang di Rumah Ari Budiman</h1>
-        <a onclick="meluncur('about')">Kepoin Yuk</a>
+    <!-- semantic bagian tentang saya -->
+    <aside>
 
-    </section>
+        <!-- bagian tentang saya -->
+        <div class="about">
 
-    <!-- bagian tentang saya dan javascript -->
-    <section class="about">
-        <!-- bagian aside -->
-        <aside id="tulis-pesan">
-            <div class="pesan">
-                <div id="validate"></div>
-                <div class="break"></div>
-                <div class="pesan-nama">
-                    <label for="nama">Nama Anda</label>
-                    <input type="text" id="nama" name="nama" minlength="2" maxlength="30" placeholder="Nama">
-                </div>
-                <div class="callback">
-                    <label for="callback">Temukan Anda</label>
-                    <select id="callback" name="callback">
-                        <option value="1">Facebook</option>
-                        <option value="2">Instagram</option>
-                        <option value="3">Twitter</option>
-                        <option value="4">Linkedin</option>
-                        <option value="5">TikTok</option>
-                        <option value="6">Github</option>
-                    </select>
-                </div>
-                <div class="link">
-                    <label for="link">Social Media</label>
-                    <input type="text" id="link" name="link" minlength="2" maxlength="30" placeholder="@username_anda">
-                </div>
-                <div class="break-res"></div><!-- Pemecah flexbox wrap ketika layar makin kecil -->
-                <div class="msg">
-                    <label for="msg">Pesan</label>
-                    <textarea id="msg" name="msg" rows="1" minlength="5" maxlength="500"
-                        placeholder="Pesan Singkat Maks 500 Karakter" style="resize: none;"></textarea>
-                </div>
-                <div class="submit">
-                    <label for="ok">Konfirmasi</label>
-                    <button type="submit" id="ok">Tinggalkan Pesan</button>
+            <!-- bagian tulis pesan pengunjung -->
+            <div id="tulis-pesan">
+                <div class="pesan">
+                    <div id="validate"></div>
+                    <div class="break"></div>
+                    <div class="pesan-nama">
+                        <label for="nama">Nama Anda</label>
+                        <input type="text" id="nama" name="nama" minlength="2" maxlength="30" placeholder="Nama">
+                    </div>
+                    <div class="callback">
+                        <label for="callback">Temukan Anda</label>
+                        <select id="callback" name="callback">
+                            <option value="1">Facebook</option>
+                            <option value="2">Instagram</option>
+                            <option value="3">Twitter</option>
+                            <option value="4">Linkedin</option>
+                            <option value="5">TikTok</option>
+                            <option value="6">Github</option>
+                        </select>
+                    </div>
+                    <div class="link">
+                        <label for="link">Social Media</label>
+                        <input type="text" id="link" name="link" minlength="2" maxlength="30" placeholder="@username_anda">
+                    </div>
+                    <div class="break-res"></div><!-- Pemecah flexbox wrap ketika layar makin kecil -->
+                    <div class="msg">
+                        <label for="msg">Pesan</label>
+                        <textarea id="msg" name="msg" rows="1" minlength="5" maxlength="500" placeholder="Pesan Singkat Maks 500 Karakter" style="resize: none;"></textarea>
+                    </div>
+                    <div class="submit">
+                        <label for="ok">Konfirmasi</label>
+                        <button type="submit" id="ok">Tinggalkan Pesan</button>
+                    </div>
                 </div>
             </div>
-        </aside>
 
-        <!-- tampilkan profil saya -->
-        <article id="about">
-            <div class="profil-saya">
-                <h4>Tentang Saya</h4>
-                <h1>Hai, Saya Ari Budiman<br>Senang berjumpa dengan Anda</h1>
-                <p>Saya seorang Web Developer, Saya dapat membuat Aplikasi berbasis Web menggunakan bahasa pemrograman
-                    yang sedang populer, bisa merancang suatu sistem yang dibutuhkan user, memastikan keamanan Aplikasi
-                    sesuai standard OWASP top Ten. Selain itu, saya juga bisa menjalankan test untuk mencari jikalau ada
-                    suatu kejanggalan dalam Aplikasi.</p>
-                <h3>Founder: <span>Ari Budiman</span></h3>
-                <h6>AriBudiman</h6>
-            </div>
+            <!-- tampilkan profil saya -->
+            <div id="about">
+                <div class="profil-saya">
+                    <h4>Tentang Saya</h4>
+                    <h1>Hai, Saya Ari Budiman<br>Senang berjumpa dengan Anda</h1>
+                    <p>Saya seorang Web Developer, Saya dapat membuat Aplikasi berbasis Web menggunakan bahasa pemrograman yang sedang populer, bisa merancang suatu sistem yang dibutuhkan user, memastikan keamanan Aplikasi sesuai standard OWASP top Ten. Selain itu, saya juga bisa menjalankan test untuk mencari jikalau ada suatu kejanggalan dalam Aplikasi.</p>
+                    <h3>Founder: <span>Ari Budiman</span></h3>
+                    <h6>AriBudiman</h6>
+                </div>
 
-            <div class="foto-saya">
-                <img src="assets/images/profil.jpg" alt="Ari Budiman">
+                <div class="foto-saya">
+                    <img src="assets/images/profil.jpg" alt="Ari Budiman">
+                </div>
+
             </div>
 
-        </article>
-
-    </section>
-
-    <!-- bagian skill saya -->
-    <section id="skill">
-        <h3>Skill Saya</h3>
-        <div class="skill-container">
-            <div class="skill">
-                <i class="fa-brands fa-html5 fa-3x"></i><br>HTML
-            </div>
-            <div class="skill">
-                <i class="fa-brands fa-css3 fa-3x"></i><br>CSS
-            </div>
-            <div class="skill">
-                <i class="fa-brands fa-js fa-3x"></i><br>Javascript
-            </div>
-            <div class="skill">
-                <i class="fa-brands fa-aws fa-3x"></i><br>AWS Cloud
-            </div>
-            <div class="skill">
-                <i class="fa-brands fa-node-js fa-3x"></i><br>Node.js
-            </div>
-            <div class="skill">
-                <i class="fa-brands fa-github fa-3x"></i><br>Github
-            </div>
         </div>
 
-        <h3>Frontend Dev</h3>
-        <div class="skill-container">
-            <div class="skill">
-                <i class="fa-brands fa-sass fa-3x"></i><br>Sass
+        <!-- bagian skill saya -->
+        <div id="skill">
+
+            <h3>Skill Saya</h3>
+            <div class="skill-container">
+                <div class="skill">
+                    <i class="fa-brands fa-html5 fa-3x"></i><br>HTML
+                </div>
+                <div class="skill">
+                    <i class="fa-brands fa-css3 fa-3x"></i><br>CSS
+                </div>
+                <div class="skill">
+                    <i class="fa-brands fa-js fa-3x"></i><br>Javascript
+                </div>
+                <div class="skill">
+                    <i class="fa-brands fa-aws fa-3x"></i><br>AWS Cloud
+                </div>
+                <div class="skill">
+                    <i class="fa-brands fa-node-js fa-3x"></i><br>Node.js
+                </div>
+                <div class="skill">
+                    <i class="fa-brands fa-github fa-3x"></i><br>Github
+                </div>
             </div>
-            <div class="skill">
-                <i class="fa-brands fa-bootstrap fa-3x"></i><br>Bootstrap
+
+            <h3>Frontend Dev</h3>
+            <div class="skill-container">
+                <div class="skill">
+                    <i class="fa-brands fa-sass fa-3x"></i><br>Sass
+                </div>
+                <div class="skill">
+                    <i class="fa-brands fa-bootstrap fa-3x"></i><br>Bootstrap
+                </div>
+                <div class="skill">
+                    <i class="fa-solid fa-code fa-3x"></i><br>Tailwind
+                </div>
+                <div class="skill">
+                    <i class="fa-brands fa-vuejs fa-3x"></i><br>Vue.js
+                </div>
+                <div class="skill">
+                    <i class="fa-brands fa-react fa-3x"></i><br>React
+                </div>
+                <!-- <div class="skill">
+                    <i class="fa-solid fa-code fa-3x"></i><br>Svelte
+                </div> -->
             </div>
-            <div class="skill">
-                <i class="fa-solid fa-code fa-3x"></i><br>Tailwind
+
+            <h3>Backend Dev</h3>
+            <div class="skill-container">
+                <div class="skill">
+                    <i class="fa-brands fa-php fa-3x"></i><br>PHP
+                </div>
+                <div class="skill">
+                    <i class="fa-solid fa-database fa-3x"></i><br>MySQL
+                </div>
+                <div class="skill">
+                    <i class="fa-brands fa-laravel fa-3x"></i><br>Laravel
+                </div>
+                <div class="skill">
+                    <i class="fa-solid fa-fire fa-3x"></i><br>CodeIgniter
+                </div>
+                <div class="skill">
+                    <i class="fa-solid fa-server fa-3x"></i><br>Express
+                </div>
+                <div class="skill">
+                    <i class="fa-brands fa-square-js fa-3x"></i><br>Next.js
+                </div>
+                <div class="skill">
+                    <i class="fa-brands fa-square-js fa-3x"></i><br>Nuxt.js
+                </div>
             </div>
-            <div class="skill">
-                <i class="fa-brands fa-vuejs fa-3x"></i><br>Vue.js
-            </div>
-            <div class="skill">
-                <i class="fa-brands fa-react fa-3x"></i><br>React
-            </div>
-            <!-- <div class="skill">
-                <i class="fa-solid fa-code fa-3x"></i><br>Svelte
-            </div> -->
+
         </div>
 
-        <h3>Backend Dev</h3>
-        <div class="skill-container">
-            <div class="skill">
-                <i class="fa-brands fa-php fa-3x"></i><br>PHP
-            </div>
-            <div class="skill">
-                <i class="fa-solid fa-database fa-3x"></i><br>MySQL
-            </div>
-            <div class="skill">
-                <i class="fa-brands fa-laravel fa-3x"></i><br>Laravel
-            </div>
-            <div class="skill">
-                <i class="fa-solid fa-fire fa-3x"></i><br>CodeIgniter
-            </div>
-            <div class="skill">
-                <i class="fa-solid fa-server fa-3x"></i><br>Express
-            </div>
-            <div class="skill">
-                <i class="fa-brands fa-square-js fa-3x"></i><br>Next.js
-            </div>
-            <div class="skill">
-                <i class="fa-brands fa-square-js fa-3x"></i><br>Nuxt.js
-            </div>
-        </div>
+    </aside>
 
-    </section>
 
-    <!-- bagian isi main -->
+    <!-- semantic bagian main content -->
     <main id="project">
+
+        <!-- judul bagian content -->
         <h4>Project & Event</h4>
         <h1 style="letter-spacing: 3px;">Kegiatan Terbaru Saya</h1>
+
+        <!-- isi bagian content -->
         <div class="container">
-            <!-- semantic article -->
-            <a href="https://gelud-jsoop.vercel.app/">
-                <article id="post">
-                    <div class="post-gambar">
-                        <img src="assets/images/post-1.png" alt="Game_Sederhana_Menggunakan_Javascript_OOP">
-                    </div>
-                    <div class="post-content">
-                        <div class="post-judul">Game Sederhana Menggunakan Javascript OOP</div>
-                        <span class="category">Project</span>
-                        <p class="post-isi">Saya mencoba membuat permainan sederhana berbasis Web dengan menggunakan
-                            Javascript memakai fungsi Object Oriented Program. Dengan Logika Object yang di Inherit
-                            menjadi 2 Object dimana nilainya dapat dimanipulasi jika terdapat aksi Menyerang/Bertahan.
-                            Nilai HP yang habis duluan lah yang akan Kalah dalam permainan.</p>
-                        <p class="date">25 February 2023</p>
-                    </div>
-                </article>
-            </a>
 
-            <a href="https://www.dbs.com/spark/index/id_id/site/codingcamp/index.html">
-                <article id="post">
-                    <div class="post-gambar">
-                        <img src="assets/images/post-2.png" alt="Program_DBS_Foundation_Coding_Camp">
-                    </div>
-                    <div class="post-content">
-                        <div class="post-judul">Program DBS Foundation Coding Camp</div>
-                        <span class="category">Event</span>
-                        <p class="post-isi">DBS Foundation Coding Camp adalah sebuah program pelatihan coding secara
-                            online untuk meningkatkan kompetensi mayarakat Indonesia di bidang teknologi informasi.
-                            Program ini merupakan bagian dari DBS Foundation, yayasan milik bank DBS yang berfokus untuk
-                            menciptakan dampak dan meningkatkan taraf kehidupan melalui kewirausahaan sosial dan
-                            mempersiapkan masyarakat untuk masa depan. Melalui DBS Foundation Coding Camp, DBS
-                            Foundation berupaya untuk membekali masyarakat dengan keterampilan untuk masa depan yang
-                            lebih baik, khususnya keterampilan literasi keuangan dan digital.!</p>
-                        <p class="date">01 Maret 2023</p>
-                    </div>
-                </article>
-            </a>
+            <!-- semantic article 1 -->
+            <article id="post">
+                <div class="post-gambar">
+                    <img src="assets/images/post-1.png" alt="Game_Sederhana_Menggunakan_Javascript_OOP">
+                </div>
+                <div class="post-content">
+                    <div class="post-judul"><a href="https://gelud-jsoop.vercel.app/">Game Sederhana Menggunakan Javascript OOP</a></div>
+                    <span class="category">Project</span>
+                    <p class="post-isi">Saya mencoba membuat permainan sederhana berbasis Web dengan menggunakan Javascript memakai fungsi Object Oriented Program. Dengan Logika Object yang di Inherit menjadi 2 Object dimana nilainya dapat dimanipulasi jika terdapat aksi Menyerang/Bertahan. Nilai HP yang habis duluan lah yang akan Kalah dalam permainan.</p>
+                    <p class="date">25 February 2023</p>
+                </div>
+            </article>
 
-            <a href="#">
-                <article id="post">
-                    <div class="post-gambar">
-                        <img src="assets/images/post-example.jpg" alt="Judul Post">
-                    </div>
-                    <div class="post-content">
-                        <div class="post-judul">Judul Post</div>
-                        <span class="category">Project</span>
-                        <p class="post-isi">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic animi deleniti
-                            facere facilis natus, quisquam illo? Doloremque qui vitae, sit voluptates harum beatae
-                            reiciendis, magnam labore sed voluptatem, perferendis porro!</p>
-                        <p class="date">29 Maret 2023</p>
-                    </div>
-                </article>
-            </a>
+            <!-- semantic article 2 -->
+            <article id="post">
+                <div class="post-gambar">
+                    <img src="assets/images/post-2.png" alt="Program_DBS_Foundation_Coding_Camp">
+                </div>
+                <div class="post-content">
+                    <div class="post-judul"><a href="https://www.dbs.com/spark/index/id_id/site/codingcamp/index.html">Program DBS Foundation Coding Camp</a></div>
+                    <span class="category">Event</span>
+                    <p class="post-isi">DBS Foundation Coding Camp adalah sebuah program pelatihan coding secara online untuk meningkatkan kompetensi mayarakat Indonesia di bidang teknologi informasi. Program ini merupakan bagian dari DBS Foundation, yayasan milik bank DBS yang berfokus untuk menciptakan dampak dan meningkatkan taraf kehidupan melalui kewirausahaan sosial dan mempersiapkan masyarakat untuk masa depan. Melalui DBS Foundation Coding Camp, DBS Foundation berupaya untuk membekali masyarakat dengan keterampilan untuk masa depan yang lebih baik, khususnya keterampilan literasi keuangan dan digital.!</p>
+                    <p class="date">01 Maret 2023</p>
+                </div>
+            </article>
 
-            <a href="#">
-                <article id="post">
-                    <div class="post-gambar">
-                        <img src="assets/images/post-example.jpg" alt="Judul Post">
-                    </div>
-                    <div class="post-content">
-                        <div class="post-judul">Judul Post</div>
-                        <span class="category">Project</span>
-                        <p class="post-isi">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic animi deleniti
-                            facere facilis natus, quisquam illo? Doloremque qui vitae, sit voluptates harum beatae
-                            reiciendis, magnam labore sed voluptatem, perferendis porro!</p>
-                        <p class="date">29 Maret 2023</p>
-                    </div>
-                </article>
-            </a>
-
-            <a href="#">
-                <article id="post">
-                    <div class="post-gambar">
-                        <img src="assets/images/post-example.jpg" alt="Judul Post">
-                    </div>
-                    <div class="post-content">
-                        <div class="post-judul">Judul Post</div>
-                        <span class="category">Project</span>
-                        <p class="post-isi">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic animi deleniti
-                            facere facilis natus, quisquam illo? Doloremque qui vitae, sit voluptates harum beatae
-                            reiciendis, magnam labore sed voluptatem, perferendis porro!</p>
-                        <p class="date">29 Maret 2023</p>
-                    </div>
-                </article>
-            </a>
+            <!-- semantic article example -->
+            <article id="post">
+                <div class="post-gambar">
+                    <img src="assets/images/post-example.jpg" alt="Judul Post">
+                </div>
+                <div class="post-content">
+                    <div class="post-judul"><a href="#">Judul Post</a></div>
+                    <span class="category">Project</span>
+                    <p class="post-isi">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic animi deleniti facere facilis natus, quisquam illo? Doloremque qui vitae, sit voluptates harum beatae reiciendis, magnam labore sed voluptatem, perferendis porro!</p>
+                    <p class="date">29 Maret 2023</p>
+                </div>
+            </article>
 
         </div>
 
     </main>
 
-    <!-- bagian buku tamu -->
-    <section id="tamu">
-        <h4>Buku Tamu</h4>
-        <h1 style="letter-spacing: 3px; color: #eeeeee; margin-bottom: 0;">Pesan &amp; Kesan Pengunjug</h1>
-        <div class="tamu-container">
-            <!-- tampilkan jika tidak ada pesan -->
-            <div id="empty">Belum ada pengunjung yang Nitip Pesan, Jadilah yang Pertama!</div>
+    <!-- semantic bagian kaki -->
+    <footer>
 
-            <!-- tampilkan jika ada pesan dari pengunjung -->
-            <div id="komentar"></div>
+        <!-- bagian buku tamu -->
+        <div id="tamu">
+            <h4>Buku Tamu</h4>
+            <h1 style="letter-spacing: 3px; color: #eeeeee; margin-bottom: 0;">Pesan &amp; Kesan Pengunjug</h1>
+            <div class="tamu-container">
+                <!-- tampilkan jika tidak ada pesan -->
+                <div id="empty">Belum ada pengunjung yang Nitip Pesan, Jadilah yang Pertama!</div>
 
-            <!-- tombol ke tulis -->
-            <a onclick="meluncur('tulis-pesan')" class="tamu-a">Tinggalkan Pesan</a>
+                <!-- tampilkan jika ada pesan dari pengunjung -->
+                <div id="komentar"></div>
+
+                <!-- tombol ke tulis -->
+                <a onclick="meluncur('tulis-pesan')" class="tamu-a">Tinggalkan Pesan</a>
+            </div>
+
         </div>
 
-    </section>
-
-    <!-- bagian kaki -->
-    <footer>
+        <!-- bagian info hubungi saya -->
         <div class="contact">
             <div class="info">
                 <h1><span>A</span>ri Budiman</h1>
@@ -313,6 +272,7 @@
             </div>
         </div>
 
+        <!-- bagian kaki -->
         <div class="footer-fluid">
             <div class="footer-container">
                 <div class="footer-text">Dibuat Oleh Ari Budiman | &copy; 2023</div>
@@ -324,6 +284,7 @@
                 </dic>
             </div>
         </div>
+
     </footer>
 
     <!-- library font awasome untuk icon -->

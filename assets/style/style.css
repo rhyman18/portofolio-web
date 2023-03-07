@@ -15,9 +15,8 @@ a {
     text-decoration: none;
 }
 
-header {
-    position: sticky;
-    top: 0;
+.kepala {
+    position: relative;
     z-index: 3;
 }
 
@@ -31,17 +30,20 @@ nav {
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .2);
 }
 
-.logo {
-    font-family: 'Source Code Pro', sans-serif;
+.brands {
     align-self: stretch;
     display: flex;
     align-items: center;
+}
+
+.brands h1 {
+    font-family: 'Source Code Pro', sans-serif;
     font-size: 1.8em;
     font-weight: 700;
     text-shadow: 1px 1px #393E46;
 }
 
-.logo span {
+.brands span {
     font-family: 'Dancing Script', sans-serif;
     font-size: 1.5em;
     color: #1cc3b2;
@@ -58,7 +60,7 @@ nav {
     align-self: stretch;
     display: flex;
     align-items: center;
-    padding: 0 3em;
+    padding: 0 2em;
     font-weight: 600;
     cursor: pointer;
 }
@@ -82,7 +84,7 @@ nav {
     align-self: stretch;
     display: flex;
     align-items: center;
-    padding: 0 3em;
+    padding: 0 2em;
     font-weight: 600;
     color: #EEEEEE;
     letter-spacing: 1px;
@@ -114,30 +116,7 @@ nav {
 }
 
 .nav-res a:active {
-    transform: translateX(--6px);
-}
-
-#nav-burger {
-    display: none;
-    background-color: #0e2737;
-    cursor: pointer;
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .2);
-}
-
-#nav-burger a {
-    padding: 14px 16px;
-    color: #EEEEEE;
-    text-decoration: none;
-    font-weight: 500;
-    display: block;
-}
-
-#nav-burger a:hover {
-    background-color: #1cc3b2;
-}
-
-#nav-burger a:active {
-    transform: translateY(4px);
+    transform: translateX(-6px);
 }
 
 #welcome {
@@ -194,7 +173,7 @@ nav {
     padding-top: 100px;
 }
 
-aside {
+#tulis-pesan {
     position: absolute;
     z-index: 2;
     top: 0;
@@ -311,14 +290,14 @@ aside {
     margin-right: 20px;
 }
 
-.profil-saya h4, main h4, #tamu h4 {
+.profil-saya h4, #project h4, #tamu h4 {
     text-transform: uppercase;
     color: #1cc3b2;
     letter-spacing: 2px;
     margin-bottom: 10px;
 }
 
-.profil-saya h1, main h1, #tamu h1 {
+.profil-saya h1, #project h1, #tamu h1 {
     font-size: 42px;
     text-transform: capitalize;
     margin-bottom: 0;
@@ -381,7 +360,7 @@ aside {
     text-transform: uppercase;
     letter-spacing: 2px;
     text-align: center;
-    padding: 20px 0;
+    padding: 20px 0 40px 0;
 }
 
 .skill-container {
@@ -413,7 +392,7 @@ aside {
     margin-bottom: 15px;
 }
 
-main {
+#project {
     padding: 100px 10%;
     text-align: center;
 }
@@ -646,7 +625,6 @@ main {
 
 .contact .info p {
     color: #afb4bf;
-    /* padding-left: 20px; */
     margin-bottom: 10px;
 }
 
@@ -682,7 +660,7 @@ main {
         padding-top: 30px;
     }
 
-    main {
+    #project {
         padding: 50px 25px;
     }
 
@@ -694,7 +672,7 @@ main {
         padding-top: 50px;
     }
 
-    aside {
+    #tulis-pesan {
         position: relative;
         z-index: 1;
         transform: translateY(0);
@@ -719,11 +697,11 @@ main {
         font-size: 1em;
     }
 
-    .profil-saya h1, main h1, #tamu h1 {
+    .profil-saya h1, #project h1, #tamu h1 {
         font-size: 32px;
     }
 
-    .profil-saya h4, main h4, #tamu h4 {
+    .profil-saya h4, #project h4, #tamu h4 {
         font-size: 12px;
     }
 
@@ -753,19 +731,11 @@ main {
         flex-direction: column;
     }
 
-    .post-judul {
+    .post-judul, .post-isi {
         padding: 0;
     }
 
-    .category {
-        margin: 0;
-    }
-
-    .post-isi {
-        padding: 0;
-    }
-
-    .date {
+    .category, .date {
         margin: 0;
     }
 
@@ -784,12 +754,41 @@ main {
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (max-width: 1200px) {
-    .nav-link, .nav-contact-me {
+    .nav-contact-me {
         display: none;
+    }
+
+    nav {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .nav-link {
+        flex-direction: column;
+        background-color: #0e2737;
+    }
+
+    .nav-link a {
+        color: #EEEEEE;
+        padding: 20px;
+        font-weight: 600;
+    }
+
+    .nav-link a:hover {
+        background-color: #1cc3b2;
+    }
+
+    .nav-link a:active {
+        transform: translateY(4px);
     }
 
     .nav-res {
         display: flex;
+    }
+
+    .brands {
+        justify-content: space-between;
+        height: 8vh;
     }
 
     #welcome h1 {
@@ -806,10 +805,6 @@ main {
 }
 
 @media only screen and (max-width: 1500px) {
-    .nav-link a {
-        padding: 0 1em;
-    }
-
     #welcome h1 {
         letter-spacing: 2px;
     }
@@ -824,11 +819,7 @@ main {
         align-items: center;
     }
 
-    .profil-saya {
-        margin: 0 50px;
-    }
-
-    .foto-saya {
+    .profil-saya, .foto-saya {
         margin: 0 50px;
     }
 
@@ -839,7 +830,11 @@ main {
 
 @media only screen and (max-width: 1700px) {
     nav {
-        padding: 0 0 0 20px;
+        padding: 0;
+    }
+
+    .brands {
+        padding-left: 20px;
     }
 
     #skill {
