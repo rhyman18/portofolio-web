@@ -234,6 +234,7 @@ nav {
     border-radius: 4px;
     box-sizing: border-box;
     transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    resize: none;
 }
 
 .pesan-nama input:hover,
@@ -496,6 +497,8 @@ nav {
 }
 
 .list-pesan {
+    display: flex;
+    flex-direction: column;
     text-align: start;
     background-color: #EEEEEE;
     padding: 20px;
@@ -529,6 +532,10 @@ nav {
 
 .list-isi {
     padding: 10px 0 0 20px;
+    display: flex;
+    align-items: center;
+    overflow-y: auto;
+    height: 100px;
 }
 
 .list-isi q {
@@ -637,7 +644,8 @@ nav {
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
     .contact {
-        background-image: cover;
+        background-size: cover;
+        background-position: center;
     }
 
     .skill {
@@ -651,6 +659,18 @@ nav {
 
     .footer-text {
         margin-bottom: 15px;
+    }
+
+    #tamu {
+        padding: 50px 0;
+    }
+
+    .list-pesan {
+        margin: 20px 20px 0 20px;
+    }
+
+    .pesan {
+        padding: 30px 20px;
     }
 }
 

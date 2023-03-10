@@ -47,8 +47,10 @@ if (msgCek) {
     // convert string to json
     const msgConvert = JSON.parse(msgCek);
 
-    for (data of msgConvert) {
-        createPesan(data);
+    document.body.onload = () => {
+        for (data of msgConvert) {
+            createPesan(data);
+        }
     }
 }
 
@@ -84,6 +86,10 @@ msgNama.addEventListener('input', () => {
     }
 });
 
+msgNama.addEventListener('blur', () => {
+    msgNotes.style.display = 'none';
+});
+
 // validasi form sosmed
 msgLink.addEventListener('input', () => {
     // validasi enable
@@ -114,6 +120,10 @@ msgLink.addEventListener('input', () => {
         // form nama belum tervalidasi
         return validasiLink = false;
     }
+});
+
+msgLink.addEventListener('blur', () => {
+    msgNotes.style.display = 'none';
 });
 
 // validasi form isi pesan
@@ -147,10 +157,14 @@ msgIsi.addEventListener('input', () => {
     }
 });
 
+// msgIsi.addEventListener('blur', () => {
+//     msgNotes.style.display = 'none';
+// });
+
 // ketika user submit input
 msgSubmit.addEventListener('click', () => {
     // prevent load behavior
-    event.preventDefault();
+    preventDefault();
 
     // format waktu
     const waktu = new Date();
@@ -203,6 +217,7 @@ msgSubmit.addEventListener('click', () => {
         createPesan(msgAdd);
 
         // pesan berhasil login
+        msgNotes.style.display = 'flex';
         msgNotes.textContent = 'Berhasil Menyimpan! Silahkan tunggu...';
         validasi(msgNotes, true);
 
@@ -210,6 +225,12 @@ msgSubmit.addEventListener('click', () => {
         setTimeout(() => {
             // validasi disable
             msgNotes.style.display = 'none';
+            msgNama.value = '';
+            msgNama.style = '';
+            msgLink.value = '';
+            msgLink.style = '';
+            msgIsi.value = '';
+            msgIsi.style = '';
 
             meluncur('tamu');
         }, 2000);
