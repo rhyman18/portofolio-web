@@ -1,7 +1,7 @@
 /* import font dari google */
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
 
 *, html, body {
     margin: 0;
@@ -407,15 +407,6 @@ nav {
     display: flex;
     text-align: start;
     margin: 15px 0;
-    cursor: pointer;
-}
-
-#post:hover {
-    transform: scale(1.1);
-}
-
-#post:active {
-    transform: scale(1);
 }
 
 .post-gambar {
