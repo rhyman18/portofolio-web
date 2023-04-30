@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil Ari Budiman</title>
+    <!-- import css external -->
+    <link rel="apple-touch-icon" sizes="180x180">
+    <link rel="icon" type="image/png" sizes="32x32">
+    <link rel="icon" type="image/png" sizes="16x16">
+    <link rel="manifest" href="site.webmanifest">
+    <!-- toogle dark mode -->
+    <script>
+        // On page load or when changing themes, best to add inline in `head` to avoid FOUC
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark')
+        }
+    </script>
+</head>
+
+<body class="bg-primary text-primary-font dark:bg-secondary dark:text-secondary-font">
+    <!-- splash screen -->
+    <div class="fixed z-30 left-0 top-0 right-0 h-screen bg-primary dark:bg-secondary-nav duration-1000" id="intro">
+        <h1 class="absolute splash-logo text-primary-font dark:text-secondary-font">
+            <div class="flex items-center">
+                <h1 class="source-code-pro text-3xl sm:text-5xl font-bold brand-text-shadow">
+                    <span class="logo"><span class="dancing-script text-4xl sm:text-6xl text-main-500">A</span>ri</span> <span
+                        class="logo">Budiman</span>
+                </h1>
+            </div>
+        </h1>
+    </div>
+
+    <!-- semantic bagian kepala -->
+    <header class="fixed w-full z-20 top-0 left-0 shadow-md">
+        <!-- navigasi bar -->
+        <nav class="bg-primary-nav dark:bg-secondary-nav">
+            <div class="max-w-screen-2xl flex flex-wrap items-center justify-between mx-auto p-4">
+                <a href="#" class="flex items-center">
+                    <h1 class="source-code-pro text-3xl font-bold brand-text-shadow"><span
+                            class="dancing-script text-4xl text-main-500">A</span>ri Budiman</h1>
+                </a>
+                <div class="flex lg:order-2">
+                    <label class="relative inline-flex items-center cursor-pointer">
+                        <input type="checkbox" id="theme-toggle" class="sr-only peer">
+                        <div
+                            class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-main-300 dark:peer-focus:ring-main-500 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-main-300">
+                        </div>
+                        <span class="ml-3">
+                            <svg id="theme-toggle-light-icon" class="hidden w-6 h-6" fill="currentColor"
+                                viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                            </svg>
+                            <svg id="theme-toggle-dark-icon" class="hidden w-6 h-6" fill="currentColor"
+                                viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+                                    fill-rule="evenodd" clip-rule="evenodd"></path>
+                            </svg>
+                        </span>
+                    </label>
+                    <button data-collapse-toggle="navbar-sticky" type="button"
+                        class="inline-flex items-center ms-2 text-sm rounded-lg lg:hidden"
+                        aria-controls="navbar-sticky" aria-expanded="false">
+                        <span class="sr-only">Open main menu</span>
+                        <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                                d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                    </button>
+                </div>
+                <div class="items-center justify-between hidden w-full lg:flex lg:w-auto lg:order-1" id="navbar-sticky">
+                    <ul
+                        class="flex flex-col p-4 lg:p-0 mt-4 font-semibold tracking-widest border border-gray-100 rounded-lg bg-gray-50 lg:flex-row lg:space-x-8 lg:mt-0 lg:border-0 lg:bg-primary-nav dark:bg-gray-800 lg:dark:bg-secondary-nav dark:border-gray-700">
+                        <li>
+                            <a href="#"
+                                class="block py-2 pl-3 pr-4 rounded lg:p-0 bg-main-500 text-secondary-font lg:bg-transparent lg:text-main-500 lg:hover:text-main-500"
+                                aria-current="page">Rumah</a>
+                        </li>
+                        <li>
+                            <a href="#about" class="block py-2 pl-3 pr-4 rounded lg:p-0 hover:text-main-500">Tentang
+                                Saya</a>
+                        </li>
+                        <li>
+                            <a href="#skill" class="block py-2 pl-3 pr-4 rounded lg:p-0 hover:text-main-500">Skill</a>
+                        </li>
+                        <li>
+                            <a href="#project"
+                                class="block py-2 pl-3 pr-4 rounded lg:p-0 hover:text-main-500">Project</a>
+                        </li>
+                        <li>
+                            <a href="#contact" class="block py-2 pl-3 pr-4 rounded lg:p-0 hover:text-main-500">Hubungi</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- scroll indicator -->
+        <div class="progress-container border-b border-gray-300 dark:border-gray-600">
+            <div class="progress-bar" id="myBar"></div>
+        </div>
+    </header>
+
+    <!-- bagian hero -->
+    <section id="welcome"
+        class="h-screen flex flex-col items-center justify-center text-center bg-hero text-secondary-font tracking-widest gap-3 lg:gap-5 px-6">
+        <!-- bagian sambutan -->
+        <p class="text-lg md:text-xl lg:text-2xl hero-textp-shadow">Web Portofolio</p>
+        <h1 class="text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl hero-texth1-shadow">Selamat Datang di Rumah Ari Budiman</h1>
+        <a href="#about"
+            class="mt-3 lg:mt-6 py-2 lg:py-3 px-6 lg:px-10 border-2 border-main-500 text-base lg:text-lg hover:bg-main-500 ease-in-out duration-300">Kepoin
+            Yuk</a>
+
+        <!-- shape divider primary -->
+        <div id="shape-divider-light" class="hidden custom-shape-divider-bottom-1682761876">
+            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"
+                preserveAspectRatio="none">
+                <path
+                    d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z"
+                    class="shape-fill"></path>
+            </svg>
+        </div>
+        <!-- shape divider secondary -->
+        <div id="shape-divider-dark" class="hidden custom-shape-divider-bottom-1682762669">
+            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"
+                preserveAspectRatio="none">
+                <path
+                    d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z"
+                    class="shape-fill"></path>
+            </svg>
+        </div>
+    </section>
+
+    <!-- bagian tentang saya -->
+    <section id="about" class="pt-28">
+        <!-- tampilkan profil saya -->
+        <div class="max-w-screen-2xl flex flex-wrap md:flex-nowrap items-center justify-center mx-auto gap-6 md:gap-12 xl:gap-30 2xl:gap-64 px-6">
+            <div class="font-medium" data-aos="fade-up">
+                <h4 class="uppercase text-main-500 text-sm xl:text-lg font-semibold tracking-widest">Tentang Saya</h4>
+                <h1 class="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold capitalize leading-tight mb-6 xl:mb-12">Hai, Saya Ari Budiman<br>Senang berjumpa
+                    dengan Anda</h1>
+                <p class="leading-loose text-base xl:text-xl text-primary-desc dark:text-secondary-desc mb-3 xl:mb-6">Saya seorang Web
+                    Developer, Saya dapat membuat Aplikasi berbasis Web menggunakan bahasa pemrograman Javascript dan
+                    PHP, bisa merancang suatu aplikasi web seperti yang diinginkan client, memastikan keamanan Aplikasi
+                    sesuai standard OWASP top Ten.</p>
+                <h3 class="text-primary-desc dark:text-secondary-desc text-base xl:text-lg mb-3 xl:mb-6">Founder: <span
+                        class="text-main-500">Ari Budiman</span></h3>
+                <h6 class="dancing-script text-2xl xl:text-4xl text-main-gray">AriBudiman</h6>
+            </div>
+            <div class="w-4/5 rounded-full img-hover-zoom overflow-hidden cursor-pointer" data-aos="zoom-in">
+                <img id="profile" class="w-full" alt="Ari Budiman">
+            </div>
+        </div>
+    </section>
+
+    <!-- semantic bagian tentang saya -->
+    <section id="skill" class="pt-28">
+        <!-- bagian skill saya -->
+        <div class="max-w-screen-2xl text-center mx-auto font-medium px-6">
+            <h3 class="text-main-gray uppercase tracking-widest py-6">Skill Saya</h3>
+            <div id="skill-dasar" data-aos="zoom-in-up" data-aos-delay="200" class="flex flex-wrap justify-center gap-8 font-semibold mb-6"></div>
+
+            <h3 class="text-main-gray uppercase tracking-widest py-6">Frontend Dev</h3>
+            <div id="skill-frontend" data-aos="zoom-in-up" data-aos-delay="400" class="flex flex-wrap justify-center gap-8 font-semibold mb-6"></div>
+
+            <h3 class="text-main-gray uppercase tracking-widest py-6">Backend Dev</h3>
+            <div id="skill-backend" data-aos="zoom-in-up" data-aos-delay="600" class="flex flex-wrap justify-center gap-8 font-semibold mb-6"></div>
+        </div>
+    </section>
+
+
+    <!-- semantic bagian main content -->
+    <main id="project" class="pt-28">
+        <!-- judul bagian content -->
+        <div class="max-w-screen-xl text-center mx-auto font-medium px-6">
+            <h4 class="uppercase text-main-500 text-sm xl:text-lg font-semibold tracking-widest" data-aos="fade-up">Project & Event</h4>
+            <h1 class="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold capitalize leading-tight mb-6 xl:mb-12" data-aos="fade-up">Kegiatan Terbaru</h1>
+
+            <!-- isi bagian content -->
+            <div class="flex flex-col gap-6" id="post"></div>
+        </div>
+    </main>
+
+    <!-- bagian buku tamu -->
+    <section id="tamu" class="pt-14">
+        <div class="bg-primary-com dark:bg-secondary-com py-14">
+            <div class="max-w-screen-xl text-center mx-auto font-medium px-6">
+                <h4 class="uppercase text-main-500 text-sm xl:text-lg font-semibold tracking-widest" data-aos="fade-up">Buku Tamu</h4>
+                <h1 class="text-2xl md:text-3xl lg:text-4xl xl:text-5xl text-secondary-font font-bold capitalize leading-tight" data-aos="fade-up">Pesan &amp; Kesan Pengunjug</h1>
+                <div class="flex flex-col items-center text-secondary-font">
+                    <!-- tampilkan jika ada pesan dari pengunjung -->
+                    <div id="komentar" class="flex flex-wrap justify-center my-28">Belum ada pengunjung yang Nitip Pesan, Jadilah yang Pertama!</div>
+
+                    <!-- tombol ke tulis -->
+                    <a href="#" class="py-2 lg:py-3 px-6 lg:px-10 border-2 border-main-500 text-base lg:text-lg hover:bg-main-500 ease-in-out duration-300" data-aos="zoom-in-up">Tinggalkan Pesan</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- semantic bagian kaki -->
+    <footer id="contact">
+        <!-- bagian info hubungi saya -->
+        <div class="bg-primary dark:bg-secondary p-6 md:p-14 contact">
+            <div class="w-full lg:w-4/5 2xl:w-1/2 bg-primary-com dark:bg-secondary-com p-5 text-justify text-secondary-font rounded-xl flex flex-col gap-1.5 border dark:border-main-500 qr" data-aos="zoom-in-right">
+                <a href="#" class="mb-3">
+                    <h1 class="source-code-pro text-3xl font-bold brand-text-shadow"><span
+                            class="dancing-script text-4xl text-main-500">A</span>ri Budiman</h1>
+                </a>
+                <p>Jika anda mempunyai pertanyaan, jangan ragu untuk menghubungi saya.</p>
+                <p><i class="fa-solid fa-location-dot me-2"></i>Ciamis, Jawa Barat, Indonesia</p>
+                <p><i class="fa-brands fa-whatsapp me-2"></i>+62895384182298</p>
+                <p><i class="fa-solid fa-at me-2"></i>iaid.aribudiman@gmail.com</p>
+            </div>
+        </div>
+
+        <!-- bagian kaki -->
+        <div class="bg-primary-com dark:bg-secondary-com py-14 pb-10">
+            <div class="max-w-screen-2xl border-t text-secondary-font border-main-gray mx-auto flex justify-between py-3 px-6 2xl:px-0">
+                <div>Dibuat Oleh Ari Budiman | &copy; 2023</div>
+                <div class="flex gap-3">
+                    <a href="https://facebook.com/RhyMan18"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="https://twitter.com/RhyMan18"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="https://www.linkedin.com/in/rhyman18"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="https://github.com/rhyman18"><i class="fa-brands fa-github"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- button back to top -->
+    <a href="#"
+        class="fixed bottom-1 right-2 bg-main-500 hover:bg-main-700 text-white font-medium rounded-xl py-5 px-3.5 text-sm text-center inline-flex items-center"
+        data-aos="zoom-in-up"><i class="fa-solid fa-arrow-up fa-xl"></i></a>
+
+    <!-- library font awasome untuk icon -->
+    <script src="https://kit.fontawesome.com/3941d04b00.js" crossorigin="anonymous"></script>
+</body>
+
+</html>
