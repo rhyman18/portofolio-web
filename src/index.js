@@ -1,5 +1,5 @@
 import Profile from './assets/images/profile.jpg';
-import {skillDasar, skillFrontend, skillBackend} from './assets/data/skill';
+import {skill} from './assets/data/skill';
 import {project} from './assets/data/project';
 import faviconApple from './assets/favicon/apple-touch-icon.png';
 import favicon32 from './assets/favicon/favicon-32x32.png';
@@ -15,41 +15,64 @@ document.getElementById('profile').src = Profile;
 
 // Skill Saya
 const containerSkillDasar = document.getElementById('skill-dasar');
-for (const skill of skillDasar) {
+// const skeletonSkill = document.
+const skillDasar = await skill('basic');
+if (skillDasar) {
+  document.getElementById('skeleton-box-1').style.display = 'none';
+  document.getElementById('skeleton-box-2').style.display = 'none';
+  document.getElementById('skeleton-box-3').style.display = 'none';
+}
+for (const skill of skillDasar.data) {
   const createSkill = document.createElement('a');
   createSkill.href = '#';
   createSkill.classList = 'flex flex-col gap-3 w-40 bg-primary border dark:bg-secondary-com dark:border-gray-600 dark:hover:border-main-300 rounded py-8 tracking-widest skill-box dark:shadow-main-500 hover:text-main-500 ease-in-out duration-300';
-  createSkill.innerHTML = `<i class="${skill.icon} fa-3x text-main-500"></i>${skill.nama}`;
+  createSkill.innerHTML = `<i class="${skill.icon} fa-3x text-main-500"></i>${skill.name}`;
   containerSkillDasar.appendChild(createSkill);
 }
 
 // Skill Frontend
 const containerSkillFrontend = document.getElementById('skill-frontend');
-for (const skill of skillFrontend) {
+const skillFrontend = await skill('frontend');
+if (skillFrontend) {
+  document.getElementById('skeleton-box-4').style.display = 'none';
+  document.getElementById('skeleton-box-5').style.display = 'none';
+  document.getElementById('skeleton-box-6').style.display = 'none';
+}
+for (const skill of skillFrontend.data) {
   const createSkill = document.createElement('a');
   createSkill.href = '#';
   createSkill.classList = 'flex flex-col gap-3 w-40 bg-primary border dark:bg-secondary-com dark:border-gray-600 dark:hover:border-main-300 rounded py-8 tracking-widest skill-box dark:shadow-main-500 hover:text-main-500 ease-in-out duration-300';
-  createSkill.innerHTML = `<i class="${skill.icon} fa-3x text-main-500"></i>${skill.nama}`;
+  createSkill.innerHTML = `<i class="${skill.icon} fa-3x text-main-500"></i>${skill.name}`;
   containerSkillFrontend.appendChild(createSkill);
 }
 
 // Skill Backend
 const containerSkillBackend = document.getElementById('skill-backend');
-for (const skill of skillBackend) {
+const skillBackend = await skill('backend');
+if (skillBackend) {
+  document.getElementById('skeleton-box-7').style.display = 'none';
+  document.getElementById('skeleton-box-8').style.display = 'none';
+  document.getElementById('skeleton-box-9').style.display = 'none';
+}
+for (const skill of skillBackend.data) {
   const createSkill = document.createElement('a');
   createSkill.href = '#';
   createSkill.classList = 'flex flex-col gap-3 w-40 bg-primary border dark:bg-secondary-com dark:border-gray-600 dark:hover:border-main-300 rounded py-8 tracking-widest skill-box dark:shadow-main-500 hover:text-main-500 ease-in-out duration-300';
-  createSkill.innerHTML = `<i class="${skill.icon} fa-3x text-main-500"></i>${skill.nama}`;
+  createSkill.innerHTML = `<i class="${skill.icon} fa-3x text-main-500"></i>${skill.name}`;
   containerSkillBackend.appendChild(createSkill);
 }
 
 // Post Project
 const containerProject = document.getElementById('post');
 let j = 1;
-project.forEach(function(project, i) {
+const dataProject = await project();
+if (dataProject) {
+  document.getElementById('skeleton-project').style.display = 'none';
+}
+dataProject.data.forEach(function(project, i) {
   const createProject = document.createElement('a');
   let tags = '';
-  for (const item of project.tags) {
+  for (const item of JSON.parse(project.tags)) {
     tags += `<span class="bg-main-500 py-1 md:py-1.5 px-4 md:px-6">${item}</span>`;
   };
   createProject.href = project.url;
@@ -64,7 +87,7 @@ project.forEach(function(project, i) {
       <div class="text-lg md:text-xl font-semibold tracking-widest leading-tight">${project.title}</div>
       <div class="uppercase text-xs tracking-widest text-secondary-font my-4 flex flex-wrap gap-1 md:gap-3"><a href="${project.repo}" class="bg-main-gray hover:bg-main-500 py-1 md:py-1.5 px-4 md:px-6" target="_blank">REPO (GITHUB)</a>${tags}</div>
       <p class="leading-5 md:leading-7 text-primary-desc dark:text-secondary-desc text-justify mb-4 elipsis">${project.desc}</p>
-      <p class="text-main-gray text-xs uppercase tracking-widest">${project.date}</p>
+      <p class="text-main-gray text-xs uppercase tracking-widest">${project.updated_at}</p>
     </div>
   </article>
   `;
@@ -73,7 +96,7 @@ project.forEach(function(project, i) {
   const img = document.getElementById(`postimg${i}`);
   img.style = `background: url('${project.img}') no-repeat center; background-size: cover;`;
   img.addEventListener('mouseover', function() {
-    img.style = `background: url('${project.imgHover}') no-repeat center; background-size: cover;`;
+    img.style = `background: url('${project.img_hover}') no-repeat center; background-size: cover;`;
   });
   img.addEventListener('mouseout', function() {
     img.style = `background: url('${project.img}') no-repeat center; background-size: cover;`;
@@ -81,28 +104,28 @@ project.forEach(function(project, i) {
 });
 
 // Splash screen
-const intro = document.getElementById('intro');
-const logoParts = document.querySelectorAll('.logo');
-window.addEventListener('DOMContentLoaded', function() {
-  setTimeout(() => {
-    logoParts.forEach((span, i) => {
-      setTimeout(() => {
-        span.classList.add('active');
-      }, (i + 1) * 400);
-    });
-    setTimeout(() => {
-      logoParts.forEach((span, i) => {
-        setTimeout(() => {
-          span.classList.remove('active');
-          span.classList.add('fade');
-        }, (i + 1) * 50);
-      });
-    }, 2000);
-    setTimeout(() => {
-      intro.style.top = '-100vh';
-    }, 2300);
-  });
-});
+// const intro = document.getElementById('intro');
+// const logoParts = document.querySelectorAll('.logo');
+// window.addEventListener('DOMContentLoaded', function() {
+//   setTimeout(() => {
+//     logoParts.forEach((span, i) => {
+//       setTimeout(() => {
+//         span.classList.add('active');
+//       }, (i + 1) * 400);
+//     });
+//     setTimeout(() => {
+//       logoParts.forEach((span, i) => {
+//         setTimeout(() => {
+//           span.classList.remove('active');
+//           span.classList.add('fade');
+//         }, (i + 1) * 50);
+//       });
+//     }, 2000);
+//     setTimeout(() => {
+//       intro.style.top = '-100vh';
+//     }, 2300);
+//   });
+// });
 
 // When the user scrolls the page, execute scroll indicator
 window.onscroll = function() {

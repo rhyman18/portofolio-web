@@ -24,7 +24,7 @@
 
 <body class="bg-primary text-primary-font dark:bg-secondary dark:text-secondary-font">
     <!-- splash screen -->
-    <div class="fixed z-30 left-0 top-0 right-0 h-screen bg-primary dark:bg-secondary-nav duration-1000" id="intro">
+    <!-- <div class="fixed z-30 left-0 top-0 right-0 h-screen bg-primary dark:bg-secondary-nav duration-1000" id="intro">
         <h1 class="absolute splash-logo text-primary-font dark:text-secondary-font">
             <div class="flex items-center">
                 <h1 class="source-code-pro text-3xl sm:text-5xl font-bold brand-text-shadow">
@@ -33,7 +33,7 @@
                 </h1>
             </div>
         </h1>
-    </div>
+    </div> -->
 
     <!-- semantic bagian kepala -->
     <header class="fixed w-full z-20 top-0 left-0 shadow-md">
@@ -64,8 +64,8 @@
                         </span>
                     </label>
                     <button data-collapse-toggle="navbar-sticky" type="button"
-                        class="inline-flex items-center ms-2 text-sm rounded-lg lg:hidden"
-                        aria-controls="navbar-sticky" aria-expanded="false">
+                        class="inline-flex items-center ms-2 text-sm rounded-lg lg:hidden" aria-controls="navbar-sticky"
+                        aria-expanded="false">
                         <span class="sr-only">Open main menu</span>
                         <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
                             xmlns="http://www.w3.org/2000/svg">
@@ -80,8 +80,8 @@
                         class="flex flex-col p-4 lg:p-0 mt-4 font-semibold tracking-widest border border-gray-100 rounded-lg bg-gray-50 lg:flex-row lg:space-x-8 lg:mt-0 lg:border-0 lg:bg-primary-nav dark:bg-gray-800 lg:dark:bg-secondary-nav dark:border-gray-700">
                         <li>
                             <a href="#"
-                                class="block py-2 pl-3 pr-4 rounded lg:p-0 bg-main-500 text-secondary-font lg:bg-transparent lg:text-main-500 lg:hover:text-main-500"
-                                aria-current="page">Rumah</a>
+                                class="block py-2 pl-3 pr-4 rounded lg:p-0 bg-main-500 text-secondary-font lg:bg-transparent lg:text-main-500 lg         aria-current="
+                                page">Rumah</a>
                         </li>
                         <li>
                             <a href="#about" class="block py-2 pl-3 pr-4 rounded lg:p-0 hover:text-main-500">Tentang
@@ -95,7 +95,8 @@
                                 class="block py-2 pl-3 pr-4 rounded lg:p-0 hover:text-main-500">Project</a>
                         </li>
                         <li>
-                            <a href="#contact" class="block py-2 pl-3 pr-4 rounded lg:p-0 hover:text-main-500">Hubungi</a>
+                            <a href="#contact"
+                                class="block py-2 pl-3 pr-4 rounded lg:p-0 hover:text-main-500">Hubungi</a>
                         </li>
                     </ul>
                 </div>
@@ -112,7 +113,8 @@
         class="h-screen flex flex-col items-center justify-center text-center bg-hero text-secondary-font tracking-widest gap-3 lg:gap-5 px-6">
         <!-- bagian sambutan -->
         <p class="text-lg md:text-xl lg:text-2xl hero-textp-shadow">Web Portofolio</p>
-        <h1 class="text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl hero-texth1-shadow">Selamat Datang di Rumah Ari Budiman</h1>
+        <h1 class="text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl hero-texth1-shadow">Selamat Datang di Rumah
+            Ari Budiman</h1>
         <a href="#about"
             class="mt-3 lg:mt-6 py-2 lg:py-3 px-6 lg:px-10 border-2 border-main-500 text-base lg:text-lg hover:bg-main-500 ease-in-out duration-300">Kepoin
             Yuk</a>
@@ -140,12 +142,16 @@
     <!-- bagian tentang saya -->
     <section id="about" class="pt-28">
         <!-- tampilkan profil saya -->
-        <div class="max-w-screen-2xl flex flex-wrap md:flex-nowrap items-center justify-center mx-auto gap-6 md:gap-12 xl:gap-30 2xl:gap-64 px-6">
+        <div
+            class="max-w-screen-2xl flex flex-wrap md:flex-nowrap items-center justify-center mx-auto gap-6 md:gap-12 xl:gap-30 2xl:gap-64 px-6">
             <div class="font-medium" data-aos="fade-up">
                 <h4 class="uppercase text-main-500 text-sm xl:text-lg font-semibold tracking-widest">Tentang Saya</h4>
-                <h1 class="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold capitalize leading-tight mb-6 xl:mb-12">Hai, Saya Ari Budiman<br>Senang berjumpa
+                <h1
+                    class="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold capitalize leading-tight mb-6 xl:mb-12">
+                    Hai, Saya Ari Budiman<br>Senang berjumpa
                     dengan Anda</h1>
-                <p class="leading-loose text-base xl:text-xl text-primary-desc dark:text-secondary-desc mb-3 xl:mb-6">Saya seorang Web
+                <p class="leading-loose text-base xl:text-xl text-primary-desc dark:text-secondary-desc mb-3 xl:mb-6">
+                    Saya seorang Web
                     Developer, Saya dapat membuat Aplikasi berbasis Web menggunakan bahasa pemrograman Javascript dan
                     PHP, bisa merancang suatu aplikasi web seperti yang diinginkan client, memastikan keamanan Aplikasi
                     sesuai standard OWASP top Ten.</p>
@@ -164,13 +170,64 @@
         <!-- bagian skill saya -->
         <div class="max-w-screen-2xl text-center mx-auto font-medium px-6">
             <h3 class="text-main-gray uppercase tracking-widest py-6">Skill Saya</h3>
-            <div id="skill-dasar" data-aos="zoom-in-up" data-aos-delay="200" class="flex flex-wrap justify-center gap-8 font-semibold mb-6"></div>
+            <div id="skill-dasar" data-aos="zoom-in-up" data-aos-delay="200"
+                class="flex flex-wrap justify-center gap-8 font-semibold mb-6">
+                <a role="status" id="skeleton-box-1"
+                    class="flex flex-col gap-3 w-40 bg-primary border dark:bg-secondary-com dark:border-gray-600 rounded py-8 tracking-widest dark:shadow-main-500 ease-in-out duration-300">
+                    <i class="fa-solid fa-square fa-3x text-gray-200 dark:text-gray-700 animate-pulse"></i><span
+                        class="h-3 mx-12 mt-2 bg-gray-200 rounded-full dark:bg-gray-700 animate-pulse"></span>
+                </a>
+                <a role="status" id="skeleton-box-2"
+                    class="flex flex-col gap-3 w-40 bg-primary border dark:bg-secondary-com dark:border-gray-600 rounded py-8 tracking-widest dark:shadow-gray-200 dark:text-gray-700">
+                    <i class="fa-solid fa-square fa-3x text-gray-200 dark:text-gray-700 animate-pulse"></i><span
+                        class="h-3 mx-12 mt-2 bg-gray-200 rounded-full dark:bg-gray-700 animate-pulse"></span>
+                </a>
+                <a role="status" id="skeleton-box-3"
+                    class="flex flex-col gap-3 w-40 bg-primary border dark:bg-secondary-com dark:border-gray-600 rounded py-8 tracking-widest dark:shadow-gray-200 dark:text-gray-700">
+                    <i class="fa-solid fa-square fa-3x text-gray-200 dark:text-gray-700 animate-pulse"></i><span
+                        class="h-3 mx-12 mt-2 bg-gray-200 rounded-full dark:bg-gray-700 animate-pulse"></span>
+                </a>
+            </div>
 
             <h3 class="text-main-gray uppercase tracking-widest py-6">Frontend Dev</h3>
-            <div id="skill-frontend" data-aos="zoom-in-up" data-aos-delay="400" class="flex flex-wrap justify-center gap-8 font-semibold mb-6"></div>
+            <div id="skill-frontend" data-aos="zoom-in-up" data-aos-delay="400"
+                class="flex flex-wrap justify-center gap-8 font-semibold mb-6">
+                <a role="status" id="skeleton-box-4"
+                    class="flex flex-col gap-3 w-40 bg-primary border dark:bg-secondary-com dark:border-gray-600 rounded py-8 tracking-widest dark:shadow-gray-200 dark:text-gray-700">
+                    <i class="fa-solid fa-square fa-3x text-gray-200 dark:text-gray-700 animate-pulse"></i><span
+                        class="h-3 mx-12 mt-2 bg-gray-200 rounded-full dark:bg-gray-700 animate-pulse"></span>
+                </a>
+                <a role="status" id="skeleton-box-5"
+                    class="flex flex-col gap-3 w-40 bg-primary border dark:bg-secondary-com dark:border-gray-600 rounded py-8 tracking-widest dark:shadow-gray-200 dark:text-gray-700">
+                    <i class="fa-solid fa-square fa-3x text-gray-200 dark:text-gray-700 animate-pulse"></i><span
+                        class="h-3 mx-12 mt-2 bg-gray-200 rounded-full dark:bg-gray-700 animate-pulse"></span>
+                </a>
+                <a role="status" id="skeleton-box-6"
+                    class="flex flex-col gap-3 w-40 bg-primary border dark:bg-secondary-com dark:border-gray-600 rounded py-8 tracking-widest dark:shadow-gray-200 dark:text-gray-700">
+                    <i class="fa-solid fa-square fa-3x text-gray-200 dark:text-gray-700 animate-pulse"></i><span
+                        class="h-3 mx-12 mt-2 bg-gray-200 rounded-full dark:bg-gray-700 animate-pulse"></span>
+                </a>
+            </div>
 
             <h3 class="text-main-gray uppercase tracking-widest py-6">Backend Dev</h3>
-            <div id="skill-backend" data-aos="zoom-in-up" data-aos-delay="600" class="flex flex-wrap justify-center gap-8 font-semibold mb-6"></div>
+            <div id="skill-backend" data-aos="zoom-in-up" data-aos-delay="600"
+                class="flex flex-wrap justify-center gap-8 font-semibold mb-6">
+                <a role="status" id="skeleton-box-7"
+                    class="flex flex-col gap-3 w-40 bg-primary border dark:bg-secondary-com dark:border-gray-600 rounded py-8 tracking-widest dark:shadow-gray-200 dark:text-gray-700">
+                    <i class="fa-solid fa-square fa-3x text-gray-200 dark:text-gray-700 animate-pulse"></i><span
+                        class="h-3 mx-12 mt-2 bg-gray-200 rounded-full dark:bg-gray-700 animate-pulse"></span>
+                </a>
+                <a role="status" id="skeleton-box-8"
+                    class="flex flex-col gap-3 w-40 bg-primary border dark:bg-secondary-com dark:border-gray-600 rounded py-8 tracking-widest dark:shadow-gray-200 dark:text-gray-700">
+                    <i class="fa-solid fa-square fa-3x text-gray-200 dark:text-gray-700 animate-pulse"></i><span
+                        class="h-3 mx-12 mt-2 bg-gray-200 rounded-full dark:bg-gray-700 animate-pulse"></span>
+                </a>
+                <a role="status" id="skeleton-box-9"
+                    class="flex flex-col gap-3 w-40 bg-primary border dark:bg-secondary-com dark:border-gray-600 rounded py-8 tracking-widest dark:shadow-gray-200 dark:text-gray-700">
+                    <i class="fa-solid fa-square fa-3x text-gray-200 dark:text-gray-700 animate-pulse"></i><span
+                        class="h-3 mx-12 mt-2 bg-gray-200 rounded-full dark:bg-gray-700 animate-pulse"></span>
+                </a>
+            </div>
         </div>
     </section>
 
@@ -179,11 +236,40 @@
     <main id="project" class="pt-28">
         <!-- judul bagian content -->
         <div class="max-w-screen-xl text-center mx-auto font-medium px-6">
-            <h4 class="uppercase text-main-500 text-sm xl:text-lg font-semibold tracking-widest" data-aos="fade-up">Project & Event</h4>
-            <h1 class="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold capitalize leading-tight mb-6 xl:mb-12" data-aos="fade-up">Kegiatan Terbaru</h1>
+            <h4 class="uppercase text-main-500 text-sm xl:text-lg font-semibold tracking-widest" data-aos="fade-up">
+                Project & Event</h4>
+            <h1 class="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold capitalize leading-tight mb-6 xl:mb-12"
+                data-aos="fade-up">Kegiatan Terbaru</h1>
 
             <!-- isi bagian content -->
-            <div class="flex flex-col gap-6" id="post"></div>
+            <div class="flex flex-col gap-6" id="post">
+                <a class="left-bg md:border-e-2 border-main-500" role="status" id="skeleton-project">
+                    <article data-aos="zoom-in-right"
+                        class="animate-pulse flex flex-col md:me-4 lg:me-8 xl:flex-row xl:pe-6 text-left items-stretch xl:gap-5 border dark:border-gray-600 rounded dark:shadow-main-500 bg-primary dark:bg-secondary-com">
+                        <div
+                            class="xl:basis-1/3 h-60 md:h-96 xl:h-60 flex justify-center items-center bg-gray-300 dark:bg-gray-700">
+                            <svg class="w-12 h-12 text-gray-200 dark:text-gray-600" xmlns="http://www.w3.org/2000/svg"
+                                aria-hidden="true" fill="currentColor" viewBox="0 0 640 512">
+                                <path
+                                    d="M480 80C480 35.82 515.8 0 560 0C604.2 0 640 35.82 640 80C640 124.2 604.2 160 560 160C515.8 160 480 124.2 480 80zM0 456.1C0 445.6 2.964 435.3 8.551 426.4L225.3 81.01C231.9 70.42 243.5 64 256 64C268.5 64 280.1 70.42 286.8 81.01L412.7 281.7L460.9 202.7C464.1 196.1 472.2 192 480 192C487.8 192 495 196.1 499.1 202.7L631.1 419.1C636.9 428.6 640 439.7 640 450.9C640 484.6 612.6 512 578.9 512H55.91C25.03 512 .0006 486.1 .0006 456.1L0 456.1z" />
+                            </svg>
+                        </div>
+                        <div class="basis-2/3 flex flex-col justify-center font-medium xl:my-4 p-6 xl:p-0">
+                            <div class="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-48"></div>
+                            <div class="flex items-center w-full space-x-2 max-w-[360px] my-6">
+                                <div class="h-2.5 bg-gray-300 rounded-full dark:bg-gray-600 w-full"></div>
+                                <div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-80"></div>
+                                <div class="h-2.5 bg-gray-300 rounded-full dark:bg-gray-600 w-full"></div>
+                            </div>
+                            <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[480px] mb-4"></div>
+                            <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 mb-4"></div>
+                            <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[440px] mb-4"></div>
+                            <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[460px] mb-4"></div>
+                            <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[360px]"></div>
+                        </div>
+                    </article>
+                </a>
+            </div>
         </div>
     </main>
 
@@ -191,14 +277,19 @@
     <section id="tamu" class="pt-14">
         <div class="bg-primary-com dark:bg-secondary-com py-14">
             <div class="max-w-screen-xl text-center mx-auto font-medium px-6">
-                <h4 class="uppercase text-main-500 text-sm xl:text-lg font-semibold tracking-widest" data-aos="fade-up">Buku Tamu</h4>
-                <h1 class="text-2xl md:text-3xl lg:text-4xl xl:text-5xl text-secondary-font font-bold capitalize leading-tight" data-aos="fade-up">Pesan &amp; Kesan Pengunjug</h1>
+                <h4 class="uppercase text-main-500 text-sm xl:text-lg font-semibold tracking-widest" data-aos="fade-up">
+                    Buku Tamu</h4>
+                <h1 class="text-2xl md:text-3xl lg:text-4xl xl:text-5xl text-secondary-font font-bold capitalize leading-tight"
+                    data-aos="fade-up">Pesan &amp; Kesan Pengunjug</h1>
                 <div class="flex flex-col items-center text-secondary-font">
                     <!-- tampilkan jika ada pesan dari pengunjung -->
-                    <div id="komentar" class="flex flex-wrap justify-center my-28">Belum ada pengunjung yang Nitip Pesan, Jadilah yang Pertama!</div>
+                    <div id="komentar" class="flex flex-wrap justify-center my-28">Belum ada pengunjung yang Nitip
+                        Pesan, Jadilah yang Pertama!</div>
 
                     <!-- tombol ke tulis -->
-                    <a href="#" class="py-2 lg:py-3 px-6 lg:px-10 border-2 border-main-500 text-base lg:text-lg hover:bg-main-500 ease-in-out duration-300" data-aos="zoom-in-up">Tinggalkan Pesan</a>
+                    <a href="#"
+                        class="py-2 lg:py-3 px-6 lg:px-10 border-2 border-main-500 text-base lg:text-lg hover:bg-main-500 ease-in-out duration-300"
+                        data-aos="zoom-in-up">Tinggalkan Pesan</a>
                 </div>
             </div>
         </div>
@@ -208,7 +299,8 @@
     <footer id="contact">
         <!-- bagian info hubungi saya -->
         <div class="bg-primary dark:bg-secondary p-6 md:p-14 contact">
-            <div class="w-full lg:w-4/5 2xl:w-1/2 bg-primary-com dark:bg-secondary-com p-5 text-justify text-secondary-font rounded-xl flex flex-col gap-1.5 border dark:border-main-500 qr" data-aos="zoom-in-right">
+            <div class="w-full lg:w-4/5 2xl:w-1/2 bg-primary-com dark:bg-secondary-com p-5 text-justify text-secondary-font rounded-xl flex flex-col gap-1.5 border dark:border-main-500 qr"
+                data-aos="zoom-in-right">
                 <a href="#" class="mb-3">
                     <h1 class="source-code-pro text-3xl font-bold brand-text-shadow"><span
                             class="dancing-script text-4xl text-main-500">A</span>ri Budiman</h1>
@@ -222,7 +314,8 @@
 
         <!-- bagian kaki -->
         <div class="bg-primary-com dark:bg-secondary-com py-14 pb-10">
-            <div class="max-w-screen-2xl border-t text-secondary-font border-main-gray mx-auto flex justify-between py-3 px-6 2xl:px-0">
+            <div
+                class="max-w-screen-2xl border-t text-secondary-font border-main-gray mx-auto flex justify-between py-3 px-6 2xl:px-0">
                 <div>Dibuat Oleh Ari Budiman | &copy; 2023</div>
                 <div class="flex gap-3">
                     <a href="https://facebook.com/RhyMan18"><i class="fa-brands fa-facebook-f"></i></a>

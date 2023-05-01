@@ -1,86 +1,23 @@
-const skillDasar = [
-  {
-    nama: 'HTML',
-    icon: 'fa-brands fa-html5',
-  },
-  {
-    nama: 'CSS',
-    icon: 'fa-brands fa-css3',
-  },
-  {
-    nama: 'JavaScript',
-    icon: 'fa-brands fa-js',
-  },
-  {
-    nama: 'PHP',
-    icon: 'fa-brands fa-php',
-  },
-  {
-    nama: 'AWS Cloud',
-    icon: 'fa-brands fa-aws',
-  },
-  {
-    nama: 'NodeJS',
-    icon: 'fa-brands fa-node-js',
-  },
-  {
-    nama: 'Github',
-    icon: 'fa-brands fa-github',
-  },
-];
+import {baseApi, authApi} from './api';
 
-const skillFrontend = [
-  {
-    nama: 'Sass',
-    icon: 'fa-brands fa-sass',
-  },
-  {
-    nama: 'Bootstrap',
-    icon: 'fa-brands fa-bootstrap',
-  },
-  {
-    nama: 'Tailwind',
-    icon: 'fa-brands fa-css3',
-  },
-  {
-    nama: 'Vue 3',
-    icon: 'fa-brands fa-vuejs',
-  },
-  {
-    nama: 'React',
-    icon: 'fa-brands fa-react',
-  },
-  {
-    nama: 'Webpack',
-    icon: 'fa-brands fa-codepen',
-  },
-];
+/**
+ * Fetch data skills ke API.
+ * @param {string} type
+ */
+async function skill(type) {
+  try {
+    const response = await fetch(`${baseApi}/skills/${type}`, {
+      headers: {
+        'Accept': 'application/json',
+        'Authorization': `Bearer ${authApi}`,
+      },
+    });
+    const data = await response.json();
 
-const skillBackend = [
-  {
-    nama: 'MySQL',
-    icon: 'fa-solid fa-database',
-  },
-  {
-    nama: 'NoSQL',
-    icon: 'fa-solid fa-database',
-  },
-  {
-    nama: 'Laravel 10',
-    icon: 'fa-brands fa-laravel',
-  },
-  {
-    nama: 'CodeIgniter 4',
-    icon: 'fa-solid fa-fire',
-  },
-  {
-    nama: 'Express',
-    icon: 'fa-solid fa-server',
-  },
-  {
-    nama: 'Hapi',
-    icon: 'fa-solid fa-server',
-  },
-];
+    return data;
+  } catch (error) {
+    console.log(error.message);
+  }
+};
 
-export {skillDasar, skillFrontend, skillBackend};
+export {skill};
