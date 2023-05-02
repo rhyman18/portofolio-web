@@ -9,7 +9,8 @@ Membuat landing page situs Portofolio saya. Berikut framework dan library yang d
 - `Aos` : styling animasi saat scrolling
 - `Eslint` : membantu clean code javascript
 - `REST API` : integrasi api dengan Laravel 10. repo : **[https://github.com/rhyman18/portofolio-api](https://github.com/rhyman18/portofolio-api)**
+- `Install SSL` : update ssl certificate sehingga dapat diakses menggunakan https
 
 # Deployment Web
 
-Silahkan kunjungi **[http://www.aribudiman.site](http://www.aribudiman.site)** untuk melihat hasil jadi Website. Sebagai keterangan website di deploy di Amazon Web Services, lebih tepatnya Amazon S3 Bucket. Sementara Backend masih di Bangun (proses).
+Silahkan kunjungi **[https://www.aribudiman.site](https://www.aribudiman.site)** untuk melihat hasil jadi Website. Sebagai keterangan website di deploy di Amazon Web Services, lebih tepatnya Amazon S3 Bucket. dan akan menggunakan cache CDN amazon CloudFront.
