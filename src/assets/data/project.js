@@ -1,23 +1,22 @@
-import { baseApi, authApi } from './api';
+import {baseApi, authApi} from './api';
 
 /**
  * Fetch data skills ke API.
- * @param {string} type
+ * @return {Promise}
  */
-async function project() {
-  try {
-    const response = await fetch(`${baseApi}/projects`, {
-      headers: {
-        'Accept': 'application/json',
-        'Authorization': `Bearer ${authApi}`,
-      },
-    });
-    const data = await response.json();
-
-    return data;
-  } catch (error) {
-    return error.message;
-  }
+function project() {
+  return fetch(`${baseApi}/projects`, {
+    headers: {
+      'Accept': 'application/json',
+      'Authorization': `Bearer ${authApi}`,
+    },
+  })
+      .then((res) => {
+        return res.json();
+      })
+      .then((result) => {
+        return Promise.resolve(result);
+      });
 };
 
-export { project };
+export {project};

@@ -2,11 +2,10 @@ import {baseApi, authApi} from './api';
 
 /**
  * Fetch data skills ke API.
- * @param {string} type
  * @return {Promise}
  */
-function skill(type) {
-  return fetch(`${baseApi}/skills/${type}`, {
+function guest() {
+  return fetch(`${baseApi}/guestbooks`, {
     headers: {
       'Accept': 'application/json',
       'Authorization': `Bearer ${authApi}`,
@@ -20,4 +19,4 @@ function skill(type) {
       });
 };
 
-export {skill};
+export {guest};
