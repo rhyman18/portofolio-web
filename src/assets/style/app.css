@@ -331,13 +331,13 @@ span:nth-of-type(11) {
 }
 
 .masuk {
-    animation: fadeIn 1s ease-in both;
+    animation: fadeIn .5s ease-in both;
 }
 
 @keyframes fadeIn {
     from {
         opacity: 0;
-        transform: translate3d(0, 50%, 0);
+        transform: translate3d(0, 60%, 0);
     }
 
     to {
