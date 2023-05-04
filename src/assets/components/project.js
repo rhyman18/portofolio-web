@@ -23,8 +23,10 @@ dataProject.data.forEach(function(project, i) {
   createProject.classList = (i % 2 === 0) ? 'left-bg md:border-e-2 border-main-500' : 'right-bg md:border-s-2 border-main-500';
   createProject.innerHTML = `
   <article data-aos="zoom-in-${(i % 2 === 0) ? 'right' : 'left'}" data-aos-delay="${j * 100}" class="flex flex-col ${(i % 2 === 0) ? 'md:me-4 lg:me-8 xl:flex-row xl:pe-6' : 'xl:flex-row-reverse md:ms-4 lg:ms-8 xl:ps-6'} text-left items-stretch xl:gap-5 content-box border dark:border-gray-600 dark:hover:border-main-300 rounded dark:shadow-main-500 bg-primary dark:bg-secondary-com">
-    <div class="xl:basis-1/3 h-60 md:h-96 xl:h-auto flex justify-center items-center slide-img" id="postimg${i}">
-      <a href="${project.url}" target="_blank">Live demo</a>
+    <div class="overflow-hidden xl:basis-1/3 h-60 md:h-96 xl:h-auto">
+      <div class="img-project-zoom slide-img w-full h-full flex justify-center items-center" id="postimg${i}">
+        <a href="${project.url}" target="_blank">Live demo</a>
+      </div>
     </div>
     <div class="basis-2/3 font-medium xl:my-4 p-6 xl:p-0">
       <div class="text-lg md:text-xl font-semibold tracking-widest leading-tight">${project.title}</div>
