@@ -26,18 +26,18 @@
 
 <body class="bg-primary text-primary-font dark:bg-secondary dark:text-secondary-font">
     <!-- splash screen -->
-    <div class="absolute splash-container z-30 top-0 left-0 right-0 bottom-0 bg-primary dark:bg-secondary text-primary-font dark:text-secondary-font">
-        <span class="splash dancing-script text-main-500 text-7xl">A</span>
-        <span class="splash source-code-pro text-5xl font-bold brand-text-shadow">r</span>
-        <span class="splash source-code-pro text-5xl font-bold brand-text-shadow">i</span>
-        <span class="splash source-code-pro text-5xl font-bold brand-text-shadow"> </span>
-        <span class="splash source-code-pro text-5xl font-bold brand-text-shadow">B</span>
-        <span class="splash source-code-pro text-5xl font-bold brand-text-shadow">u</span>
-        <span class="splash source-code-pro text-5xl font-bold brand-text-shadow">d</span>
-        <span class="splash source-code-pro text-5xl font-bold brand-text-shadow">i</span>
-        <span class="splash source-code-pro text-5xl font-bold brand-text-shadow">m</span>
-        <span class="splash source-code-pro text-5xl font-bold brand-text-shadow">a</span>
-        <span class="splash source-code-pro text-5xl font-bold brand-text-shadow">n</span>
+    <div class="absolute splash-container z-30 top-0 left-0 right-0 bottom-0 bg-primary dark:bg-secondary text-primary-font dark:text-secondary-font font-medium">
+        <span class="splash dancing-script text-main-500 text-7xl font-bold">A</span>
+        <span class="splash source-code-pro text-5xl brand-text-shadow">r</span>
+        <span class="splash source-code-pro text-5xl brand-text-shadow">i</span>
+        <span class="splash source-code-pro text-5xl brand-text-shadow"> </span>
+        <span class="splash source-code-pro text-5xl brand-text-shadow">B</span>
+        <span class="splash source-code-pro text-5xl brand-text-shadow">u</span>
+        <span class="splash source-code-pro text-5xl brand-text-shadow">d</span>
+        <span class="splash source-code-pro text-5xl brand-text-shadow">i</span>
+        <span class="splash source-code-pro text-5xl brand-text-shadow">m</span>
+        <span class="splash source-code-pro text-5xl brand-text-shadow">a</span>
+        <span class="splash source-code-pro text-5xl brand-text-shadow">n</span>
     </div>
 
     <!-- semantic bagian kepala -->
@@ -51,58 +51,52 @@
                     </h1>
                 </a>
                 <div class="flex lg:order-2">
-                    <label class="relative inline-flex items-center cursor-pointer">
-                        <input type="checkbox" id="theme-toggle" class="sr-only peer">
-                        <div
-                            class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-main-300 dark:peer-focus:ring-main-500 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-main-300">
+                    <label class="relative inline-flex items-center cursor-pointer py-2.5 ps-2.5">
+                        <input type="checkbox" id="theme-toggle" class="sr-only peer" aria-label="change theme color">
+                        <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-main-300 dark:peer-focus:ring-main-500 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[11.5px] after:left-[13px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-main-300">
                         </div>
                         <span class="ml-3">
-                            <svg id="theme-toggle-light-icon" class="hidden w-6 h-6" fill="currentColor"
-                                viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <svg id="theme-toggle-light-icon" class="hidden w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
                             </svg>
-                            <svg id="theme-toggle-dark-icon" class="hidden w-6 h-6" fill="currentColor"
-                                viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
-                                    fill-rule="evenodd" clip-rule="evenodd"></path>
+                            <svg id="theme-toggle-dark-icon" class="hidden w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path>
                             </svg>
                         </span>
                     </label>
-                    <button data-collapse-toggle="navbar-sticky" type="button"
-                        class="inline-flex items-center ms-2 text-sm rounded-lg lg:hidden" aria-controls="navbar-sticky"
-                        aria-expanded="false">
+                    <button data-collapse-toggle="navbar-sticky" type="button" class="inline-flex items-center ms-2 p-2.5 text-sm rounded-lg lg:hidden" aria-controls="navbar-sticky" aria-expanded="false">
                         <span class="sr-only">Open main menu</span>
-                        <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd"
-                                d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-                                clip-rule="evenodd"></path>
+                        <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path>
                         </svg>
                     </button>
                 </div>
                 <div class="items-center justify-between hidden w-full lg:flex lg:w-auto lg:order-1" id="navbar-sticky">
-                    <ul
-                        class="flex flex-col p-4 lg:p-0 mt-4 font-semibold tracking-widest border border-gray-100 rounded-lg bg-gray-50 lg:flex-row lg:space-x-8 lg:mt-0 lg:border-0 lg:bg-primary-nav dark:bg-gray-800 lg:dark:bg-secondary-nav dark:border-gray-700">
+                    <ul class="flex flex-col p-4 lg:p-0 mt-4 font-medium tracking-widest border border-gray-100 rounded-lg bg-gray-50 lg:flex-row lg:space-x-8 lg:mt-0 lg:border-0 lg:bg-primary-nav dark:bg-gray-800 lg:dark:bg-secondary-nav dark:border-gray-700">
                         <li>
-                            <a href="#"
-                                class="block py-2 pl-3 pr-4 rounded lg:p-0 bg-main-500 text-secondary-font lg:bg-transparent lg:text-main-500"
-                                aria-current="page">Rumah</a>
+                            <a href="#" class="block py-2.5 pl-3 pr-4 rounded lg:p-2.5 bg-main-500 text-secondary-font lg:bg-transparent lg:text-main-500" aria-current="page">
+                                Rumah
+                            </a>
                         </li>
                         <li>
-                            <a href="#about" class="block py-2 pl-3 pr-4 rounded lg:p-0 hover:text-main-500">Tentang
-                                Saya</a>
+                            <a href="#about" class="block py-2.5 pl-3 pr-4 rounded lg:p-2.5 hover:text-main-500">
+                                Tentang Saya
+                            </a>
                         </li>
                         <li>
-                            <a href="#skill" class="block py-2 pl-3 pr-4 rounded lg:p-0 hover:text-main-500">Skill</a>
+                            <a href="#skill" class="block py-2.5 pl-3 pr-4 rounded lg:p-2.5 hover:text-main-500">
+                                Skill
+                            </a>
                         </li>
                         <li>
-                            <a href="#project"
-                                class="block py-2 pl-3 pr-4 rounded lg:p-0 hover:text-main-500">Project</a>
+                            <a href="#project" class="block py-2.5 pl-3 pr-4 rounded lg:p-2.5 hover:text-main-500">
+                                Project
+                            </a>
                         </li>
                         <li>
-                            <a href="#contact"
-                                class="block py-2 pl-3 pr-4 rounded lg:p-0 hover:text-main-500">Hubungi</a>
+                            <a href="#contact" class="block py-2.5 pl-3 pr-4 rounded lg:p-2.5 hover:text-main-500">
+                                Hubungi
+                            </a>
                         </li>
                     </ul>
                 </div>
@@ -317,7 +311,8 @@
                 data-aos="zoom-in-right" data-aos-offset="0">
                 <a href="#" class="mb-3">
                     <h1 class="source-code-pro text-3xl font-semibold brand-text-shadow">
-                        <span class="dancing-script text-4xl text-main-500 font-bold">A</span>ri Budiman</h1>
+                        <span class="dancing-script text-4xl text-main-500 font-bold">A</span>ri Budiman
+                    </h1>
                 </a>
                 <p>Jika anda mempunyai pertanyaan, jangan ragu untuk menghubungi saya.</p>
                 <p><i class="fa-solid fa-location-dot me-2"></i>Ciamis, Jawa Barat, Indonesia</p>
