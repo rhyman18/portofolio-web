@@ -2,6 +2,7 @@ import 'regenerator-runtime';
 import ScrollIndicator from './utils/scrollIndicator';
 import LoadMessages from './views/loadMessages';
 import LoadSkills from './views/loadSkills';
+import LoadProjects from './views/loadProjects';
 
 window.addEventListener('DOMContentLoaded', () => {
   ScrollIndicator.init(document.querySelector('#myBar'));
@@ -16,4 +17,6 @@ window.addEventListener('DOMContentLoaded', () => {
     frontend: document.querySelector('#skill-frontend'),
     backend: document.querySelector('#skill-backend'),
   });
+
+  LoadProjects.init(document.querySelector('#post'));
 });
