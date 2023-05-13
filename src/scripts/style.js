@@ -1,4 +1,4 @@
-import './assets/style/app.css';
+import '../styles/app.css';
 import 'flowbite';
 
 const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');

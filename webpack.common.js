@@ -1,20 +1,16 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   entry: {
-    index: './src/index.js',
-    style: './src/style.js',
-    aos: './src/aos.js',
+    style: './src/scripts/style.js',
+    aos: './src/scripts/aos.js',
   },
   output: {
     path: path.resolve(__dirname, 'public'),
-    filename: '[name].[contenthash].js',
-    assetModuleFilename: '[name][ext]',
-  },
-  experiments: {
-    topLevelAwait: true,
+    filename: '[name].bundle.js',
+    clean: true,
   },
   module: {
     rules: [
@@ -22,7 +18,7 @@ module.exports = {
         test: /\.css$/,
         use: [
           {
-            loader: MiniCssExtractPlugin.loader,
+            loader: 'style-loader',
           },
           {
             loader: 'css-loader',
@@ -40,11 +36,16 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './src/template.html',
+      template: path.resolve(__dirname, 'src/templates/index.html'),
       filename: 'index.html',
     }),
-    new MiniCssExtractPlugin({
-      filename: '[name].[contenthash].css',
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: path.resolve(__dirname, 'src/public/'),
+          to: path.resolve(__dirname, 'public/'),
+        },
+      ],
     }),
   ],
 };

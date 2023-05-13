@@ -2,9 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap');
 
 html {
     scrollbar-width: none;
@@ -51,7 +51,7 @@ html::-webkit-scrollbar {
 }
 
 .bg-hero {
-    background: rgba(0, 0, 0, .7) url('welcome-bg.jpg');
+    background: rgba(0, 0, 0, .7) url('../public/images/welcome-bg.jpg');
     background-blend-mode: darken;
     background-position: center;
     background-repeat: no-repeat;
@@ -110,14 +110,14 @@ html::-webkit-scrollbar {
 }
 
 .left-bg {
-    background: url('left-icon.png');
+    background: url('../public/images/left-icon.png');
     background-position: right;
     background-repeat: no-repeat;
     background-size: 40px;
 }
 
 .right-bg {
-    background: url('right-icon.png');
+    background: url('../public/images/right-icon.png');
     background-position: left;
     background-repeat: no-repeat;
     background-size: 40px;
@@ -140,14 +140,14 @@ html::-webkit-scrollbar {
 }
 
 .contact {
-    background-image: url('location-bg.png');
+    background-image: url('../public/images/location-bg.png');
     background-position: right;
     background-size: contain;
     background-repeat: no-repeat;
 }
 
 .qr {
-    background-image: url('contact.png');
+    background-image: url('../public/images/contact.png');
     background-position: right;
     background-size: contain;
     background-repeat: no-repeat;

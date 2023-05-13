@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --config webpack.prod.js",
-    "dev": "webpack serve --config webpack.dev.js",
+    "dev": "webpack serve --config webpack.dev.js --port=9000",
     "lint": "npx eslint . --fix"
   },
   "keywords": [],
@@ -19,8 +19,8 @@
     "aos": "^2.3.4",
     "autoprefixer": "^10.4.14",
     "babel-loader": "^9.1.2",
+    "copy-webpack-plugin": "^11.0.0",
     "css-loader": "^6.7.3",
-    "css-minimizer-webpack-plugin": "^5.0.0",
     "eslint": "^8.39.0",
     "eslint-config-google": "^0.14.0",
     "flowbite": "^1.6.5",
@@ -31,7 +31,6 @@
     "imagemin-jpegtran": "^7.0.0",
     "imagemin-optipng": "^8.0.0",
     "imagemin-svgo": "^10.0.1",
-    "mini-css-extract-plugin": "^2.7.5",
     "postcss": "^8.4.23",
     "postcss-loader": "^7.2.4",
     "postcss-preset-env": "^8.3.2",
@@ -41,5 +40,8 @@
     "webpack-cli": "^5.0.2",
     "webpack-dev-server": "^4.13.3",
     "webpack-merge": "^5.8.0"
+  },
+  "dependencies": {
+    "regenerator-runtime": "^0.13.11"
   }
 }

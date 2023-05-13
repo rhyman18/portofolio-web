@@ -1,3 +1,4 @@
+import 'regenerator-runtime';
 import './assets/components/favicon';
 import './assets/components/profile';
 import './assets/components/skill';
