@@ -64,11 +64,7 @@ html::-webkit-scrollbar {
 }
 
 /* The Transformation */
-.img-hover-zoom:hover img {
-    transform: scale(1.1);
-}
-
-.img-project-zoom:hover {
+.img-hover-zoom:hover img, .img-project-zoom:hover {
     transform: scale(1.2);
 }
 
