@@ -1,7 +1,7 @@
 import MESSAGES from '../data/dataMessages';
 
 const LoadMessages = {
-  init(headline, profile) {
+  init({headline, profile}) {
     this._headline = headline;
     this._profile = profile;
 
