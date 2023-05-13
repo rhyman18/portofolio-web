@@ -13,4 +13,10 @@ const createSkeletonSkill = () => `
 </div>
 `;
 
-export {createSkeletonSkill};
+const createSkill = (skill) => `
+<div class="flex flex-col gap-3 w-40 bg-primary border dark:bg-secondary-com dark:border-gray-600 dark:hover:border-main-300 rounded py-8 tracking-widest skill-box dark:shadow-main-500 hover:text-main-500 ease-in-out duration-300 cursor-pointer">
+    <i class="${skill.icon} fa-3x text-main-500"></i>${skill.name}
+</div>
+`;
+
+export {createSkeletonSkill, createSkill};

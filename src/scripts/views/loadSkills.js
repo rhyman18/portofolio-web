@@ -1,4 +1,5 @@
-import {createSkeletonSkill} from '../templates/viewSkills';
+import ApiFetch from '../data/apiFetch';
+import {createSkeletonSkill, createSkill} from '../templates/viewSkills';
 
 const LoadSkills = {
   init({basic, frontend, backend}) {
@@ -6,13 +7,25 @@ const LoadSkills = {
     this._skillFrontend = frontend;
     this._skillBackend = backend;
 
-    this._renderSkills();
+    this._renderAllSkills();
   },
 
-  _renderSkills() {
-    this._skillBasic.innerHTML = createSkeletonSkill();
-    this._skillFrontend.innerHTML = createSkeletonSkill();
-    this._skillBackend.innerHTML = createSkeletonSkill();
+  _renderAllSkills() {
+    this._renderSkill('basic', this._skillBasic);
+    this._renderSkill('frontend', this._skillFrontend);
+    this._renderSkill('backend', this._skillBackend);
+  },
+
+  async _renderSkill(section, container) {
+    container.innerHTML = createSkeletonSkill();
+
+    const apiBasic = await ApiFetch.getSkills(section);
+    if (apiBasic.data.length > 0) {
+      container.innerHTML = '';
+      apiBasic.data.forEach((skill) => {
+        container.innerHTML += createSkill(skill);
+      });
+    }
   },
 };
 
