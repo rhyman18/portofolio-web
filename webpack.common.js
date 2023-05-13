@@ -4,6 +4,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   entry: {
+    index: './src/scripts/index.js',
     style: './src/scripts/style.js',
     aos: './src/scripts/aos.js',
   },
