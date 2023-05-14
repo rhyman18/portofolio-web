@@ -1,4 +1,4 @@
-import createErrorField from '../templates/viewErrorFormClass';
+import {defaultNameField, errorNameField} from '../templates/viewEventFormClass';
 
 const InputValidator = {
   /**
@@ -6,14 +6,30 @@ const InputValidator = {
    * @param {object} input
    * @return {object} validation status with error message and callback if status is valid
    */
-  async init({input, fields}) {
+  async initSubmit(input) {
     this._input = input;
-    this._fields = fields;
     this._numberCase = /[0-9]/;
     this._specialCase = /[!"#$%&'()*+,\-./:;<=>?@[\\\]^_`{|}~]/;
     this._usernameCase = /[ !"#$%&'()*+,\/:;<=>?@[\\\]^`{|}~]/;
 
     return await this._validateSubmit();
+  },
+
+  async initInput(fields) {
+    this._fields = fields;
+    this._numberCase = /[0-9]/;
+    this._specialCase = /[!"#$%&'()*+,\-./:;<=>?@[\\\]^_`{|}~]/;
+    this._usernameCase = /[ !"#$%&'()*+,\/:;<=>?@[\\\]^`{|}~]/;
+
+    this._fields.name.addEventListener('input', () => {
+      const validateName = this._validateName(this._fields.name.value);
+
+      if (!validateName.status) {
+        this._fields.name.classList = errorNameField();
+      } else {
+        this._fields.name.classList = defaultNameField();
+      }
+    });
   },
 
   async _validateSubmit() {
@@ -68,10 +84,6 @@ const InputValidator = {
     }
 
     return {status: true};
-  },
-
-  _renderError(element) {
-    element.classList = createErrorField();
   },
 };
 

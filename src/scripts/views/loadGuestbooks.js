@@ -17,6 +17,7 @@ const LoadGuestbooks = {
     this._fields = fields;
 
     this._renderGuestbooks();
+    this._eventInput();
     this._form.addEventListener('submit', (e) => {
       e.preventDefault();
       this._renderInput();
@@ -35,8 +36,11 @@ const LoadGuestbooks = {
     }
   },
 
+  async _eventInput() {
+    await InputValidator.initInput(this._fields);
+  },
+
   async _renderInput() {
-    const fields = this._fields;
     const {name, username, platform, message} = this._fields;
     const input = {
       name: name.value,
@@ -45,7 +49,7 @@ const LoadGuestbooks = {
       message: message.value,
     };
 
-    const validate = await InputValidator.init({input, fields});
+    const validate = await InputValidator.initSubmit(input);
 
     if (validate.status !== false) {
       await ApiFetch.postGuestbook(validate);
