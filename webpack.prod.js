@@ -1,6 +1,7 @@
 const {merge} = require('webpack-merge');
 const common = require('./webpack.common');
 const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
+const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
 
 module.exports = merge(common, {
   mode: 'production',
@@ -61,4 +62,21 @@ module.exports = merge(common, {
       ),
     ],
   },
+  plugins: [
+    new WorkboxWebpackPlugin.GenerateSW({
+      swDest: './sw.bundle.js',
+      runtimeCaching: [
+        {
+          urlPattern: new RegExp('^https://portofolio.aribudiman.site/api'),
+          handler: 'StaleWhileRevalidate',
+          options: {
+            cacheName: 'MyRestoApp-v1.0',
+            cacheableResponse: {
+              statuses: [200],
+            },
+          },
+        },
+      ],
+    }),
+  ],
 });

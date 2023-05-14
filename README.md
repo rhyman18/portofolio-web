@@ -10,6 +10,8 @@ Membuat landing page situs Portofolio saya. Berikut framework dan library yang d
 - `Eslint` : membantu clean code javascript
 - `REST API` : integrasi api dengan Laravel 10. repo : **[https://github.com/rhyman18/portofolio-api](https://github.com/rhyman18/portofolio-api)**
 - `Install SSL` : update ssl certificate sehingga dapat diakses menggunakan https
+- `Accessibility` : menambahkan fitur untuk pengguna screen reader
+- `PWAs` : menambahkan fitur untuk bisa diakses secara online dan dapat di install
 
 # Deployment Web
 
