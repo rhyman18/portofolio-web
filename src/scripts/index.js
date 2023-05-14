@@ -21,5 +21,15 @@ window.addEventListener('DOMContentLoaded', () => {
 
   LoadProjects.init(document.querySelector('#post'));
 
-  LoadGuestbooks.init(document.querySelector('#guestbook'));
+  LoadGuestbooks.init({
+    container: document.querySelector('#guestbook'),
+    form: document.querySelector('#inputGuest'),
+    fields: {
+      name: document.querySelector('#name'),
+      username: document.querySelector('#username'),
+      platform: document.querySelector('#platform'),
+      message: document.querySelector('#message'),
+      button: document.querySelector('#send'),
+    },
+  });
 });
