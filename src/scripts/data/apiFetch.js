@@ -31,6 +31,15 @@ class ApiFetch {
     const results = response.json();
     return results;
   }
+
+  /**
+   * get API guestbooks (all)
+   */
+  static async getGuestbooks() {
+    const response = await fetch(API_ENDPOINT.GUESTBOOKS, this.#headers);
+    const results = response.json();
+    return results;
+  }
 };
 
 export default ApiFetch;
