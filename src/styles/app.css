@@ -135,13 +135,6 @@ html::-webkit-scrollbar {
     transform: translateX(20px);
 }
 
-.contact {
-    background-image: url('../public/images/location-bg.png');
-    background-position: right;
-    background-size: contain;
-    background-repeat: no-repeat;
-}
-
 .qr {
     background-image: url('../public/images/contact.png');
     background-position: right;
