@@ -1,4 +1,4 @@
-import {defaultNameField, errorNameField} from '../templates/viewEventFormClass';
+import ViewEventFields from '../templates/viewEventFormClass';
 
 const InputValidator = {
   /**
@@ -25,9 +25,29 @@ const InputValidator = {
       const validateName = this._validateName(this._fields.name.value);
 
       if (!validateName.status) {
-        this._fields.name.classList = errorNameField();
+        this._fields.name.classList = ViewEventFields.errorNameField;
       } else {
-        this._fields.name.classList = defaultNameField();
+        this._fields.name.classList = ViewEventFields.defaultNameField;
+      }
+    });
+
+    this._fields.username.addEventListener('input', () => {
+      const validateUsername = this._validateUsername(this._fields.username.value);
+
+      if (!validateUsername.status) {
+        this._fields.username.classList = ViewEventFields.errorUsernameField;
+      } else {
+        this._fields.username.classList = ViewEventFields.defaultUsernameField;
+      }
+    });
+
+    this._fields.message.addEventListener('input', () => {
+      const validateMessage = this._validateMessage(this._fields.message.value);
+
+      if (!validateMessage.status) {
+        this._fields.message.classList = ViewEventFields.errorMessageField;
+      } else {
+        this._fields.message.classList = ViewEventFields.defaultMessageField;
       }
     });
   },
@@ -65,8 +85,6 @@ const InputValidator = {
   _validateUsername(value) {
     if (value.match(this._usernameCase)) {
       return {status: false, message: 'Username contains a special case'};
-    } else if (value.match(this._input.platform + '.com')) {
-      return {status: false, message: 'Username contains a link'};
     } else if (value.length <= 3) {
       return {status: false, message: 'Username must be at least 3 characters'};
     } else if (value.length >= 32) {
