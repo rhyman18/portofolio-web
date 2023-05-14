@@ -1,4 +1,5 @@
 import 'regenerator-runtime';
+import swRegister from './utils/swRegister';
 import ScrollIndicator from './utils/scrollIndicator';
 import LoadMessages from './views/loadMessages';
 import LoadSkills from './views/loadSkills';
@@ -32,4 +33,6 @@ window.addEventListener('DOMContentLoaded', () => {
       button: document.querySelector('#send'),
     },
   });
+
+  swRegister();
 });

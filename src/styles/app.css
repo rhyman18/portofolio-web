@@ -51,7 +51,7 @@ html::-webkit-scrollbar {
 }
 
 .bg-hero {
-    background: rgba(0, 0, 0, .7) url('../public/images/welcome-bg.jpg');
+    background: rgba(0, 0, 0, .7) url('https://aribudiman.site/images/welcome-bg.jpg');
     background-blend-mode: darken;
     background-position: center;
     background-repeat: no-repeat;
@@ -106,14 +106,14 @@ html::-webkit-scrollbar {
 }
 
 .left-bg {
-    background: url('../public/images/left-icon.png');
+    background: url('https://aribudiman.site/images/left-icon.png');
     background-position: right;
     background-repeat: no-repeat;
     background-size: 40px;
 }
 
 .right-bg {
-    background: url('../public/images/right-icon.png');
+    background: url('https://aribudiman.site/images/right-icon.png');
     background-position: left;
     background-repeat: no-repeat;
     background-size: 40px;
@@ -136,7 +136,7 @@ html::-webkit-scrollbar {
 }
 
 .qr {
-    background-image: url('../public/images/contact.png');
+    background-image: url('https://aribudiman.site/images/contact.png');
     background-position: right;
     background-size: contain;
     background-repeat: no-repeat;

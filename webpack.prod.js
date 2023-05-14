@@ -31,7 +31,7 @@ module.exports = merge(common, {
               options: {
                 plugins: [
                   ['gifsicle', {interlaced: true}],
-                  ['jpegtran', {progressive: true}],
+                  ['mozjpeg', {progressive: true}],
                   ['optipng', {optimizationLevel: 5}],
                   [
                     'svgo',
@@ -70,7 +70,7 @@ module.exports = merge(common, {
           urlPattern: new RegExp('^https://portofolio.aribudiman.site/api'),
           handler: 'StaleWhileRevalidate',
           options: {
-            cacheName: 'MyRestoApp-v1.0',
+            cacheName: 'aribudiman-site',
             cacheableResponse: {
               statuses: [200],
             },
