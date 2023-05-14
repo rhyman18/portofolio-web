@@ -3,6 +3,7 @@ import ScrollIndicator from './utils/scrollIndicator';
 import LoadMessages from './views/loadMessages';
 import LoadSkills from './views/loadSkills';
 import LoadProjects from './views/loadProjects';
+import LoadGuestbooks from './views/loadGuestbooks';
 
 window.addEventListener('DOMContentLoaded', () => {
   ScrollIndicator.init(document.querySelector('#myBar'));
@@ -19,4 +20,6 @@ window.addEventListener('DOMContentLoaded', () => {
   });
 
   LoadProjects.init(document.querySelector('#post'));
+
+  LoadGuestbooks.init(document.querySelector('#guestbook'));
 });
