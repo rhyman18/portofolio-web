@@ -2,6 +2,7 @@ const CONFIG = {
   BASE_URL: 'https://portofolio.aribudiman.site/api/',
   BASE_IMG_URL: 'https://img.aribudiman.site/',
   AUTH: '1|iOE7wCZ9O345C1SckvsCfPXAqm52odNOR6aXIImN',
+  CACHE_NAME: 'aribudiman-site',
 
   // environment developers
   // BASE_URL: 'http://127.0.0.1:8000/api/',
