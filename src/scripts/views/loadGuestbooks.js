@@ -1,6 +1,7 @@
 import ApiFetch from '../data/apiFetch';
-import {emptyGuestbook, createGuestbook} from '../templates/viewGuestbooks';
 import InputValidator from '../utils/inputValidator';
+import ViewEventFields from '../templates/viewEventFormClass';
+import {emptyGuestbook, createGuestbook} from '../templates/viewGuestbooks';
 
 /**
  * {object} fields input form
@@ -20,6 +21,8 @@ const LoadGuestbooks = {
     this._eventInput();
     this._form.addEventListener('submit', (e) => {
       e.preventDefault();
+
+      this._renderSubmitButton();
       this._renderInput();
     });
   },
@@ -54,7 +57,21 @@ const LoadGuestbooks = {
     if (validate.status !== false) {
       await ApiFetch.postGuestbook(validate);
       location.reload();
+    } else {
+      this._renderSubmitButtonDefault();
     }
+  },
+
+  _renderSubmitButton() {
+    this._fields.button.disabled = true;
+    this._fields.button.classList = ViewEventFields.errorButtonClass;
+    this._fields.button.innerHTML = ViewEventFields.errorButtonInnerHTML;
+  },
+
+  _renderSubmitButtonDefault() {
+    this._fields.button.disabled = false;
+    this._fields.button.classList = ViewEventFields.defaultButtonClass;
+    this._fields.button.innerHTML = ViewEventFields.defaultButtonInnerHTML;
   },
 
   _createLinkSosmed(link) {
