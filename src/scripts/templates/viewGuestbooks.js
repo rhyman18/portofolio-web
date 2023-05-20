@@ -13,7 +13,7 @@ const createGuestbook = (guest, link) => `
         <div class="text-main-500 font-normal guest-link my-2.5">
             <a href="${link + guest.username}" target="_blank" class="py-3">@${guest.username}</a>
         </div>
-        <div class="text-main-gray uppercase tracking-widest text-xs">${guest.updated_at}</div>
+        <div class="text-main-gray uppercase tracking-widest text-xs">${new Date(guest.updated_at).toGMTString('id-ID')}</div>
     </div>
 </div>
 `;

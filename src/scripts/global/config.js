@@ -1,7 +1,7 @@
 const CONFIG = {
-  BASE_URL: 'https://portofolio.aribudiman.site/api/',
+  BASE_URL: 'https://portfolio-api.aribudiman.site/production/',
   BASE_IMG_URL: 'https://img.aribudiman.site/',
-  AUTH: '1|iOE7wCZ9O345C1SckvsCfPXAqm52odNOR6aXIImN',
+  AUTH: ' pcqwFh3MRX5nPK0dlF02ONIMZdyECjh9GsM0fqt1',
   CACHE_NAME: 'aribudiman-site',
 
   // environment developers

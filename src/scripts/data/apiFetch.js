@@ -8,7 +8,7 @@ class ApiFetch {
   static #headers = {
     headers: {
       'Accept': 'application/json',
-      'Authorization': `Bearer ${CONFIG.AUTH}`,
+      'x-api-key': CONFIG.AUTH,
     },
   };
 
@@ -51,8 +51,8 @@ class ApiFetch {
       method: 'POST',
       body: JSON.stringify(input),
       headers: {
-        'Authorization': `Bearer ${CONFIG.AUTH}`,
-        'Content-type': 'application/json; charset=UTF-8',
+        'Accept': 'application/json',
+        'x-api-key': CONFIG.AUTH,
       },
     });
   }

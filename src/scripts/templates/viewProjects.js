@@ -64,7 +64,7 @@ const createProject = (project, i) => `
   }).join('')}
             </div>
             <p class="leading-5 md:leading-7 text-primary-desc dark:text-secondary-desc text-justify font-normal mb-4 elipsis" tabindex="0">${project.desc}</p>
-            <p class="text-main-gray text-xs font-normal uppercase tracking-widest" tabindex="0">${project.updated_at}</p>
+            <p class="text-main-gray text-xs font-normal uppercase tracking-widest" tabindex="0">${new Date(project.updated_at).toGMTString('id-ID')}</p>
         </div>
     </article>
 </div>
