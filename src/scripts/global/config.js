@@ -1,5 +1,3 @@
-require('dotenv').config();
-
 const CONFIG = {
   BASE_URL: process.env.BASE_API_URL,
   BASE_IMG_URL: process.env.BASE_IMG_URL,
