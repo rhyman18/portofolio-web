@@ -43,6 +43,7 @@
     "workbox-webpack-plugin": "^6.5.4"
   },
   "dependencies": {
+    "dotenv": "^16.4.5",
     "regenerator-runtime": "^0.13.11",
     "workbox-window": "^6.5.4"
   }
