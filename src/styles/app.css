@@ -6,6 +6,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap');
 
+:root {
+    --bg-hero-url: url('images/welcome-bg.jpg');
+    --left-bg-url: url('images/left-icon.png');
+    --right-bg-url: url('images/right-icon.png');
+    --qr-url: url('images/contact.png');
+}
+
 html {
     scrollbar-width: none;
     /* Firefox */
@@ -51,7 +58,7 @@ html::-webkit-scrollbar {
 }
 
 .bg-hero {
-    background: rgba(0, 0, 0, .7) url('https://aribudiman.site/images/welcome-bg.jpg');
+    background: rgba(0, 0, 0, .7) var(--bg-hero-url);
     background-blend-mode: darken;
     background-position: center;
     background-repeat: no-repeat;
@@ -106,14 +113,14 @@ html::-webkit-scrollbar {
 }
 
 .left-bg {
-    background: url('https://aribudiman.site/images/left-icon.png');
+    background: var(--left-bg-url);
     background-position: right;
     background-repeat: no-repeat;
     background-size: 40px;
 }
 
 .right-bg {
-    background: url('https://aribudiman.site/images/right-icon.png');
+    background: var(--right-bg-url);
     background-position: left;
     background-repeat: no-repeat;
     background-size: 40px;
@@ -136,7 +143,7 @@ html::-webkit-scrollbar {
 }
 
 .qr {
-    background-image: url('https://aribudiman.site/images/contact.png');
+    background-image: var(--qr-url);
     background-position: right;
     background-size: contain;
     background-repeat: no-repeat;
