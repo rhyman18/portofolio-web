@@ -67,7 +67,7 @@ module.exports = merge(common, {
       swDest: './sw.bundle.js',
       runtimeCaching: [
         {
-          urlPattern: new RegExp('^https://portofolio.aribudiman.site/api'),
+          urlPattern: new RegExp(`^${process.env.BASE_API_URL}`),
           handler: 'StaleWhileRevalidate',
           options: {
             cacheName: 'aribudiman-site',
