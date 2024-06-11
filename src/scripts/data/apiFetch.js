@@ -8,7 +8,7 @@ class ApiFetch {
   static #headers = {
     headers: {
       'Accept': 'application/json',
-      'x-api-key': CONFIG.AUTH,
+      'Authorization': `Bearer ${CONFIG.AUTH}`,
     },
   };
 
