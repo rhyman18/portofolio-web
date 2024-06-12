@@ -52,7 +52,7 @@ class ApiFetch {
       body: JSON.stringify(input),
       headers: {
         'Accept': 'application/json',
-        'x-api-key': CONFIG.AUTH,
+        'Authorization': `Bearer ${CONFIG.AUTH}`,
       },
     });
   }

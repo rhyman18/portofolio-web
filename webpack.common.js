@@ -50,6 +50,11 @@ module.exports = {
       patterns: [
         {
           from: path.resolve(__dirname, 'src/public/'),
+          globOptions: {
+            ignore: [
+              '**/src/public/images/**/*',
+            ],
+          },
           to: path.resolve(__dirname, 'public/'),
         },
       ],
