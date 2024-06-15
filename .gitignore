@@ -1,4 +1,4 @@
-node_modules
-postimg/
-public/
+/node_modules
+/postimg/
+/public/
 .env
