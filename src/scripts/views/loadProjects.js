@@ -3,10 +3,10 @@ import ApiFetch from '../data/apiFetch';
 import {createSkeletonProject, createProject} from '../templates/viewProjects';
 
 const LoadProjects = {
-  init(container) {
+  async init(container) {
     this._container = container;
 
-    this._renderProjects();
+    await this._renderProjects();
   },
 
   async _renderProjects() {
@@ -14,28 +14,36 @@ const LoadProjects = {
 
     const apiProjects = await ApiFetch.getProjects();
     if (apiProjects.data.length > 0) {
-      this._container.innerHTML = '';
+      let projectsHTML = '';
       apiProjects.data.forEach((project, i) => {
-        this._container.innerHTML += createProject(project, i);
-
-        this._renderImage(document.querySelector(`#postimg-${i}`), {
-          cover: project.img,
-          hover: project.img_hover,
-        });
+        projectsHTML += createProject(project, i);
       });
+
+      this._container.innerHTML = projectsHTML;
+      this._attachEventListeners(apiProjects.data);
     }
   },
 
-  _renderImage(container, image) {
-    const cover = `background: url('${CONFIG.BASE_IMG_URL + image.cover}') no-repeat center; background-size: cover;`;
-    const hover = `background: url('${CONFIG.BASE_IMG_URL + image.hover}') no-repeat center; background-size: cover;`;
+  _attachEventListeners(projects) {
+    projects.forEach((project, i) => {
+      const container = document.querySelector(`#postimg-${i}`);
+      this._renderImage(container, {
+        cover: project.img,
+        hover: project.img_hover,
+      });
+    });
+  },
 
-    container.style = cover;
+  _renderImage(container, image) {
+    const coverStyle = `background: url('${CONFIG.BASE_IMG_URL + image.cover}') no-repeat center; background-size: cover;`;
+    const hoverStyle = `background: url('${CONFIG.BASE_IMG_URL + image.hover}') no-repeat center;`;
+
+    container.style = coverStyle;
     container.addEventListener('mouseover', () => {
-      container.style = hover;
+      container.style = hoverStyle;
     });
     container.addEventListener('mouseout', () => {
-      container.style = cover;
+      container.style = coverStyle;
     });
   },
 };
