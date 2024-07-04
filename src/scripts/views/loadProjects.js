@@ -36,7 +36,7 @@ const LoadProjects = {
 
   _renderImage(container, image) {
     const coverStyle = `background: url('${CONFIG.BASE_IMG_URL + image.cover}') no-repeat center; background-size: cover;`;
-    const hoverStyle = `background: url('${CONFIG.BASE_IMG_URL + image.hover}') no-repeat center;`;
+    const hoverStyle = `background: url('${CONFIG.BASE_IMG_URL + image.hover}') no-repeat center; background-size: cover;`;
 
     container.style = coverStyle;
     container.addEventListener('mouseover', () => {
