@@ -66,13 +66,42 @@ html::-webkit-scrollbar {
 }
 
 /* Zoom-n-rotate Container */
-.img-hover-zoom img, .img-project-zoom {
+.img-hover-zoom img {
     transition: transform .5s ease-in-out;
 }
 
 /* The Transformation */
-.img-hover-zoom:hover img, .img-project-zoom:hover {
+.img-hover-zoom:hover img {
     transform: scale(1.2);
+}
+
+.img-project-zoom {
+    position: relative;
+    transition: transform 0.3s ease-in-out;
+}
+
+.img-project-zoom:hover {
+    transform: scale(1.1);
+}
+
+.img-project-zoom img {
+    display: block;
+    transition: opacity 0.3s ease;
+}
+
+.img-project-zoom .text-preview {
+    background: rgba(0, 0, 0, .1);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.img-project-zoom:hover img {
+    opacity: 0.5;
+}
+
+.img-project-zoom:hover .text-preview {
+    opacity: 1;
 }
 
 .content-box {
@@ -81,26 +110,6 @@ html::-webkit-scrollbar {
 
 .content-box:hover {
     box-shadow: 0 2px 20px 5px rgba(28, 195, 178, .3);
-}
-
-.slide-img {
-    transition: .5s;
-}
-
-.slide-img:hover {
-    box-shadow: 0 0 0 200px rgba(0, 0, 0, .7) inset;
-}
-
-.slide-img a {
-    transform: scale(0);
-    transition: .8s;
-    opacity: 0;
-    color: #ffffff;
-}
-
-.slide-img:hover a {
-    opacity: 1;
-    transform: scale(1);
 }
 
 .skill-box {

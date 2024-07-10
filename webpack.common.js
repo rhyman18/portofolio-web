@@ -9,6 +9,7 @@ module.exports = {
     index: './src/scripts/index.js',
     style: './src/scripts/style.js',
     aos: './src/scripts/aos.js',
+    lazysizes: './src/scripts/lazysizes.js',
   },
   output: {
     path: path.resolve(__dirname, 'public'),
