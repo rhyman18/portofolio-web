@@ -59,7 +59,7 @@ const createProject = (project, i, baseImgUrl) => `
                 <a href="${project.url}" target="_blank" class="hover:text-main-500 py-2.5">${project.title}</a>
             </div>
             <div class="uppercase text-xs tracking-widest text-secondary-font font-normal my-4 flex flex-wrap gap-1 md:gap-3">
-                <a href="${project.repo}" class="bg-main-gray hover:bg-main-500 py-1 md:py-1.5 px-4 md:px-6" target="_blank">git</a>
+  ${project.repo ? `<a href="${project.repo}" class="bg-main-gray hover:bg-main-500 py-1 md:py-1.5 px-4 md:px-6" target="_blank">git</a>` : ''}
   ${JSON.parse(project.tags).map((tag) => {
     return `<span class="bg-main-500 py-1 md:py-1.5 px-4 md:px-6" tabindex="0">${tag}</span>`;
   }).join('')}
