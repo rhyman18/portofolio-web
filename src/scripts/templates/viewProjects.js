@@ -45,13 +45,14 @@ const createSkeletonProject = () => `
 </div>
 `;
 
-const createProject = (project, i) => `
+const createProject = (project, i, baseImgUrl) => `
 <div class="${(i % 2 === 0) ? 'left-bg md:border-e-2 border-main-500' : 'right-bg md:border-s-2 border-main-500'}">
     <article data-aos="zoom-in-${(i % 2 === 0) ? 'right' : 'left'}" class="flex flex-col ${(i % 2 === 0) ? 'md:me-4 lg:me-8 xl:flex-row xl:pe-6' : 'xl:flex-row-reverse md:ms-4 lg:ms-8 xl:ps-6'} text-left items-stretch xl:gap-5 content-box border dark:border-gray-600 dark:hover:border-main-300 rounded dark:shadow-main-500 bg-primary dark:bg-secondary-com">
         <div class="overflow-hidden xl:basis-1/3 h-60 md:h-96 xl:h-auto">
-            <div class="img-project-zoom slide-img w-full h-full flex justify-center items-center" id="postimg-${i}">
-                <a href="${project.url}" target="_blank" class="p-20" tabindex="-1">Live demo</a>
-            </div>
+            <a href="${project.url}" target="_blank" tabindex="-1" class="img-project-zoom w-full h-full flex justify-center items-center">
+                <img class="lazyload" data-src="${baseImgUrl + project.img}" id="postimg-${i}" />
+                <div class="text-preview absolute inset-0 flex justify-center items-center text-white text-lg opacity-0">Preview</div>
+            </a>
         </div>
         <div class="basis-2/3 xl:my-4 p-6 xl:p-0">
             <div class="text-lg md:text-xl font-semibold tracking-widest leading-tight">

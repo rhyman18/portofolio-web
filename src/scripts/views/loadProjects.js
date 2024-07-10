@@ -16,7 +16,7 @@ const LoadProjects = {
     if (apiProjects.data.length > 0) {
       let projectsHTML = '';
       apiProjects.data.forEach((project, i) => {
-        projectsHTML += createProject(project, i);
+        projectsHTML += createProject(project, i, CONFIG.BASE_IMG_URL);
       });
 
       this._container.innerHTML = projectsHTML;
@@ -35,15 +35,11 @@ const LoadProjects = {
   },
 
   _renderImage(container, image) {
-    const coverStyle = `background: url('${CONFIG.BASE_IMG_URL + image.cover}') no-repeat center; background-size: cover;`;
-    const hoverStyle = `background: url('${CONFIG.BASE_IMG_URL + image.hover}') no-repeat center; background-size: cover;`;
-
-    container.style = coverStyle;
     container.addEventListener('mouseover', () => {
-      container.style = hoverStyle;
+      container.src = CONFIG.BASE_IMG_URL + image.hover;
     });
     container.addEventListener('mouseout', () => {
-      container.style = coverStyle;
+      container.src = CONFIG.BASE_IMG_URL + image.cover;
     });
   },
 };
