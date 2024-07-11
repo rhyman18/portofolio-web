@@ -1,5 +1,6 @@
 import 'regenerator-runtime';
 import swRegister from './utils/swRegister';
+import ShowError from './utils/showError';
 import ScrollIndicator from './utils/scrollIndicator';
 import LoadMessages from './views/loadMessages';
 import LoadSkills from './views/loadSkills';
@@ -35,4 +36,10 @@ window.addEventListener('DOMContentLoaded', () => {
   });
 
   swRegister();
+
+  // ShowError.init({
+  //   containerAlert: document.getElementById('alert-body'),
+  //   bodyAlert: document.getElementById('alert-msg'),
+  //   messageAlert: 'Error, plesae reload cuy',
+  // });
 });
