@@ -65,7 +65,7 @@ const InputValidator = {
       return validateMessage;
     }
 
-    return this._input;
+    return {status: true};
   },
 
   _validateName(value) {

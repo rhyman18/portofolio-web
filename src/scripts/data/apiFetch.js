@@ -67,18 +67,25 @@ class ApiFetch {
 
   /**
    * send POST request to API guestbook
-   * @param {object} input
+   * @param {FormData} input
    */
   static async postGuestbook(input) {
-    // eslint-disable-next-line no-unused-vars
-    const response = await fetch(API_ENDPOINT.GUESTBOOKS, {
-      method: 'POST',
-      body: JSON.stringify(input),
-      headers: {
-        'Accept': 'application/json',
-        'Authorization': `Bearer ${CONFIG.AUTH}`,
-      },
-    });
+    try {
+      const response = await fetch(API_ENDPOINT.GUESTBOOKS, {
+        method: 'POST',
+        body: input,
+        headers: {
+          'Accept': 'application/json',
+          'Authorization': `Bearer ${CONFIG.AUTH}`,
+        },
+      });
+      if (!response.ok) {
+        throw new Error('An error occurred while posting message');
+      }
+    } catch (error) {
+      console.log('Failed to post guestbook Api', error);
+      throw new Error('An error occurred while posting message');
+    }
   }
 };
 

@@ -20,43 +20,45 @@ const LoadGuestbooks = {
 
     this._bindEvents();
     this._renderGuestbooks();
+    this._initInputValidation();
+  },
+
+  async _renderGuestbooks() {
+    try {
+      const apiGuestbooks = await ApiFetch.getGuestbooks();
+      const html = apiGuestbooks?.data?.map((guest) => createGuestbook(guest, this._createLinkSosmed(guest.platform))).join('');
+      this._container.innerHTML = html || emptyGuestbook();
+    } catch (error) {
+      this._showError(`${error}. However, this will not impact your user experience. Please disregard this message.`);
+    }
+  },
+
+  async _initInputValidation() {
+    await InputValidator.initInput(this._fields);
   },
 
   _bindEvents() {
-    this._form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      this._renderSubmitButton();
+    this._form.addEventListener('submit', this._handleSubmit.bind(this));
+  },
 
+  async _handleSubmit(e) {
+    e.preventDefault();
+    this._renderSubmitButton();
+
+    try {
       const input = this._getInputValues();
       const validatedInput = await InputValidator.initSubmit(input);
-      if (validatedInput.status !== false) {
-        await ApiFetch.postGuestbook(validatedInput);
+
+      if (validatedInput.status) {
+        const formData = this._convertInputValues();
+        await ApiFetch.postGuestbook(formData);
         location.reload();
       } else {
         this._renderSubmitButtonDefault();
       }
-    });
-  },
-
-  async _renderGuestbooks() {
-    this._container.innerHTML = emptyGuestbook();
-
-    try {
-      const apiGuestbooks = await ApiFetch.getGuestbooks();
-      if (apiGuestbooks?.data?.length > 0) {
-        let html = '';
-        apiGuestbooks.data.forEach((guest) => {
-          html += createGuestbook(guest, this._createLinkSosmed(guest.platform));
-        });
-        this._container.innerHTML = html;
-      }
     } catch (error) {
-      ShowError.init({
-        containerAlert: document.querySelector('#alert-body'),
-        bodyAlert: document.querySelector('#alert-msg'),
-        messageAlert: `${error}. However, this will not impact your user experience. Please disregard this message.`,
-        alertPriority: 2,
-      });
+      this._showError(`${error}. Please try again later.`);
+      this._renderSubmitButtonDefault();
     }
   },
 
@@ -70,16 +72,40 @@ const LoadGuestbooks = {
     };
   },
 
+  _convertInputValues() {
+    const {name, username, platform, message} = this._fields;
+    const formData = new FormData();
+    formData.append('name', name.value);
+    formData.append('username', username.value);
+    formData.append('platform', platform.value);
+    formData.append('message', message.value);
+    return formData;
+  },
+
   _renderSubmitButton() {
-    this._fields.button.disabled = true;
-    this._fields.button.classList = ViewEventFields.errorButtonClass;
-    this._fields.button.innerHTML = ViewEventFields.errorButtonInnerHTML;
+    this._setButtonProperties(ViewEventFields.errorButtonClass, ViewEventFields.errorButtonInnerHTML, true);
   },
 
   _renderSubmitButtonDefault() {
-    this._fields.button.disabled = false;
-    this._fields.button.classList = ViewEventFields.defaultButtonClass;
-    this._fields.button.innerHTML = ViewEventFields.defaultButtonInnerHTML;
+    setTimeout(() => {
+      this._setButtonProperties(ViewEventFields.defaultButtonClass, ViewEventFields.defaultButtonInnerHTML, false);
+    }, 3000);
+  },
+
+  _setButtonProperties(className, innerHTML, disabled) {
+    const {button} = this._fields;
+    button.disabled = disabled;
+    button.classList = className;
+    button.innerHTML = innerHTML;
+  },
+
+  _showError(message) {
+    ShowError.init({
+      containerAlert: document.querySelector('#alert-body'),
+      bodyAlert: document.querySelector('#alert-msg'),
+      messageAlert: message,
+      alertPriority: 2,
+    });
   },
 
   _createLinkSosmed(link) {
