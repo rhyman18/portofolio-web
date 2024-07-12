@@ -43,6 +43,7 @@ window.addEventListener('DOMContentLoaded', () => {
         containerAlert: document.querySelector('#alert-body'),
         bodyAlert: document.querySelector('#alert-msg'),
         messageAlert: `${error}. However, this will not impact your user experience. Please disregard this message.`,
+        alertPriority: 1,
       });
     }
   };
