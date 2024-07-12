@@ -1,4 +1,5 @@
 import ApiFetch from '../data/apiFetch';
+import ShowError from '../utils/showError';
 import InputValidator from '../utils/inputValidator';
 import ViewEventFields from '../templates/viewEventFormClass';
 import {emptyGuestbook, createGuestbook} from '../templates/viewGuestbooks';
@@ -17,49 +18,58 @@ const LoadGuestbooks = {
     this._form = form;
     this._fields = fields;
 
+    this._bindEvents();
     this._renderGuestbooks();
-    this._eventInput();
-    this._form.addEventListener('submit', (e) => {
-      e.preventDefault();
+  },
 
+  _bindEvents() {
+    this._form.addEventListener('submit', async (e) => {
+      e.preventDefault();
       this._renderSubmitButton();
-      this._renderInput();
+
+      const input = this._getInputValues();
+      const validatedInput = await InputValidator.initSubmit(input);
+      if (validatedInput.status !== false) {
+        await ApiFetch.postGuestbook(validatedInput);
+        location.reload();
+      } else {
+        this._renderSubmitButtonDefault();
+      }
     });
   },
 
   async _renderGuestbooks() {
     this._container.innerHTML = emptyGuestbook();
 
-    const apiGuestbooks = await ApiFetch.getGuestbooks();
-    if (apiGuestbooks.data.length > 0) {
-      this._container.innerHTML = '';
-      apiGuestbooks.data.forEach((guest) => {
-        this._container.innerHTML += createGuestbook(guest, this._createLinkSosmed(guest.platform));
+    try {
+      const apiGuestbooks = await ApiFetch.getGuestbooks();
+      if (apiGuestbooks?.data?.length > 0) {
+        let html = '';
+        apiGuestbooks.data.forEach((guest) => {
+          html += createGuestbook(guest, this._createLinkSosmed(guest.platform));
+        });
+        this._container.innerHTML = html;
+      } else {
+        throw new Error('An error occurred while loading the guestbook data');
+      }
+    } catch (error) {
+      ShowError.init({
+        containerAlert: document.querySelector('#alert-body'),
+        bodyAlert: document.querySelector('#alert-msg'),
+        messageAlert: `${error}. However, this will not impact your user experience. Please disregard this message.`,
+        alertPriority: 2,
       });
     }
   },
 
-  async _eventInput() {
-    await InputValidator.initInput(this._fields);
-  },
-
-  async _renderInput() {
+  _getInputValues() {
     const {name, username, platform, message} = this._fields;
-    const input = {
+    return {
       name: name.value,
       username: username.value,
       platform: platform.value,
       message: message.value,
     };
-
-    const validate = await InputValidator.initSubmit(input);
-
-    if (validate.status !== false) {
-      await ApiFetch.postGuestbook(validate);
-      location.reload();
-    } else {
-      this._renderSubmitButtonDefault();
-    }
   },
 
   _renderSubmitButton() {
@@ -75,20 +85,15 @@ const LoadGuestbooks = {
   },
 
   _createLinkSosmed(link) {
-    switch (link) {
-      case 'facebook':
-        return 'https://web.facebook.com/';
-      case 'instagram':
-        return 'https://www.instagram.com/';
-      case 'twitter':
-        return 'https://twitter.com/';
-      case 'linkedin':
-        return 'https://www.linkedin.com/in/';
-      case 'tiktok':
-        return 'https://www.tiktok.com/@';
-      case 'github':
-        return 'https://github.com/';
-    }
+    const linkMap = {
+      facebook: 'https://web.facebook.com/',
+      instagram: 'https://www.instagram.com/',
+      twitter: 'https://twitter.com/',
+      linkedin: 'https://www.linkedin.com/in/',
+      tiktok: 'https://www.tiktok.com/@',
+      github: 'https://github.com/',
+    };
+    return linkMap[link] || '';
   },
 };
 
