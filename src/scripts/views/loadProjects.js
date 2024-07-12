@@ -11,25 +11,13 @@ const LoadProjects = {
   },
 
   async _renderProjects() {
-    this._container.innerHTML = createSkeletonProject();
-
     try {
       const apiProjects = await ApiFetch.getProjects();
-      if (apiProjects?.data?.length > 0) {
-        const projectsHTML = apiProjects.data.map((project, i) =>
-          createProject(project, i, CONFIG.BASE_IMG_URL),
-        ).join('');
-
-        this._container.innerHTML = projectsHTML;
-        this._attachEventListeners(apiProjects.data);
-      }
+      const projectsHTML = apiProjects?.data?.map((project, i) => createProject(project, i, CONFIG.BASE_IMG_URL)).join('');
+      this._container.innerHTML = projectsHTML || createSkeletonProject();
+      this._attachEventListeners(apiProjects?.data);
     } catch (error) {
-      ShowError.init({
-        containerAlert: document.querySelector('#alert-body'),
-        bodyAlert: document.querySelector('#alert-msg'),
-        messageAlert: `${error}. please <a onclick="window.location.reload()" class="font-semibold underline hover:no-underline cursor-pointer">reload</a> the page.`,
-        alertPriority: 3,
-      });
+      this._showError(`${error}. please <a onclick="window.location.reload()" class="font-semibold underline hover:no-underline cursor-pointer">reload</a> the page.`);
     }
   },
 
@@ -38,12 +26,21 @@ const LoadProjects = {
       const container = document.querySelector(`#postimg-${i}`);
       if (container) {
         container.addEventListener('mouseover', () => {
-          container.src = CONFIG.BASE_IMG_URL + project.hover;
+          container.src = CONFIG.BASE_IMG_URL + project.img_hover;
         });
         container.addEventListener('mouseout', () => {
-          container.src = CONFIG.BASE_IMG_URL + project.cover;
+          container.src = CONFIG.BASE_IMG_URL + project.img;
         });
       }
+    });
+  },
+
+  _showError(message) {
+    ShowError.init({
+      containerAlert: document.querySelector('#alert-body'),
+      bodyAlert: document.querySelector('#alert-msg'),
+      messageAlert: message,
+      alertPriority: 3,
     });
   },
 };
