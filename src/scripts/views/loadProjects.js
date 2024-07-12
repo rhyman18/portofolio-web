@@ -1,5 +1,6 @@
 import CONFIG from '../global/config';
 import ApiFetch from '../data/apiFetch';
+import ShowError from '../utils/showError';
 import {createSkeletonProject, createProject} from '../templates/viewProjects';
 
 const LoadProjects = {
@@ -12,34 +13,39 @@ const LoadProjects = {
   async _renderProjects() {
     this._container.innerHTML = createSkeletonProject();
 
-    const apiProjects = await ApiFetch.getProjects();
-    if (apiProjects.data.length > 0) {
-      let projectsHTML = '';
-      apiProjects.data.forEach((project, i) => {
-        projectsHTML += createProject(project, i, CONFIG.BASE_IMG_URL);
-      });
+    try {
+      const apiProjects = await ApiFetch.getProjects();
+      if (apiProjects?.data?.length > 0) {
+        const projectsHTML = apiProjects.data.map((project, i) =>
+          createProject(project, i, CONFIG.BASE_IMG_URL),
+        ).join('');
 
-      this._container.innerHTML = projectsHTML;
-      this._attachEventListeners(apiProjects.data);
+        this._container.innerHTML = projectsHTML;
+        this._attachEventListeners(apiProjects.data);
+      } else {
+        throw new Error('An error occurred while loading the projects data');
+      }
+    } catch (error) {
+      ShowError.init({
+        containerAlert: document.querySelector('#alert-body'),
+        bodyAlert: document.querySelector('#alert-msg'),
+        messageAlert: `${error}. please <a onclick="window.location.reload()" class="font-semibold underline hover:no-underline cursor-pointer">reload</a> the page.`,
+        alertPriority: 3,
+      });
     }
   },
 
   _attachEventListeners(projects) {
     projects.forEach((project, i) => {
       const container = document.querySelector(`#postimg-${i}`);
-      this._renderImage(container, {
-        cover: project.img,
-        hover: project.img_hover,
-      });
-    });
-  },
-
-  _renderImage(container, image) {
-    container.addEventListener('mouseover', () => {
-      container.src = CONFIG.BASE_IMG_URL + image.hover;
-    });
-    container.addEventListener('mouseout', () => {
-      container.src = CONFIG.BASE_IMG_URL + image.cover;
+      if (container) {
+        container.addEventListener('mouseover', () => {
+          container.src = CONFIG.BASE_IMG_URL + project.hover;
+        });
+        container.addEventListener('mouseout', () => {
+          container.src = CONFIG.BASE_IMG_URL + project.cover;
+        });
+      }
     });
   },
 };
