@@ -1,5 +1,6 @@
 import CONFIG from '../global/config';
 import ApiFetch from '../data/apiFetch';
+import ShowError from '../utils/showError';
 import {createSkeletonProject, createProject} from '../templates/viewProjects';
 
 const LoadProjects = {
@@ -11,35 +12,36 @@ const LoadProjects = {
 
   async _renderProjects() {
     this._container.innerHTML = createSkeletonProject();
-
-    const apiProjects = await ApiFetch.getProjects();
-    if (apiProjects.data.length > 0) {
-      let projectsHTML = '';
-      apiProjects.data.forEach((project, i) => {
-        projectsHTML += createProject(project, i, CONFIG.BASE_IMG_URL);
-      });
-
-      this._container.innerHTML = projectsHTML;
-      this._attachEventListeners(apiProjects.data);
+    try {
+      const apiProjects = await ApiFetch.getProjects();
+      const projectsHTML = apiProjects?.data?.map((project, i) => createProject(project, i, CONFIG.BASE_IMG_URL)).join('');
+      this._container.innerHTML = projectsHTML || createSkeletonProject();
+      this._attachEventListeners(apiProjects?.data);
+    } catch (error) {
+      this._showError(`${error}. please <a onclick="window.location.reload()" class="font-semibold underline hover:no-underline cursor-pointer">reload</a> the page.`);
     }
   },
 
   _attachEventListeners(projects) {
     projects.forEach((project, i) => {
       const container = document.querySelector(`#postimg-${i}`);
-      this._renderImage(container, {
-        cover: project.img,
-        hover: project.img_hover,
-      });
+      if (container) {
+        container.addEventListener('mouseover', () => {
+          container.src = CONFIG.BASE_IMG_URL + project.img_hover;
+        });
+        container.addEventListener('mouseout', () => {
+          container.src = CONFIG.BASE_IMG_URL + project.img;
+        });
+      }
     });
   },
 
-  _renderImage(container, image) {
-    container.addEventListener('mouseover', () => {
-      container.src = CONFIG.BASE_IMG_URL + image.hover;
-    });
-    container.addEventListener('mouseout', () => {
-      container.src = CONFIG.BASE_IMG_URL + image.cover;
+  _showError(message) {
+    ShowError.init({
+      containerAlert: document.querySelector('#alert-body'),
+      bodyAlert: document.querySelector('#alert-msg'),
+      messageAlert: message,
+      alertPriority: 3,
     });
   },
 };

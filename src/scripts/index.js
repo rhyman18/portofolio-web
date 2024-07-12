@@ -1,4 +1,5 @@
 import 'regenerator-runtime';
+import ShowError from './utils/showError';
 import swRegister from './utils/swRegister';
 import ScrollIndicator from './utils/scrollIndicator';
 import LoadMessages from './views/loadMessages';
@@ -34,5 +35,18 @@ window.addEventListener('DOMContentLoaded', () => {
     },
   });
 
-  swRegister();
+  const initSwRegister = async () => {
+    try {
+      await swRegister();
+    } catch (error) {
+      ShowError.init({
+        containerAlert: document.querySelector('#alert-body'),
+        bodyAlert: document.querySelector('#alert-msg'),
+        messageAlert: `${error}. However, this will not impact your user experience. Please disregard this message.`,
+        alertPriority: 1,
+      });
+    }
+  };
+
+  initSwRegister();
 });

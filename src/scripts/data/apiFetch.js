@@ -18,43 +18,74 @@ class ApiFetch {
    * @return {Promise} response api
    */
   static async getSkills(section) {
-    const response = await fetch(API_ENDPOINT.SKILLS(section), this.#headers);
-    const results = response.json();
-    return results;
+    try {
+      const response = await fetch(API_ENDPOINT.SKILLS(section), this.#headers);
+      if (!response.ok) {
+        throw new Error('An error occurred while loading the skills data');
+      }
+      const results = await response.json();
+      return results;
+    } catch (error) {
+      console.log('Failed to fetch skills Api', error);
+      throw new Error('An error occurred while loading the skills data');
+    }
   }
 
   /**
    * get API projects (all)
    */
   static async getProjects() {
-    const response = await fetch(API_ENDPOINT.PROJECTS, this.#headers);
-    const results = response.json();
-    return results;
+    try {
+      const response = await fetch(API_ENDPOINT.PROJECTS, this.#headers);
+      if (!response.ok) {
+        throw new Error('An error occurred while loading the projects data');
+      }
+      const results = await response.json();
+      return results;
+    } catch (error) {
+      console.log('Failed to fetch projects Api', error);
+      throw new Error('An error occurred while loading the projects data');
+    }
   }
 
   /**
    * get API guestbooks (all)
    */
   static async getGuestbooks() {
-    const response = await fetch(API_ENDPOINT.GUESTBOOKS, this.#headers);
-    const results = response.json();
-    return results;
+    try {
+      const response = await fetch(API_ENDPOINT.GUESTBOOKS, this.#headers);
+      if (!response.ok) {
+        throw new Error('An error occurred while loading the guestbook data');
+      }
+      const results = await response.json();
+      return results;
+    } catch (error) {
+      console.log('Failed to fetch guestbooks Api', error);
+      throw new Error('An error occurred while loading the guestbook data');
+    }
   }
 
   /**
    * send POST request to API guestbook
-   * @param {object} input
+   * @param {FormData} input
    */
   static async postGuestbook(input) {
-    // eslint-disable-next-line no-unused-vars
-    const response = await fetch(API_ENDPOINT.GUESTBOOKS, {
-      method: 'POST',
-      body: JSON.stringify(input),
-      headers: {
-        'Accept': 'application/json',
-        'Authorization': `Bearer ${CONFIG.AUTH}`,
-      },
-    });
+    try {
+      const response = await fetch(API_ENDPOINT.GUESTBOOKS, {
+        method: 'POST',
+        body: input,
+        headers: {
+          'Accept': 'application/json',
+          'Authorization': `Bearer ${CONFIG.AUTH}`,
+        },
+      });
+      if (!response.ok) {
+        throw new Error('An error occurred while posting message');
+      }
+    } catch (error) {
+      console.log('Failed to post guestbook Api', error);
+      throw new Error('An error occurred while posting message');
+    }
   }
 };
 
