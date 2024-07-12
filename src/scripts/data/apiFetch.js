@@ -26,7 +26,7 @@ class ApiFetch {
       const results = await response.json();
       return results;
     } catch (error) {
-      console.log('Failed to fetch Api', error);
+      console.log('Failed to fetch skills Api', error);
       throw new Error('An error occurred while loading the skills data');
     }
   }
@@ -43,7 +43,7 @@ class ApiFetch {
       const results = await response.json();
       return results;
     } catch (error) {
-      console.log('Failed to fetch Api', error);
+      console.log('Failed to fetch projects Api', error);
       throw new Error('An error occurred while loading the projects data');
     }
   }
@@ -60,6 +60,7 @@ class ApiFetch {
       const results = await response.json();
       return results;
     } catch (error) {
+      console.log('Failed to fetch guestbooks Api', error);
       throw new Error('An error occurred while loading the guestbook data');
     }
   }
