@@ -18,22 +18,22 @@ const LoadSkills = {
   },
 
   async _renderSkill(section, container) {
-    container.innerHTML = createSkeletonSkill();
-
     try {
       const apiBasic = await ApiFetch.getSkills(section);
-      if (apiBasic?.data?.length > 0) {
-        const skillsHTML = apiBasic.data.map((skill) => createSkill(skill)).join('');
-        container.innerHTML = skillsHTML;
-      }
+      const skillsHTML = apiBasic?.data?.map((skill) => createSkill(skill)).join('');
+      container.innerHTML = skillsHTML || createSkeletonSkill();
     } catch (error) {
-      ShowError.init({
-        containerAlert: document.querySelector('#alert-body'),
-        bodyAlert: document.querySelector('#alert-msg'),
-        messageAlert: `${error}. please <a onclick="window.location.reload()" class="font-semibold underline hover:no-underline cursor-pointer">reload</a> the page.`,
-        alertPriority: 2,
-      });
+      this._showError(`${error}. please <a onclick="window.location.reload()" class="font-semibold underline hover:no-underline cursor-pointer">reload</a> the page.`);
     }
+  },
+
+  _showError(message) {
+    ShowError.init({
+      containerAlert: document.querySelector('#alert-body'),
+      bodyAlert: document.querySelector('#alert-msg'),
+      messageAlert: message,
+      alertPriority: 2,
+    });
   },
 };
 
