@@ -49,8 +49,6 @@ const LoadGuestbooks = {
           html += createGuestbook(guest, this._createLinkSosmed(guest.platform));
         });
         this._container.innerHTML = html;
-      } else {
-        throw new Error('An error occurred while loading the guestbook data');
       }
     } catch (error) {
       ShowError.init({

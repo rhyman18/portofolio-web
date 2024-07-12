@@ -22,8 +22,6 @@ const LoadProjects = {
 
         this._container.innerHTML = projectsHTML;
         this._attachEventListeners(apiProjects.data);
-      } else {
-        throw new Error('An error occurred while loading the projects data');
       }
     } catch (error) {
       ShowError.init({

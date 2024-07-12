@@ -25,8 +25,6 @@ const LoadSkills = {
       if (apiBasic?.data?.length > 0) {
         const skillsHTML = apiBasic.data.map((skill) => createSkill(skill)).join('');
         container.innerHTML = skillsHTML;
-      } else {
-        throw new Error('An error occurred while loading the skills data');
       }
     } catch (error) {
       ShowError.init({
