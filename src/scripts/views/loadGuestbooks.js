@@ -24,6 +24,7 @@ const LoadGuestbooks = {
   },
 
   async _renderGuestbooks() {
+    this._container.innerHTML = emptyGuestbook();
     try {
       const apiGuestbooks = await ApiFetch.getGuestbooks();
       const html = apiGuestbooks?.data?.map((guest) => createGuestbook(guest, this._createLinkSosmed(guest.platform))).join('');

@@ -11,6 +11,7 @@ const LoadProjects = {
   },
 
   async _renderProjects() {
+    this._container.innerHTML = createSkeletonProject();
     try {
       const apiProjects = await ApiFetch.getProjects();
       const projectsHTML = apiProjects?.data?.map((project, i) => createProject(project, i, CONFIG.BASE_IMG_URL)).join('');

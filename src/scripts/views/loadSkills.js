@@ -18,6 +18,7 @@ const LoadSkills = {
   },
 
   async _renderSkill(section, container) {
+    container.innerHTML = createSkeletonSkill();
     try {
       const apiBasic = await ApiFetch.getSkills(section);
       const skillsHTML = apiBasic?.data?.map((skill) => createSkill(skill)).join('');
