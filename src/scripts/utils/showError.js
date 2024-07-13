@@ -6,10 +6,10 @@ const ShowError = {
     this._checkAlertPriority = containerAlert.getAttribute('alert-priority') ?? 0;
     this._alertPriority = alertPriority;
 
-    this._eventAlertLIsteners();
+    this._eventAlertLIstener();
   },
 
-  _eventAlertLIsteners() {
+  _eventAlertLIstener() {
     if (this._containerAlert.classList.contains('hidden')) {
       this._showAlertBody();
     }
