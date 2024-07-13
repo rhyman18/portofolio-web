@@ -1,4 +1,5 @@
 import ViewEventFields from '../templates/viewEventFormClass';
+import Debounce from './debounce';
 
 const InputValidator = {
   /**
@@ -53,18 +54,23 @@ const InputValidator = {
     defaultClass,
     alertField,
   }) {
-    field.addEventListener('input', () => {
-      const validationResult = validationMethod.call(this, field.value);
+    const inputListener = Debounce.init({
+      func: () => {
+        const validationResult = validationMethod.call(this, field.value);
 
-      if (!validationResult.status) {
-        field.classList = errorClass;
-        alertField.innerHTML = validationResult.message || '';
-        alertField.classList.remove('hidden');
-      } else {
-        field.classList = defaultClass;
-        alertField.classList.add('hidden');
-      }
+        if (!validationResult.status) {
+          field.classList = errorClass;
+          alertField.innerHTML = validationResult.message || '';
+          alertField.classList.remove('hidden');
+        } else {
+          field.classList = defaultClass;
+          alertField.classList.add('hidden');
+        }
+      },
+      wait: 300,
     });
+
+    field.addEventListener('input', inputListener);
   },
 
   async _validateSubmit() {
