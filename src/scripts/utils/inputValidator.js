@@ -8,55 +8,61 @@ const InputValidator = {
    */
   async initSubmit(input) {
     this._input = input;
-    this._numberCase = /[0-9]/;
-    this._specialCase = /[!"#$%&'()*+,\-./:;<=>?@[\\\]^_`{|}~]/;
-    this._usernameCase = /[ !"#$%&'()*+,\/:;<=>?@[\\\]^`{|}~]/;
 
+    this._initializeRegex();
     return await this._validateSubmit();
   },
 
   async initInput(fields) {
     this._fields = fields;
+
+    this._initializeRegex();
+    this._addInputListener({
+      field: this._fields.name,
+      validationMethod: this._validateName,
+      errorClass: ViewEventFields.errorNameField,
+      defaultClass: ViewEventFields.defaultNameField,
+      alertField: this._fields.nameAlert,
+    });
+    this._addInputListener({
+      field: this._fields.username,
+      validationMethod: this._validateUsername,
+      errorClass: ViewEventFields.errorUsernameField,
+      defaultClass: ViewEventFields.defaultUsernameField,
+      alertField: this._fields.usernameAlert,
+    });
+    this._addInputListener({
+      field: this._fields.message,
+      validationMethod: this._validateMessage,
+      errorClass: ViewEventFields.errorMessageField,
+      defaultClass: ViewEventFields.defaultMessageField,
+      alertField: this._fields.messageAlert,
+    });
+  },
+
+  _initializeRegex() {
     this._numberCase = /[0-9]/;
     this._specialCase = /[!"#$%&'()*+,\-./:;<=>?@[\\\]^_`{|}~]/;
     this._usernameCase = /[ !"#$%&'()*+,\/:;<=>?@[\\\]^`{|}~]/;
+  },
 
-    this._fields.name.addEventListener('input', () => {
-      const validateName = this._validateName(this._fields.name.value);
+  _addInputListener({
+    field,
+    validationMethod,
+    errorClass,
+    defaultClass,
+    alertField,
+  }) {
+    field.addEventListener('input', () => {
+      const validationResult = validationMethod.call(this, field.value);
 
-      if (!validateName.status) {
-        this._fields.name.classList = ViewEventFields.errorNameField;
-        this._fields.nameAlert.innerHTML = validateName.message || '';
-        this._fields.nameAlert.classList.remove('hidden');
+      if (!validationResult.status) {
+        field.classList = errorClass;
+        alertField.innerHTML = validationResult.message || '';
+        alertField.classList.remove('hidden');
       } else {
-        this._fields.name.classList = ViewEventFields.defaultNameField;
-        this._fields.nameAlert.classList.add('hidden');
-      }
-    });
-
-    this._fields.username.addEventListener('input', () => {
-      const validateUsername = this._validateUsername(this._fields.username.value);
-
-      if (!validateUsername.status) {
-        this._fields.username.classList = ViewEventFields.errorUsernameField;
-        this._fields.usernameAlert.innerHTML = validateUsername.message || '';
-        this._fields.usernameAlert.classList.remove('hidden');
-      } else {
-        this._fields.username.classList = ViewEventFields.defaultUsernameField;
-        this._fields.usernameAlert.classList.add('hidden');
-      }
-    });
-
-    this._fields.message.addEventListener('input', () => {
-      const validateMessage = this._validateMessage(this._fields.message.value);
-
-      if (!validateMessage.status) {
-        this._fields.message.classList = ViewEventFields.errorMessageField;
-        this._fields.messageAlert.innerHTML = validateMessage.message || '';
-        this._fields.messageAlert.classList.remove('hidden');
-      } else {
-        this._fields.message.classList = ViewEventFields.defaultMessageField;
-        this._fields.messageAlert.classList.add('hidden');
+        field.classList = defaultClass;
+        alertField.classList.add('hidden');
       }
     });
   },
@@ -78,9 +84,9 @@ const InputValidator = {
   },
 
   _validateName(value) {
-    if (value.match(this._numberCase)) {
+    if (this._numberCase.test(value)) {
       return {status: false, message: 'Name contains a number'};
-    } else if (value.match(this._specialCase)) {
+    } else if (this._specialCase.test(value)) {
       return {status: false, message: 'Name contains a special case'};
     } else if (value.length <= 3) {
       return {status: false, message: 'Name must be at least 3 characters'};
@@ -92,7 +98,7 @@ const InputValidator = {
   },
 
   _validateUsername(value) {
-    if (value.match(this._usernameCase)) {
+    if (this._usernameCase.test(value)) {
       return {status: false, message: 'Username contains a special case'};
     } else if (value.length <= 3) {
       return {status: false, message: 'Username must be at least 3 characters'};
