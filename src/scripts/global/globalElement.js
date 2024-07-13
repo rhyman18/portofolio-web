@@ -17,6 +17,9 @@ const GLOBAL_ELEMENT = {
   InputPlatform: document.querySelector('#platform'),
   InputMessage: document.querySelector('#message'),
   InputButton: document.querySelector('#send'),
+  InputNameAlert: document.querySelector('#name-alert'),
+  InputUsernameAlert: document.querySelector('#username-alert'),
+  InputMessageAlert: document.querySelector('#message-alert'),
 
   AlertBody: document.querySelector('#alert-body'),
   AlertMessage: document.querySelector('#alert-msg'),

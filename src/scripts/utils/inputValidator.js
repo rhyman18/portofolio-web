@@ -26,8 +26,11 @@ const InputValidator = {
 
       if (!validateName.status) {
         this._fields.name.classList = ViewEventFields.errorNameField;
+        this._fields.nameAlert.innerHTML = validateName.message || '';
+        this._fields.nameAlert.classList.remove('hidden');
       } else {
         this._fields.name.classList = ViewEventFields.defaultNameField;
+        this._fields.nameAlert.classList.add('hidden');
       }
     });
 
@@ -36,8 +39,11 @@ const InputValidator = {
 
       if (!validateUsername.status) {
         this._fields.username.classList = ViewEventFields.errorUsernameField;
+        this._fields.usernameAlert.innerHTML = validateUsername.message || '';
+        this._fields.usernameAlert.classList.remove('hidden');
       } else {
         this._fields.username.classList = ViewEventFields.defaultUsernameField;
+        this._fields.usernameAlert.classList.add('hidden');
       }
     });
 
@@ -46,8 +52,11 @@ const InputValidator = {
 
       if (!validateMessage.status) {
         this._fields.message.classList = ViewEventFields.errorMessageField;
+        this._fields.messageAlert.innerHTML = validateMessage.message || '';
+        this._fields.messageAlert.classList.remove('hidden');
       } else {
         this._fields.message.classList = ViewEventFields.defaultMessageField;
+        this._fields.messageAlert.classList.add('hidden');
       }
     });
   },

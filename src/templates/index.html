@@ -280,6 +280,7 @@
                                 Nama anda
                             </label>
                             <input type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-main-500 focus:border-main-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="Nama anda" required autofocus>
+                            <p id="name-alert" class="hidden mt-2 text-sm text-red-600 dark:text-red-500"></p>
                         </div>
                         <div>
                             <label for="username" class="block mb-2 text-sm font-medium text-primary-font dark:text-secondary-font">
@@ -296,12 +297,14 @@
                                 </select>
                                 <input type="text" name="username" id="username" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-main-500 focus:border-main-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="Username anda" required>
                             </div>
+                            <p id="username-alert" class="hidden mt-2 text-sm text-red-600 dark:text-red-500"></p>
                         </div>
                         <div>
                             <label for="message" class="block mb-2 text-sm font-medium text-primary-font dark:text-secondary-font">
                                 Pesan dan kesan
                             </label>
                             <textarea name="message" rows="3" id="message" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-main-500 focus:border-main-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white resize-none" placeholder="Pesan anda" required></textarea>
+                            <p id="message-alert" class="hidden mt-2 text-sm text-red-600 dark:text-red-500"></p>
                         </div>
                         <div class="py-6">
                             <button type="submit" id="send" class="w-full text-white bg-main-500 hover:bg-main-600 focus:ring-4 focus:outline-none focus:ring-main-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-main-500 dark:hover:bg-main-600 dark:focus:ring-main-700">
