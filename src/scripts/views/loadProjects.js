@@ -1,6 +1,7 @@
 import CONFIG from '../global/config';
 import ApiFetch from '../data/apiFetch';
 import ShowError from '../utils/showError';
+import GLOBAL_ELEMENT from '../global/globalElement';
 import {createSkeletonProject, createProject} from '../templates/viewProjects';
 
 const LoadProjects = {
@@ -38,8 +39,8 @@ const LoadProjects = {
 
   _showError(message) {
     ShowError.init({
-      containerAlert: document.querySelector('#alert-body'),
-      bodyAlert: document.querySelector('#alert-msg'),
+      containerAlert: GLOBAL_ELEMENT.AlertBody,
+      bodyAlert: GLOBAL_ELEMENT.AlertMessage,
       messageAlert: message,
       alertPriority: 3,
     });

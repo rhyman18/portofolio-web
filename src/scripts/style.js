@@ -1,10 +1,11 @@
 import '../styles/app.css';
 import 'flowbite';
+import GLOBAL_ELEMENT from './global/globalElement';
 
-const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
-const shapeDividerDark = document.getElementById('shape-divider-light');
-const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
-const shapeDividerLight = document.getElementById('shape-divider-dark');
+const themeToggleDarkIcon = GLOBAL_ELEMENT.ToggleDarkIcon;
+const shapeDividerDark = GLOBAL_ELEMENT.DividerLight;
+const themeToggleLightIcon = GLOBAL_ELEMENT.ToggleLightIcon;
+const shapeDividerLight = GLOBAL_ELEMENT.DividerDark;
 
 // Change the icons inside the button based on previous settings
 if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
@@ -15,7 +16,7 @@ if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localS
   shapeDividerDark.classList.remove('hidden');
 }
 
-const themeToggleBtn = document.getElementById('theme-toggle');
+const themeToggleBtn = GLOBAL_ELEMENT.ThemeToggle;
 
 themeToggleBtn.addEventListener('click', function() {
   // toggle icons inside button
