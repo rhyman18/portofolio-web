@@ -6,32 +6,33 @@ import LoadMessages from './views/loadMessages';
 import LoadSkills from './views/loadSkills';
 import LoadProjects from './views/loadProjects';
 import LoadGuestbooks from './views/loadGuestbooks';
+import GLOBAL_ELEMENT from './global/globalElement';
 
 window.addEventListener('DOMContentLoaded', () => {
-  ScrollIndicator.init(document.querySelector('#myBar'));
+  ScrollIndicator.init(GLOBAL_ELEMENT.MyBar);
 
   LoadMessages.init({
-    headline: document.querySelector('#headline-pesan'),
-    profile: document.querySelector('#profile-pesan'),
+    headline: GLOBAL_ELEMENT.Headline,
+    profile: GLOBAL_ELEMENT.Profile,
   });
 
   LoadSkills.init({
-    basic: document.querySelector('#skill-dasar'),
-    frontend: document.querySelector('#skill-frontend'),
-    backend: document.querySelector('#skill-backend'),
+    basic: GLOBAL_ELEMENT.SkillBasic,
+    frontend: GLOBAL_ELEMENT.SkillFrontend,
+    backend: GLOBAL_ELEMENT.SkillBackend,
   });
 
-  LoadProjects.init(document.querySelector('#post'));
+  LoadProjects.init(GLOBAL_ELEMENT.Projects);
 
   LoadGuestbooks.init({
-    container: document.querySelector('#guestbook'),
-    form: document.querySelector('#inputGuest'),
+    container: GLOBAL_ELEMENT.GuestbookContainer,
+    form: GLOBAL_ELEMENT.GuestbookForm,
     fields: {
-      name: document.querySelector('#name'),
-      username: document.querySelector('#username'),
-      platform: document.querySelector('#platform'),
-      message: document.querySelector('#message'),
-      button: document.querySelector('#send'),
+      name: GLOBAL_ELEMENT.InputName,
+      username: GLOBAL_ELEMENT.InputUsername,
+      platform: GLOBAL_ELEMENT.InputPlatform,
+      message: GLOBAL_ELEMENT.InputMessage,
+      button: GLOBAL_ELEMENT.InputButton,
     },
   });
 
@@ -40,8 +41,8 @@ window.addEventListener('DOMContentLoaded', () => {
       await swRegister();
     } catch (error) {
       ShowError.init({
-        containerAlert: document.querySelector('#alert-body'),
-        bodyAlert: document.querySelector('#alert-msg'),
+        containerAlert: GLOBAL_ELEMENT.AlertBody,
+        bodyAlert: GLOBAL_ELEMENT.AlertMessage,
         messageAlert: `${error}. However, this will not impact your user experience. Please disregard this message.`,
         alertPriority: 1,
       });

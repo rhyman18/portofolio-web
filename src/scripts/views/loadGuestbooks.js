@@ -1,5 +1,6 @@
 import ApiFetch from '../data/apiFetch';
 import ShowError from '../utils/showError';
+import GLOBAL_ELEMENT from '../global/globalElement';
 import InputValidator from '../utils/inputValidator';
 import ViewEventFields from '../templates/viewEventFormClass';
 import {emptyGuestbook, createGuestbook} from '../templates/viewGuestbooks';
@@ -102,8 +103,8 @@ const LoadGuestbooks = {
 
   _showError(message) {
     ShowError.init({
-      containerAlert: document.querySelector('#alert-body'),
-      bodyAlert: document.querySelector('#alert-msg'),
+      containerAlert: GLOBAL_ELEMENT.AlertBody,
+      bodyAlert: GLOBAL_ELEMENT.AlertMessage,
       messageAlert: message,
       alertPriority: 2,
     });
