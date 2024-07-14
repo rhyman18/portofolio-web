@@ -19,6 +19,7 @@ const LoadSkills = {
       this._renderSkill('frontend', this._skillFrontend),
       this._renderSkill('backend', this._skillBackend),
     ]);
+    this._addTooltipEvents();
   },
 
   async _renderSkill(section, container) {
@@ -27,7 +28,6 @@ const LoadSkills = {
       const apiBasic = await ApiFetch.getSkills(section);
       const skillsHTML = apiBasic?.data?.map((skill) => createSkill(skill)).join('');
       container.innerHTML = skillsHTML || createSkeletonSkill();
-      this._addTooltipEvents();
     } catch (error) {
       this._showError(`${error}. please <a onclick="window.location.reload()" class="font-semibold underline hover:no-underline cursor-pointer">reload</a> the page.`);
     }

@@ -26,7 +26,7 @@ ${skill.cert_link ? createTooltip(skill.cert_img, skill.cert_desc, skill.id) : '
 `;
 
 const createTooltip = (img, desc, certId) => `
-<div id="tooltip-target-${certId}" role="tooltip" class="absolute z-10 invisible inline-block max-w-sm p-3 md:p-4 text-sm font-medium transition-opacity duration-300 bg-white border rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-800 dark:border-gray-600">
+<div id="tooltip-target-${certId}" role="tooltip" class="tooltip max-w-sm p-3 md:p-4 text-sm font-medium transition-opacity duration-300 bg-white border rounded-lg shadow-sm opacity-0 dark:bg-gray-800 dark:border-gray-600">
 ${
   img ?
     `<div class="flex items-center justify-center w-full mb-2 md:mb-3">
