@@ -20,6 +20,7 @@ window.addEventListener('DOMContentLoaded', () => {
     basic: GLOBAL_ELEMENT.SkillBasic,
     frontend: GLOBAL_ELEMENT.SkillFrontend,
     backend: GLOBAL_ELEMENT.SkillBackend,
+    tooltip: GLOBAL_ELEMENT.SkillTooltip,
   });
 
   LoadProjects.init(GLOBAL_ELEMENT.Projects);
