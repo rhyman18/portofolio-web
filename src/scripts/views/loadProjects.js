@@ -25,7 +25,7 @@ const LoadProjects = {
 
   _attachEventListeners(projects) {
     projects.forEach((project, i) => {
-      const container = document.querySelector(`#postimg-${i}`);
+      const container = document.getElementById(`postimg-${i}`);
       if (container) {
         container.addEventListener('mouseover', () => {
           container.src = CONFIG.BASE_IMG_URL + project.img_hover;
