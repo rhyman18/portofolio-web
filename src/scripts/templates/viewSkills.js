@@ -22,15 +22,14 @@ const createSkill = (skill) => `
 >
     <i class="${skill.icon} fa-3x text-main-500"></i>${skill.name}
 </a>
-${skill.cert_link ? createTooltip(skill.cert_img, skill.cert_desc, skill.id) : ''}
 `;
 
-const createTooltip = (img, desc, certId) => `
-<div id="tooltip-target-${certId}" role="tooltip" class="tooltip max-w-sm p-3 md:p-4 text-sm font-medium transition-opacity duration-300 bg-white border rounded-lg shadow-sm opacity-0 dark:bg-gray-800 dark:border-gray-600">
+const createTooltip = (skill) => `
+<div id="tooltip-target-${skill.id}" role="tooltip" class="tooltip max-w-sm p-3 md:p-4 text-sm font-medium transition-opacity duration-300 bg-white border rounded-lg shadow-sm opacity-0 dark:bg-gray-800 dark:border-gray-600">
 ${
-  img ?
+  skill.cert_img ?
     `<div class="flex items-center justify-center w-full mb-2 md:mb-3">
-        <img class="lazyload rounded" data-src="${CONFIG.BASE_IMG_URL + img}" />
+        <img class="lazyload rounded" data-src="${CONFIG.BASE_IMG_URL + skill.cert_img}" />
     </div>` :
     `<div class="flex items-center animate-pulse justify-center h-48 mb-2 md:mb-3 bg-gray-300 rounded dark:bg-gray-700">
         <svg class="w-10 h-10 text-gray-200 dark:text-gray-600" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 20">
@@ -39,9 +38,9 @@ ${
         </svg>
     </div>`
 }
-    <p class="font-normal text-primary-desc dark:text-secondary-desc truncate ...">${desc}</p>
+    <p class="font-normal text-primary-desc dark:text-secondary-desc truncate ...">${skill.cert_desc}</p>
     <div class="tooltip-arrow" data-popper-arrow></div>
 </div>
 `;
 
-export {createSkeletonSkill, createSkill};
+export {createSkeletonSkill, createSkill, createTooltip};

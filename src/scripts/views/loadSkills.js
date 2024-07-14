@@ -1,36 +1,49 @@
 import ApiFetch from '../data/apiFetch';
 import ShowError from '../utils/showError';
 import GLOBAL_ELEMENT from '../global/globalElement';
-import {createSkeletonSkill, createSkill} from '../templates/viewSkills';
+import {createSkeletonSkill, createSkill, createTooltip} from '../templates/viewSkills';
 import {createPopper} from '@popperjs/core';
 
 const LoadSkills = {
-  init({basic, frontend, backend}) {
+  init({basic, frontend, backend, tooltip}) {
     this._skillBasic = basic;
     this._skillFrontend = frontend;
     this._skillBackend = backend;
+    this._skillTooltip = tooltip;
 
     this._renderAllSkills();
   },
 
   async _renderAllSkills() {
-    await Promise.all([
-      this._renderSkill('basic', this._skillBasic),
-      this._renderSkill('frontend', this._skillFrontend),
-      this._renderSkill('backend', this._skillBackend),
-    ]);
-    this._addTooltipEvents();
+    try {
+      await Promise.all([
+        this._renderSkill('basic', this._skillBasic),
+        this._renderSkill('frontend', this._skillFrontend),
+        this._renderSkill('backend', this._skillBackend),
+      ]);
+      this._addTooltipEvents();
+    } catch (error) {
+      this._showError(`${error}. Please <a onclick="window.location.reload()" class="font-semibold underline hover:no-underline cursor-pointer">reload</a> the page.`);
+    }
   },
 
   async _renderSkill(section, container) {
-    container.innerHTML = createSkeletonSkill();
     try {
-      const apiBasic = await ApiFetch.getSkills(section);
-      const skillsHTML = apiBasic?.data?.map((skill) => createSkill(skill)).join('');
-      container.innerHTML = skillsHTML || createSkeletonSkill();
+      container.innerHTML = createSkeletonSkill();
+      const apiData = await ApiFetch.getSkills(section);
+      const skillsHTML = apiData?.data?.map((skill) => createSkill(skill)).join('') || createSkeletonSkill();
+      container.innerHTML = skillsHTML;
+      this._renderTooltip(apiData?.data);
     } catch (error) {
-      this._showError(`${error}. please <a onclick="window.location.reload()" class="font-semibold underline hover:no-underline cursor-pointer">reload</a> the page.`);
+      this._showError(`${error}. Please <a onclick="window.location.reload()" class="font-semibold underline hover:no-underline cursor-pointer">reload</a> the page.`);
     }
+  },
+
+  _renderTooltip(skills) {
+    const tooltipHTML = skills.filter((skill) => skill.cert_link)
+        .map((skill) => createTooltip(skill))
+        .join('');
+    this._skillTooltip.insertAdjacentHTML('beforeend', tooltipHTML);
   },
 
   _addTooltipEvents() {
@@ -42,14 +55,7 @@ const LoadSkills = {
 
       const popperInstance = createPopper(element, tooltip, {
         placement: 'top',
-        modifiers: [
-          {
-            name: 'offset',
-            options: {
-              offset: [0, 22],
-            },
-          },
-        ],
+        modifiers: [{name: 'offset', options: {offset: [0, 22]}}],
       });
 
       const showTooltip = () => {
