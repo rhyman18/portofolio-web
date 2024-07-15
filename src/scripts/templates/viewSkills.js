@@ -25,7 +25,7 @@ const createSkill = (skill) => `
 `;
 
 const createTooltip = (skill) => `
-<div id="tooltip-target-${skill.id}" role="tooltip" class="tooltip max-w-sm p-3 md:p-4 text-sm font-medium transition-opacity duration-300 bg-white border rounded-lg shadow-sm opacity-0 dark:bg-gray-800 dark:border-gray-600">
+<div id="tooltip-target-${skill.id}" role="tooltip" class="w-3/4 sm:w-1/2 md:3/5 lg:max-w-sm tooltip pointer-events-none p-3 md:p-4 text-sm font-medium transition-opacity duration-300 bg-white border rounded-lg shadow-sm opacity-0 dark:bg-gray-800 dark:border-gray-600">
 ${
   skill.cert_img ?
     `<div class="flex items-center justify-center w-full mb-2 md:mb-3">
@@ -38,7 +38,7 @@ ${
         </svg>
     </div>`
 }
-    <p class="font-normal text-primary-desc dark:text-secondary-desc truncate ...">${skill.cert_desc}</p>
+    <p class="font-normal text-center text-primary-desc dark:text-secondary-desc truncate ...">${skill.cert_desc}</p>
     <div class="tooltip-arrow" data-popper-arrow></div>
 </div>
 `;
