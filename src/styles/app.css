@@ -117,7 +117,7 @@ html::-webkit-scrollbar {
 }
 
 .skill-box:hover {
-    transform: scale(1.2);
+    /* transform: scale(1.2); */
     box-shadow: 0 2px 20px 5px rgba(28, 195, 178, .3);
 }
 

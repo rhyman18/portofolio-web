@@ -1,29 +1,23 @@
 import ApiFetch from '../data/apiFetch';
 import ShowError from '../utils/showError';
 import GLOBAL_ELEMENT from '../global/globalElement';
-import {createSkeletonSkill, createSkill, createTooltip} from '../templates/viewSkills';
-import {createPopper} from '@popperjs/core';
+import {createSkeletonSkill, createSkill, createPopover} from '../templates/viewSkills';
+import {Popover} from 'flowbite';
 
 const LoadSkills = {
-  init({basic, frontend, backend, tooltip}) {
-    this._skillBasic = basic;
-    this._skillFrontend = frontend;
-    this._skillBackend = backend;
-    this._skillTooltip = tooltip;
+  init({basic, frontend, backend, popover}) {
+    this._skillContainers = {basic, frontend, backend};
+    this._skillPopover = popover;
 
     this._renderAllSkills();
   },
 
   async _renderAllSkills() {
     try {
-      await Promise.all([
-        this._renderSkill('basic', this._skillBasic),
-        this._renderSkill('frontend', this._skillFrontend),
-        this._renderSkill('backend', this._skillBackend),
-      ]);
-      this._addTooltipEvents();
+      await Promise.all(Object.entries(this._skillContainers).map(([section, container]) => this._renderSkill(section, container)));
+      this._addPopoverEvents();
     } catch (error) {
-      this._showError(`${error}. Please <a onclick="window.location.reload()" class="font-semibold underline hover:no-underline cursor-pointer">reload</a> the page.`);
+      this._handleError(error);
     }
   },
 
@@ -31,52 +25,46 @@ const LoadSkills = {
     try {
       container.innerHTML = createSkeletonSkill();
       const apiData = await ApiFetch.getSkills(section);
-      const skillsHTML = apiData?.data?.map((skill) => createSkill(skill)).join('') || createSkeletonSkill();
+      const skillsHTML = apiData?.data?.map(createSkill).join('') || createSkeletonSkill();
       container.innerHTML = skillsHTML;
-      this._renderTooltip(apiData?.data);
+      this._renderPopover(apiData?.data);
     } catch (error) {
-      this._showError(`${error}. Please <a onclick="window.location.reload()" class="font-semibold underline hover:no-underline cursor-pointer">reload</a> the page.`);
+      this._handleError(error);
     }
   },
 
-  _renderTooltip(skills) {
-    const tooltipHTML = skills.filter((skill) => skill.cert_link)
-        .map((skill) => createTooltip(skill))
+  _renderPopover(skills = []) {
+    const popoverHTML = skills
+        .filter((skill) => skill.cert_link)
+        .map(createPopover)
         .join('');
-    this._skillTooltip.insertAdjacentHTML('beforeend', tooltipHTML);
+    this._skillPopover.insertAdjacentHTML('beforeend', popoverHTML);
   },
 
-  _addTooltipEvents() {
-    const skillElements = document.querySelectorAll('[data-tooltip-target]');
-    skillElements.forEach((element) => {
-      const tooltipId = element.getAttribute('data-tooltip-target');
-      const tooltip = document.getElementById(tooltipId);
-      if (!tooltip) return;
+  _addPopoverEvents() {
+    document.querySelectorAll('[data-popover-target]').forEach((element) => {
+      const popoverId = element.getAttribute('data-popover-target');
+      const popoverBody = document.getElementById(popoverId);
+      if (!popoverBody) return;
 
-      const popperInstance = createPopper(element, tooltip, {
+      const options = {
         placement: 'top',
-        modifiers: [{name: 'offset', options: {offset: [0, 22]}}],
-      });
-
-      const showTooltip = () => {
-        tooltip.classList.remove('invisible', 'opacity-0');
-        tooltip.classList.add('visible', 'opacity-100');
-        popperInstance.update();
+        triggerType: 'hover',
+        offset: 10,
       };
 
-      const hideTooltip = () => {
-        tooltip.classList.remove('visible', 'opacity-100');
-        tooltip.classList.add('invisible', 'opacity-0');
+      const instanceOptions = {
+        id: popoverId,
+        override: true,
       };
 
-      element.addEventListener('mouseenter', showTooltip);
-      element.addEventListener('mouseleave', hideTooltip);
-
-      element.addEventListener('remove', () => {
-        element.removeEventListener('mouseenter', showTooltip);
-        element.removeEventListener('mouseleave', hideTooltip);
-      });
+      new Popover(popoverBody, element, options, instanceOptions);
     });
+  },
+
+  _handleError(error) {
+    const errorMessage = `${error}. Please <a onclick="window.location.reload()" class="font-semibold underline hover:no-underline cursor-pointer">reload</a> the page.`;
+    this._showError(errorMessage);
   },
 
   _showError(message) {

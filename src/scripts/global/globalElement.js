@@ -7,7 +7,7 @@ const GLOBAL_ELEMENT = {
   SkillBasic: document.querySelector('#skill-dasar'),
   SkillFrontend: document.querySelector('#skill-frontend'),
   SkillBackend: document.querySelector('#skill-backend'),
-  SkillTooltip: document.querySelector('#tooltip-container'),
+  SkillPopover: document.querySelector('#popover-container'),
 
   Projects: document.querySelector('#post'),
 
