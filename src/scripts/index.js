@@ -37,6 +37,8 @@ window.addEventListener('DOMContentLoaded', () => {
       nameAlert: GLOBAL_ELEMENT.InputNameAlert,
       usernameAlert: GLOBAL_ELEMENT.InputUsernameAlert,
       messageAlert: GLOBAL_ELEMENT.InputMessageAlert,
+      toastSuccess: GLOBAL_ELEMENT.ToastSuccess,
+      toastFailed: GLOBAL_ELEMENT.ToastFailed,
     },
   });
 
