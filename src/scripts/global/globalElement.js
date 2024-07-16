@@ -21,6 +21,8 @@ const GLOBAL_ELEMENT = {
   InputNameAlert: document.querySelector('#name-alert'),
   InputUsernameAlert: document.querySelector('#username-alert'),
   InputMessageAlert: document.querySelector('#message-alert'),
+  ToastSuccess: document.querySelector('#toast-success'),
+  ToastFailed: document.querySelector('#toast-danger'),
 
   AlertBody: document.querySelector('#alert-body'),
   AlertMessage: document.querySelector('#alert-msg'),

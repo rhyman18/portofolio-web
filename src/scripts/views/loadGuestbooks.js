@@ -54,7 +54,7 @@ const LoadGuestbooks = {
       if (validatedInput.status) {
         const formData = this._convertInputValues();
         await ApiFetch.postGuestbook(formData);
-        location.reload();
+        this._renderSubmitButtonSuccess();
       } else {
         this._renderSubmitButtonDefault();
       }
@@ -88,10 +88,30 @@ const LoadGuestbooks = {
     this._setButtonProperties(ViewEventFields.errorButtonClass, ViewEventFields.errorButtonInnerHTML, true);
   },
 
+  _renderSubmitButtonSuccess() {
+    this._renderToast('success', true);
+    setTimeout(() => {
+      location.reload();
+    }, 6000);
+  },
+
   _renderSubmitButtonDefault() {
+    this._renderToast('failed', true);
     setTimeout(() => {
       this._setButtonProperties(ViewEventFields.defaultButtonClass, ViewEventFields.defaultButtonInnerHTML, false);
     }, 3000);
+    setTimeout(() => {
+      this._renderToast('failed', false);
+    }, 6000);
+  },
+
+  _renderToast(status = 'success', show = true) {
+    const {toastSuccess, toastFailed} = this._fields;
+    if (status === 'success') {
+      this._setToastProperties(toastSuccess, show);
+    } else if (status === 'failed') {
+      this._setToastProperties(toastFailed, show);
+    }
   },
 
   _setButtonProperties(className, innerHTML, disabled) {
@@ -99,6 +119,19 @@ const LoadGuestbooks = {
     button.disabled = disabled;
     button.classList = className;
     button.innerHTML = innerHTML;
+  },
+
+  _setToastProperties(element, show) {
+    if (show) {
+      element.classList.remove('hidden');
+      element.classList.add('flex');
+      setTimeout(() => {
+        element.classList.add('opacity-100');
+      }, 300);
+    } else {
+      element.classList.add('hidden');
+      element.classList.remove('flex', 'opacity-100');
+    }
   },
 
   _showError(message) {

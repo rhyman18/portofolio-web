@@ -25,8 +25,7 @@ const ShowError = {
 
   _showAlertBody() {
     this._containerAlert.classList.remove('hidden');
-    this._containerAlert.classList.add('flex');
-    this._containerAlert.classList.add('items-center');
+    this._containerAlert.classList.add('flex', 'items-center', 'masuk');
     this._containerAlert.setAttribute('alert-priority', this._alertPriority);
   },
 };
