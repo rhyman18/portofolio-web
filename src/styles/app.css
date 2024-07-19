@@ -7,10 +7,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap');
 
 :root {
-    --bg-hero-url: url('../public/images/welcome-bg.jpg');
-    --left-bg-url: url('../public/images/left-icon.png');
-    --right-bg-url: url('../public/images/right-icon.png');
-    --qr-url: url('../public/images/contact.png');
+    --bg-hero-url: url('../public/images/welcome-bg.webp');
+    --left-bg-url: url('../public/images/left-icon.webp');
+    --right-bg-url: url('../public/images/right-icon.webp');
+    --qr-url: url('../public/images/contact.webp');
 }
 
 html {
