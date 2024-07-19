@@ -13,6 +13,10 @@
     <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16x16.png">
     <link rel="manifest" href="site.webmanifest">
+    <!-- preload -->
+    <link rel="preload" href="style~f6563343.db695c48106a8a13559a.bundle.css" as="style">
+    <link rel="preload" href="style~219730e5.7a669ef424943ab0891b.bundle.css" as="style">
+    <link rel="preload" href="aos.4e5026e8aaa232cd3432.bundle.css" as="style">
     <!-- toogle dark mode -->
     <script>
     if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
@@ -108,10 +112,10 @@
     </header>
 
     <!-- bagian hero -->
-    <section id="welcome" class="h-screen flex flex-col items-center justify-center text-center bg-hero text-secondary-font tracking-widest gap-3 lg:gap-5 px-6">
+    <section id="welcome" loading="lazy" class="h-screen flex flex-col items-center justify-center text-center bg-hero text-secondary-font tracking-widest gap-3 lg:gap-5 px-6">
         <!-- bagian sambutan -->
         <p class="text-lg md:text-xl lg:text-2xl hero-textp-shadow">Web Portfolio</p>
-        <h1 class="text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl hero-texth1-shadow" tabindex="0" id="headline-pesan"></h1>
+        <h1 class="text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl hero-texth1-shadow" tabindex="0" id="headline-pesan">Selamat Datang di Rumah Ari Budiman</h1>
         <a href="#about" class="mt-3 lg:mt-6 py-2 lg:py-3 px-6 lg:px-10 border-2 border-main-500 text-base lg:text-lg hover:bg-main-500 ease-in-out duration-300">
             Kepoin Yuk
         </a>
@@ -135,19 +139,19 @@
         <!-- tampilkan profil saya -->
         <div class="max-w-screen-2xl flex flex-wrap md:flex-nowrap items-center justify-center mx-auto gap-6 md:gap-12 xl:gap-30 2xl:gap-64 px-6">
             <div data-aos="fade-up">
-                <h4 class="uppercase text-main-500 text-sm xl:text-lg font-medium tracking-widest">Tentang Saya</h4>
+                <div class="uppercase text-main-500 text-sm xl:text-lg font-medium tracking-widest">Tentang Saya</div>
                 <h1 class="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-semibold capitalize leading-tight mb-6 xl:mb-12" tabindex="0">
                     Hai, Saya Ari Budiman<br>
                     Senang berjumpa dengan Anda
                 </h1>
                 <p class="leading-loose text-base xl:text-xl text-primary-desc dark:text-secondary-desc mb-3 xl:mb-6" id="profile-pesan" tabindex="0"></p>
-                <h3 class="text-primary-desc dark:text-secondary-desc text-base xl:text-lg mb-3 xl:mb-6">
+                <div class="text-primary-desc dark:text-secondary-desc text-base xl:text-lg mb-3 xl:mb-6">
                     Founder: <span class="text-main-500">Ari Budiman</span>
-                </h3>
-                <h6 class="dancing-script text-2xl xl:text-4xl text-main-gray">AriBudiman</h6>
+                </div>
+                <div class="dancing-script text-2xl xl:text-4xl text-main-gray">AriBudiman</div>
             </div>
             <div class="w-4/5 rounded-full img-hover-zoom overflow-hidden cursor-pointer" data-aos="zoom-in">
-                <img src="profile.png" class="w-full" alt="Ari Budiman">
+                <img data-src="profile.webp" class="lazyload w-full" alt="Ari Budiman">
             </div>
         </div>
     </section>
@@ -156,13 +160,13 @@
     <section id="skill" class="pt-28">
         <!-- bagian skill saya -->
         <div class="max-w-screen-2xl text-center mx-auto font-medium px-6">
-            <h3 class="text-main-gray uppercase tracking-widest py-6" tabindex="0">Skill Saya</h3>
+            <div class="text-main-gray uppercase tracking-widest py-6" tabindex="0">Skill Saya</div>
             <div id="skill-dasar" data-aos="zoom-in-up" class="flex flex-wrap justify-center gap-8 font-semibold mb-6"></div>
 
-            <h3 class="text-main-gray uppercase tracking-widest py-6" tabindex="0">Frontend Dev</h3>
+            <div class="text-main-gray uppercase tracking-widest py-6" tabindex="0">Frontend Dev</div>
             <div id="skill-frontend" data-aos="zoom-in-up" class="flex flex-wrap justify-center gap-8 font-semibold mb-6"></div>
 
-            <h3 class="text-main-gray uppercase tracking-widest py-6" tabindex="0">Backend Dev</h3>
+            <div class="text-main-gray uppercase tracking-widest py-6" tabindex="0">Backend Dev</div>
             <div id="skill-backend" data-aos="zoom-in-up" class="flex flex-wrap justify-center gap-8 font-semibold mb-6"></div>
         </div>
     </section>
@@ -171,9 +175,9 @@
     <main id="project" class="pt-28">
         <!-- judul bagian content -->
         <div class="max-w-screen-xl text-center mx-auto font-medium px-6">
-            <h4 class="uppercase text-main-500 text-sm xl:text-lg font-medium tracking-widest" data-aos="fade-up">
+            <div class="uppercase text-main-500 text-sm xl:text-lg font-medium tracking-widest" data-aos="fade-up">
                 Project & Event
-            </h4>
+            </div>
             <h1 class="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-semibold capitalize leading-tight mb-6 xl:mb-12" data-aos="fade-up" tabindex="0">
                 Kegiatan Terbaru
             </h1>
@@ -187,9 +191,9 @@
     <section id="tamu" class="pt-14">
         <div class="bg-primary-com dark:bg-secondary-com py-14">
             <div class="max-w-screen-xl text-center mx-auto font-medium px-6">
-                <h4 class="uppercase text-main-500 text-sm xl:text-lg font-semibold tracking-widest" data-aos="fade-up" data-aos-offset="0">
+                <div class="uppercase text-main-500 text-sm xl:text-lg font-semibold tracking-widest" data-aos="fade-up" data-aos-offset="0">
                     Buku Tamu
-                </h4>
+                </div>
                 <h1 class="text-2xl md:text-3xl lg:text-4xl xl:text-5xl text-secondary-font font-bold capitalize leading-tight" data-aos="fade-up" data-aos-offset="0" tabindex="0">
                     Pesan &amp; Kesan Pengunjug
                 </h1>
@@ -210,7 +214,7 @@
     <footer id="contact">
         <!-- bagian info hubungi saya -->
         <div class="bg-primary dark:bg-secondary p-6 md:p-14">
-            <div class="w-full lg:w-4/5 2xl:w-1/2 bg-primary-com dark:bg-secondary-com p-5 text-justify text-secondary-font rounded-xl flex flex-col gap-1.5 border dark:border-main-500 qr" data-aos="zoom-in-right" data-aos-offset="0">
+            <div class="w-full lg:w-4/5 2xl:w-1/2 bg-primary-com dark:bg-secondary-com p-5 text-justify text-secondary-font rounded-xl flex flex-col gap-1.5 border dark:border-main-500 qr" loading="lazy" data-aos="zoom-in-right" data-aos-offset="0">
                 <a href="#" class="mb-3">
                     <h1 class="source-code-pro text-3xl font-semibold brand-text-shadow">
                         <span class="dancing-script text-4xl text-main-500 font-bold">A</span>ri Budiman
@@ -228,10 +232,10 @@
             <div class="max-w-screen-2xl border-t text-secondary-font border-main-gray mx-auto flex justify-between py-3 px-6 2xl:px-0">
                 <div>Dibuat Oleh Ari Budiman | &copy; 2023</div>
                 <div class="flex gap-3">
-                    <a href="https://facebook.com/RhyMan18"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="https://twitter.com/RhyMan18"><i class="fa-brands fa-twitter"></i></a>
-                    <a href="https://www.linkedin.com/in/rhyman18"><i class="fa-brands fa-linkedin-in"></i></a>
-                    <a href="https://github.com/rhyman18"><i class="fa-brands fa-github"></i></a>
+                    <a href="https://facebook.com/RhyMan18" aria-label="My Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="https://twitter.com/RhyMan18" aria-label="My Twitter"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="https://www.linkedin.com/in/rhyman18" aria-label="My Linkedin"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="https://github.com/rhyman18" aria-label="My Github"><i class="fa-brands fa-github"></i></a>
                 </div>
             </div>
         </div>
@@ -243,7 +247,7 @@
     <!-- Fixed alert and button to Top -->
     <div class="fixed bottom-0 left-0 right-0">
         <div class="flex justify-end w-full p-2">
-            <a href="#" class="bg-main-500 hover:bg-main-700 text-white font-semibold rounded-xl py-5 px-3.5 text-sm text-center inline-flex items-center" data-aos="zoom-in-up">
+            <a href="#" class="bg-main-500 hover:bg-main-700 text-white font-semibold rounded-xl py-5 px-3.5 text-sm text-center inline-flex items-center" aria-label="Back to Top" data-aos="zoom-in-up">
                 <i class="fa-solid fa-arrow-up fa-xl"></i>
             </a>
         </div>
