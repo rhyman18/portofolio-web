@@ -15,18 +15,14 @@ module.exports = {
       import: './src/scripts/style.js',
       dependOn: 'shared',
     },
-    aos: {
-      import: './src/scripts/aos.js',
-    },
-    lazysizes: {
-      import: './src/scripts/lazysizes.js',
-    },
+    aos: './src/scripts/aos.js',
+    lazysizes: './src/scripts/lazysizes.js',
     shared: ['./src/scripts/global/globalElement.js', 'flowbite'],
   },
   output: {
     path: path.resolve(__dirname, 'public'),
-    filename: '[name].bundle.js',
-    assetModuleFilename: '[name][ext]',
+    filename: '[name].[contenthash].bundle.js',
+    assetModuleFilename: '[name].[contenthash][ext]',
     clean: true,
   },
   module: {
@@ -91,7 +87,7 @@ module.exports = {
       },
     }),
     new MiniCssExtractPlugin({
-      filename: '[name].bundle.css',
+      filename: '[name].[contenthash].bundle.css',
     }),
     new CopyWebpackPlugin({
       patterns: [
