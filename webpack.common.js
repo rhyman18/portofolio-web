@@ -6,10 +6,21 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   entry: {
-    index: './src/scripts/index.js',
-    style: './src/scripts/style.js',
-    aos: './src/scripts/aos.js',
-    lazysizes: './src/scripts/lazysizes.js',
+    index: {
+      import: './src/scripts/index.js',
+      dependOn: 'shared',
+    },
+    style: {
+      import: './src/scripts/style.js',
+      dependOn: 'shared',
+    },
+    aos: {
+      import: './src/scripts/aos.js',
+    },
+    lazysizes: {
+      import: './src/scripts/lazysizes.js',
+    },
+    shared: ['./src/scripts/global/globalElement.js', 'flowbite'],
   },
   output: {
     path: path.resolve(__dirname, 'public'),
@@ -38,6 +49,19 @@ module.exports = {
         type: 'asset/resource',
       },
     ],
+  },
+  optimization: {
+    runtimeChunk: 'single',
+    splitChunks: {
+      chunks: 'all',
+      minSize: 20000,
+      maxSize: 70000,
+      minChunks: 1,
+      maxAsyncRequests: 30,
+      maxInitialRequests: 30,
+      automaticNameDelimiter: '~',
+      enforceSizeThreshold: 50000,
+    },
   },
   plugins: [
     new HtmlWebpackPlugin({
