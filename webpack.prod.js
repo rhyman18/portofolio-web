@@ -2,6 +2,7 @@ const {merge} = require('webpack-merge');
 const common = require('./webpack.common');
 const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
 const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
+const CompressionPlugin = require('compression-webpack-plugin');
 
 module.exports = merge(common, {
   mode: 'production',
@@ -77,6 +78,14 @@ module.exports = merge(common, {
           },
         },
       ],
+    }),
+    new CompressionPlugin({
+      test: /\.(js|css|html|svg)$/,
+      filename: '[path][base].gz',
+      algorithm: 'gzip',
+      threshold: 10240,
+      minRatio: 0.8,
+      deleteOriginalAssets: false,
     }),
   ],
 });
