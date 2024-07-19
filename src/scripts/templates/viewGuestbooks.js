@@ -5,7 +5,7 @@ const createGuestbook = (guest, link) => `
     <div>
         <div class="flex items-center">
             <i class="fa-brands fa-${guest.platform} fa-3x text-main-500"></i>
-            <h5 class="text-lg font-semibold uppercase ps-2.5" tabindex="0">${guest.name}</h5>
+            <div class="text-lg font-semibold uppercase ps-2.5" tabindex="0">${guest.name}</div>
         </div>
         <div class="pt-2.5 ps-5"><q class="elipsis font-normal" tabindex="0">${guest.message}</q></div>
     </div>
