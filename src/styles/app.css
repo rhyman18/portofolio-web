@@ -50,7 +50,7 @@ html::-webkit-scrollbar {
 }
 
 .bg-hero {
-    background: rgba(0, 0, 0, .7) var(--bg-hero-url);
+    background: rgba(0, 0, 0, .7);
     background-blend-mode: darken;
     background-position: center;
     background-repeat: no-repeat;
@@ -144,7 +144,6 @@ html::-webkit-scrollbar {
 }
 
 .qr {
-    background-image: var(--qr-url);
     background-position: right;
     background-size: contain;
     background-repeat: no-repeat;

@@ -17,6 +17,7 @@ module.exports = {
     },
     aos: './src/scripts/aos.js',
     lazysizes: './src/scripts/lazysizes.js',
+    bglazy: './src/scripts/bglazy.js',
     shared: ['./src/scripts/global/globalElement.js', 'flowbite'],
   },
   output: {
