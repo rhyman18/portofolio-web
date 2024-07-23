@@ -17,6 +17,7 @@ module.exports = {
     },
     aos: './src/scripts/aos.js',
     lazysizes: './src/scripts/lazysizes.js',
+    bglazy: './src/scripts/bglazy.js',
     shared: ['./src/scripts/global/globalElement.js', 'flowbite'],
   },
   output: {
@@ -68,11 +69,6 @@ module.exports = {
       template: path.resolve(__dirname, 'src/templates/index.html'),
       filename: 'index.html',
       inject: 'body',
-      scriptLoading: 'blocking',
-      preconnect: [
-        'https://ka-f.fontawesome.com',
-        'https://fonts.gstatic.com',
-      ],
       minify: {
         removeComments: true,
         collapseWhitespace: true,

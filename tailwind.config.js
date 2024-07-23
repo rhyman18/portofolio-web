@@ -35,6 +35,13 @@ module.exports = {
         'main-gray': '#aeaeae',
         'main-trans': 'rgba(0,0,0,0.5)',
       },
+      fontSize: {
+        '3xl': '1.875rem',
+        '4xl': '2.25rem',
+        '5xl': '3rem',
+        '6xl': '3.75rem',
+        '7xl': '4.5rem',
+      },
     },
   },
   plugins: [
