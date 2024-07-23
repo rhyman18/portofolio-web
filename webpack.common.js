@@ -68,11 +68,6 @@ module.exports = {
       template: path.resolve(__dirname, 'src/templates/index.html'),
       filename: 'index.html',
       inject: 'body',
-      scriptLoading: 'blocking',
-      preconnect: [
-        'https://ka-f.fontawesome.com',
-        'https://fonts.gstatic.com',
-      ],
       minify: {
         removeComments: true,
         collapseWhitespace: true,

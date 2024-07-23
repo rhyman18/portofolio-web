@@ -2,10 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;500;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap');
-
 :root {
     --bg-hero-url: url('../public/images/welcome-bg.webp');
     --left-bg-url: url('../public/images/left-icon.webp');
@@ -51,10 +47,6 @@ html::-webkit-scrollbar {
 
 .hero-textp-shadow {
     text-shadow: 3px 3px #0e2737;
-}
-
-.hero-texth1-shadow {
-    text-shadow: 5px 5px #0e2737;
 }
 
 .bg-hero {

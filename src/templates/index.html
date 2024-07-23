@@ -13,18 +13,35 @@
     <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16x16.png">
     <link rel="manifest" href="site.webmanifest">
+    <!-- Roboto Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" media="all">
+    <!-- Source Code Pro Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@500&display=swap" rel="stylesheet" media="all">
+    <!-- Dancing Script Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&display=swap" rel="stylesheet" media="all">
     <!-- preload -->
-    <link rel="preload" href="style~f6563343.db695c48106a8a13559a.bundle.css" as="style">
-    <link rel="preload" href="style~219730e5.7a669ef424943ab0891b.bundle.css" as="style">
+    <link rel="preload" href="style~b12aad95.e5b2c2df4fd7879a961a.bundle.css" as="style">
     <link rel="preload" href="aos.4e5026e8aaa232cd3432.bundle.css" as="style">
     <!-- toogle dark mode -->
-    <script>
+    <script defer>
     if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
         document.documentElement.classList.add('dark');
     } else {
         document.documentElement.classList.remove('dark')
     }
     </script>
+    <!-- critical css inline -->
+    <style>
+    .hero-texth1-shadow {
+        text-shadow: 5px 5px #0e2737;
+    }
+    </style>
 </head>
 
 <body class="bg-primary text-primary-font dark:bg-secondary dark:text-secondary-font">
@@ -112,7 +129,7 @@
     </header>
 
     <!-- bagian hero -->
-    <section id="welcome" loading="lazy" class="h-screen flex flex-col items-center justify-center text-center bg-hero text-secondary-font tracking-widest gap-3 lg:gap-5 px-6">
+    <section id="welcome" class="h-screen flex flex-col items-center justify-center text-center bg-hero text-secondary-font tracking-widest gap-3 lg:gap-5 px-6">
         <!-- bagian sambutan -->
         <p class="text-lg md:text-xl lg:text-2xl hero-textp-shadow">Web Portfolio</p>
         <h1 class="text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl hero-texth1-shadow" tabindex="0" id="headline-pesan">Selamat Datang di Rumah Ari Budiman</h1>
@@ -214,7 +231,7 @@
     <footer id="contact">
         <!-- bagian info hubungi saya -->
         <div class="bg-primary dark:bg-secondary p-6 md:p-14">
-            <div class="w-full lg:w-4/5 2xl:w-1/2 bg-primary-com dark:bg-secondary-com p-5 text-justify text-secondary-font rounded-xl flex flex-col gap-1.5 border dark:border-main-500 qr" loading="lazy" data-aos="zoom-in-right" data-aos-offset="0">
+            <div class="w-full lg:w-4/5 2xl:w-1/2 bg-primary-com dark:bg-secondary-com p-5 text-justify text-secondary-font rounded-xl flex flex-col gap-1.5 border dark:border-main-500 qr" data-aos="zoom-in-right" data-aos-offset="0">
                 <a href="#" class="mb-3">
                     <h1 class="source-code-pro text-3xl font-semibold brand-text-shadow">
                         <span class="dancing-script text-4xl text-main-500 font-bold">A</span>ri Budiman
@@ -358,7 +375,7 @@
     </div>
 
     <!-- library font awasome untuk icon -->
-    <script src="https://kit.fontawesome.com/3941d04b00.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/3941d04b00.js" crossorigin="anonymous" async></script>
 </body>
 
 </html>
