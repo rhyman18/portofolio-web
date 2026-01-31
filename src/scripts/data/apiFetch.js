@@ -50,19 +50,28 @@ class ApiFetch {
    * Get all projects.
    * @return {Promise<{data: any[]}>} List of projects
    */
-  static async getProjects() {
+  static async getProjects({page = 1, limit = API_CONFIG.PAGINATION.projects} = {}) {
     try {
-      const {data, error} = await this.#client()
+      const from = (page - 1) * limit;
+      const to = from + limit - 1;
+      const {data, error, count} = await this.#client()
           .from(API_CONFIG.TABLE.projects)
-          .select(API_CONFIG.SELECT.projects)
-          .order('updated_at', {ascending: false});
+          .select(API_CONFIG.SELECT.projects, {count: 'exact'})
+          .order('updated_at', {ascending: false})
+          .range(from, to);
       if (error) throw error;
       const withImages = await Promise.all(data.map(async (project) => ({
         ...project,
         img: await this.#signedUrl(this.#withPrefix(project.img, API_CONFIG.IMG_PATH.projectThumb)),
         img_hover: await this.#signedUrl(this.#withPrefix(project.img_hover, API_CONFIG.IMG_PATH.projectHover)),
       })));
-      return {data: withImages};
+      return {
+        data: withImages,
+        page,
+        limit,
+        total: count ?? data?.length ?? 0,
+        totalPages: count ? Math.ceil(count / limit) : undefined,
+      };
     } catch (error) {
       console.log('Failed to fetch projects Api', error);
       throw new Error('An error occurred while loading the projects data');

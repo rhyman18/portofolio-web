@@ -14,6 +14,9 @@ const API_CONFIG = {
     projects: 'id,title,url,img,img_hover,tags,desc,repo,updated_at',
     guestbooks: 'id,name,username,platform,message,updated_at',
   },
+  PAGINATION: {
+    projects: 5,
+  },
 };
 
 export default API_CONFIG;

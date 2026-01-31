@@ -84,4 +84,10 @@ const createProject = (project, i) => `
 </div>
 `;
 
-export {createSkeletonProject, createProject};
+const createPagination = (page, totalPages) => `
+  <button id="post-prev" class="px-4 py-2 border border-main-500 text-base text-main-500 dark:text-secondary-font bg-transparent transition hover:bg-main-500 hover:text-primary hover:dark:text-secondary-font disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-transparent disabled:text-primary-desc disabled:hover:text-primary-desc">Prev</button>
+  <span class="text-primary-font dark:text-secondary-font text-sm">Page ${page}${totalPages ? ` / ${totalPages}` : ''}</span>
+  <button id="post-next" class="px-4 py-2 border border-main-500 text-base text-main-500 dark:text-secondary-font bg-transparent transition hover:bg-main-500 hover:text-primary hover:dark:text-secondary-font disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-transparent disabled:text-primary-desc disabled:hover:text-primary-desc">Next</button>
+`;
+
+export {createSkeletonProject, createProject, createPagination};
