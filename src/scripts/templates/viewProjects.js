@@ -70,9 +70,10 @@ const createProject = (project, i, baseImgUrl) => `
             </div>
             <div class="uppercase text-xs tracking-widest text-secondary-font font-normal my-4 flex flex-wrap gap-1 md:gap-3">
                 ${project.repo ? `<a href="${project.repo}" class="bg-main-gray hover:bg-main-500 py-1 md:py-1.5 px-4 md:px-6" target="_blank">git</a>` : ''}
-                ${JSON.parse(project.tags).map((tag) => {
-    return `<span class="bg-main-500 py-1 md:py-1.5 px-4 md:px-6" tabindex="0">${tag}</span>`;
-  }).join('')}
+                ${(() => {
+    const tags = Array.isArray(project.tags) ? project.tags : JSON.parse(project.tags || '[]');
+    return tags.map((tag) => `<span class="bg-main-500 py-1 md:py-1.5 px-4 md:px-6" tabindex="0">${tag}</span>`).join('');
+  })()}
             </div>
             <p class="leading-5 md:leading-7 text-primary-desc dark:text-secondary-desc text-justify font-normal mb-4 elipsis" tabindex="0">${project.desc}</p>
             <p class="text-main-gray text-xs font-normal uppercase tracking-widest" tabindex="0">${project.updated_at}</p>
