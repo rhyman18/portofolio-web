@@ -1,3 +1,5 @@
+import formatDate from '../utils/formatDate';
+
 const emptyGuestbook = () => 'Belum ada pengunjung yang Nitip Pesan, Jadilah yang Pertama!';
 
 const createGuestbook = (guest, link) => `
@@ -13,7 +15,7 @@ const createGuestbook = (guest, link) => `
         <div class="text-main-500 font-normal guest-link my-2.5">
             <a href="${link + guest.username}" target="_blank" class="py-3">@${guest.username}</a>
         </div>
-        <div class="text-main-gray uppercase tracking-widest text-xs">${guest.updated_at}</div>
+        <div class="text-main-gray uppercase tracking-widest text-xs">${formatDate(guest.updated_at)}</div>
     </div>
 </div>
 `;

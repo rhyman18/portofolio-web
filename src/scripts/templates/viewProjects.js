@@ -1,3 +1,5 @@
+import formatDate from '../utils/formatDate';
+
 const createSkeletonProject = () => `
 <div class="left-bg md:border-e-2 border-main-500" role="status" tabindex="0" aria-label="failed fetch projects">
     <article data-aos="zoom-in-right" class="animate-pulse flex flex-col md:me-4 lg:me-8 xl:flex-row xl:pe-6 text-left items-stretch xl:gap-5 border dark:border-gray-600 rounded dark:shadow-main-500 bg-primary dark:bg-secondary-com">
@@ -76,7 +78,7 @@ const createProject = (project, i) => `
   })()}
             </div>
             <p class="leading-5 md:leading-7 text-primary-desc dark:text-secondary-desc text-justify font-normal mb-4 elipsis" tabindex="0">${project.desc}</p>
-            <p class="text-main-gray text-xs font-normal uppercase tracking-widest" tabindex="0">${project.updated_at}</p>
+            <p class="text-main-gray text-xs font-normal uppercase tracking-widest" tabindex="0">${formatDate(project.updated_at)}</p>
         </div>
     </article>
 </div>
