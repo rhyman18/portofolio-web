@@ -76,7 +76,8 @@ class ApiFetch {
     try {
       const {data, error} = await this.#client()
           .from('guestbooks')
-          .select('*');
+          .select('*')
+          .order('updated_at', {ascending: false});
       if (error) throw error;
       return {data};
     } catch (error) {
