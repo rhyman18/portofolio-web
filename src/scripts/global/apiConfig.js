@@ -1,5 +1,10 @@
 const API_CONFIG = {
-  PATH: {
+  TABLE: {
+    skills: 'skills',
+    projects: 'projects',
+    guestbooks: 'guestbooks',
+  },
+  IMG_PATH: {
     skills: 'skills/',
     projectThumb: 'projects/thumb/',
     projectHover: 'projects/hover/',

@@ -30,14 +30,14 @@ class ApiFetch {
   static async getSkills(section) {
     try {
       const {data, error} = await this.#client()
-          .from('skills')
+          .from(API_CONFIG.TABLE.skills)
           .select(API_CONFIG.SELECT.skills)
           .eq('type', section)
           .order('sort', {ascending: true});
       if (error) throw error;
       const withImages = await Promise.all(data.map(async (skill) => ({
         ...skill,
-        cert_img: await this.#signedUrl(this.#withPrefix(skill.cert_img, API_CONFIG.PATH.skills)),
+        cert_img: await this.#signedUrl(this.#withPrefix(skill.cert_img, API_CONFIG.IMG_PATH.skills)),
       })));
       return {data: withImages};
     } catch (error) {
@@ -53,14 +53,14 @@ class ApiFetch {
   static async getProjects() {
     try {
       const {data, error} = await this.#client()
-          .from('projects')
+          .from(API_CONFIG.TABLE.projects)
           .select(API_CONFIG.SELECT.projects)
           .order('updated_at', {ascending: false});
       if (error) throw error;
       const withImages = await Promise.all(data.map(async (project) => ({
         ...project,
-        img: await this.#signedUrl(this.#withPrefix(project.img, API_CONFIG.PATH.projectThumb)),
-        img_hover: await this.#signedUrl(this.#withPrefix(project.img_hover, API_CONFIG.PATH.projectHover)),
+        img: await this.#signedUrl(this.#withPrefix(project.img, API_CONFIG.IMG_PATH.projectThumb)),
+        img_hover: await this.#signedUrl(this.#withPrefix(project.img_hover, API_CONFIG.IMG_PATH.projectHover)),
       })));
       return {data: withImages};
     } catch (error) {
@@ -76,7 +76,7 @@ class ApiFetch {
   static async getGuestbooks() {
     try {
       const {data, error} = await this.#client()
-          .from('guestbooks')
+          .from(API_CONFIG.TABLE.guestbooks)
           .select(API_CONFIG.SELECT.guestbooks)
           .order('updated_at', {ascending: false});
       if (error) throw error;
@@ -99,7 +99,7 @@ class ApiFetch {
         payload.updated_at = new Date().toISOString();
       }
       const {error} = await this.#client()
-          .from('guestbooks')
+          .from(API_CONFIG.TABLE.guestbooks)
           .insert(payload, {returning: 'minimal'});
       if (error) throw error;
     } catch (error) {
