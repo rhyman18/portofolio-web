@@ -1,6 +1,6 @@
 import {createClient} from '@supabase/supabase-js';
 import CONFIG from '../global/config';
-import {SUPABASE_PATH} from '../global/apiEndpoint';
+import API_CONFIG from '../global/apiConfig';
 
 /**
  * Thin wrapper around Supabase JS client used by the portfolio site.
@@ -31,13 +31,13 @@ class ApiFetch {
     try {
       const {data, error} = await this.#client()
           .from('skills')
-          .select('*')
+          .select(API_CONFIG.SELECT.skills)
           .eq('type', section)
           .order('sort', {ascending: true});
       if (error) throw error;
       const withImages = await Promise.all(data.map(async (skill) => ({
         ...skill,
-        cert_img: await this.#signedUrl(this.#withPrefix(skill.cert_img, SUPABASE_PATH.skills)),
+        cert_img: await this.#signedUrl(this.#withPrefix(skill.cert_img, API_CONFIG.PATH.skills)),
       })));
       return {data: withImages};
     } catch (error) {
@@ -54,13 +54,13 @@ class ApiFetch {
     try {
       const {data, error} = await this.#client()
           .from('projects')
-          .select('*')
+          .select(API_CONFIG.SELECT.projects)
           .order('updated_at', {ascending: false});
       if (error) throw error;
       const withImages = await Promise.all(data.map(async (project) => ({
         ...project,
-        img: await this.#signedUrl(this.#withPrefix(project.img, SUPABASE_PATH.projectThumb)),
-        img_hover: await this.#signedUrl(this.#withPrefix(project.img_hover, SUPABASE_PATH.projectHover)),
+        img: await this.#signedUrl(this.#withPrefix(project.img, API_CONFIG.PATH.projectThumb)),
+        img_hover: await this.#signedUrl(this.#withPrefix(project.img_hover, API_CONFIG.PATH.projectHover)),
       })));
       return {data: withImages};
     } catch (error) {
@@ -77,7 +77,7 @@ class ApiFetch {
     try {
       const {data, error} = await this.#client()
           .from('guestbooks')
-          .select('*')
+          .select(API_CONFIG.SELECT.guestbooks)
           .order('updated_at', {ascending: false});
       if (error) throw error;
       return {data};
