@@ -93,6 +93,9 @@ class ApiFetch {
   static async postGuestbook(input) {
     try {
       const payload = input instanceof FormData ? Object.fromEntries(input.entries()) : input;
+      if (!payload.updated_at) {
+        payload.updated_at = new Date().toISOString();
+      }
       const {error} = await this.#client()
           .from('guestbooks')
           .insert(payload, {returning: 'minimal'});
