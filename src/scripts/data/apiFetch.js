@@ -32,7 +32,8 @@ class ApiFetch {
       const {data, error} = await this.#client()
           .from('skills')
           .select('*')
-          .eq('type', section);
+          .eq('type', section)
+          .order('sort', {ascending: true});
       if (error) throw error;
       const withImages = await Promise.all(data.map(async (skill) => ({
         ...skill,
