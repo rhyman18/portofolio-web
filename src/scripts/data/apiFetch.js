@@ -1,5 +1,6 @@
 import {createClient} from '@supabase/supabase-js';
 import CONFIG from '../global/config';
+import {SUPABASE_PATH} from '../global/apiEndpoint';
 
 /**
  * Thin wrapper around Supabase JS client used by the portfolio site.
@@ -33,7 +34,11 @@ class ApiFetch {
           .select('*')
           .eq('type', section);
       if (error) throw error;
-      return {data};
+      const withImages = await Promise.all(data.map(async (skill) => ({
+        ...skill,
+        cert_img: await this.#signedUrl(this.#withPrefix(skill.cert_img, SUPABASE_PATH.skills)),
+      })));
+      return {data: withImages};
     } catch (error) {
       console.log('Failed to fetch skills Api', error);
       throw new Error('An error occurred while loading the skills data');
@@ -51,7 +56,12 @@ class ApiFetch {
           .select('*')
           .order('updated_at', {ascending: false});
       if (error) throw error;
-      return {data};
+      const withImages = await Promise.all(data.map(async (project) => ({
+        ...project,
+        img: await this.#signedUrl(this.#withPrefix(project.img, SUPABASE_PATH.projectThumb)),
+        img_hover: await this.#signedUrl(this.#withPrefix(project.img_hover, SUPABASE_PATH.projectHover)),
+      })));
+      return {data: withImages};
     } catch (error) {
       console.log('Failed to fetch projects Api', error);
       throw new Error('An error occurred while loading the projects data');
@@ -90,6 +100,54 @@ class ApiFetch {
     } catch (error) {
       console.log('Failed to post guestbook Api', error);
       throw new Error('An error occurred while posting message');
+    }
+  }
+
+  /**
+   * Prefix a relative storage path with a folder if provided.
+   * Ensures single slash between prefix and path.
+   * @param {string} path original path
+   * @param {string} prefix folder prefix (e.g., "skills/")
+   * @return {string} combined path
+   * @private
+   */
+  static #withPrefix(path = '', prefix = '') {
+    if (!path) return '';
+    // Absolute URLs should pass through untouched
+    if (/^https?:\/\//i.test(path)) return path;
+    if (!prefix) return path;
+    const cleanPrefix = prefix.replace(/^\/+|\/+$/g, '');
+    const cleanPath = path.replace(/^\/+/, '');
+    // Avoid double-prefixing if the path already starts with the folder
+    if (cleanPath.startsWith(`${cleanPrefix}/`)) return cleanPath;
+    return `${cleanPrefix}/${cleanPath}`;
+  }
+
+  /**
+   * Resolve an image path to a signed URL for private buckets.
+   * @param {string} path relative storage object path
+   * @return {Promise<string>} usable URL
+   * @private
+   */
+  static async #signedUrl(path) {
+    if (!path) return '';
+    if (!CONFIG.SUPABASE_STORAGE_BUCKET) {
+      return path;
+    }
+
+    try {
+      const {data, error} = await this.#client()
+          .storage
+          .from(CONFIG.SUPABASE_STORAGE_BUCKET)
+          .createSignedUrl(path, 60 * 60); // 1 hour
+      if (error || !data?.signedUrl) {
+        console.log('Failed to sign storage URL', error);
+        return path;
+      }
+      return data.signedUrl;
+    } catch (error) {
+      console.log('Error signing storage URL', error);
+      return path;
     }
   }
 };

@@ -1,4 +1,3 @@
-import CONFIG from '../global/config';
 import ApiFetch from '../data/apiFetch';
 import ShowError from '../utils/showError';
 import GLOBAL_ELEMENT from '../global/globalElement';
@@ -15,7 +14,7 @@ const LoadProjects = {
     this._container.innerHTML = createSkeletonProject();
     try {
       const apiProjects = await ApiFetch.getProjects();
-      const projectsHTML = apiProjects?.data?.map((project, i) => createProject(project, i, CONFIG.BASE_IMG_URL)).join('');
+      const projectsHTML = apiProjects?.data?.map((project, i) => createProject(project, i)).join('');
       this._container.innerHTML = projectsHTML || createSkeletonProject();
       this._attachEventListeners(apiProjects?.data);
     } catch (error) {
@@ -28,10 +27,10 @@ const LoadProjects = {
       const container = document.getElementById(`postimg-${i}`);
       if (container) {
         container.addEventListener('mouseover', () => {
-          container.src = CONFIG.BASE_IMG_URL + project.img_hover;
+          container.src = project.img_hover;
         });
         container.addEventListener('mouseout', () => {
-          container.src = CONFIG.BASE_IMG_URL + project.img;
+          container.src = project.img;
         });
       }
     });
