@@ -7,8 +7,21 @@ import LoadSkills from './views/loadSkills';
 import LoadProjects from './views/loadProjects';
 import LoadGuestbooks from './views/loadGuestbooks';
 import GLOBAL_ELEMENT from './global/globalElement';
+import loadRuntimeConfig from './global/runtimeConfig';
 
-window.addEventListener('DOMContentLoaded', () => {
+window.addEventListener('DOMContentLoaded', async () => {
+  try {
+    await loadRuntimeConfig();
+  } catch (error) {
+    ShowError.init({
+      containerAlert: GLOBAL_ELEMENT.AlertBody,
+      bodyAlert: GLOBAL_ELEMENT.AlertMessage,
+      messageAlert: `${error}. Unable to load configuration.`,
+      alertPriority: 3,
+    });
+    return;
+  }
+
   ScrollIndicator.init(GLOBAL_ELEMENT.MyBar);
 
   LoadMessages.init({

@@ -1,8 +1,10 @@
+// Runtime values are populated by `loadRuntimeConfig()` to avoid
+// hard-coding secrets into the compiled client bundle.
 const CONFIG = {
-  SUPABASE_URL: process.env.SUPABASE_URL,
-  SUPABASE_ANON_KEY: process.env.SUPABASE_ANON_KEY,
-  SUPABASE_STORAGE_BUCKET: process.env.SUPABASE_STORAGE_BUCKET,
-  CACHE_NAME: process.env.CACHE_NAME,
+  SUPABASE_URL: '',
+  SUPABASE_ANON_KEY: '',
+  SUPABASE_STORAGE_BUCKET: '',
+  CACHE_NAME: 'aribudiman-site',
 };
 
 export default CONFIG;
