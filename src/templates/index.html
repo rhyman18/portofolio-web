@@ -16,12 +16,18 @@
     <!-- font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://ka-f.fontawesome.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" media="print" onload="this.onload=null;this.removeAttribute('media');" fetchpriority="high">
     <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@500&display=swap" rel="stylesheet" media="print" onload="this.onload=null;this.removeAttribute('media');" fetchpriority="high">
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&display=swap" rel="stylesheet" media="print" onload="this.onload=null;this.removeAttribute('media');" fetchpriority="high">
-    <!-- preload -->
-    <link rel="preload" href="style~b12aad95.7729270a45f4e6ee25ba.bundle.css" as="style">
-    <link rel="preload" href="aos.4e5026e8aaa232cd3432.bundle.css" as="style">
+    <!-- preload + async load webpack css bundles -->
+    <% if (htmlWebpackPlugin.files && htmlWebpackPlugin.files.css) { %>
+      <% htmlWebpackPlugin.files.css.forEach(function(cssFile) { %>
+        <link rel="preload" href="<%= cssFile %>" as="style">
+        <link rel="stylesheet" href="<%= cssFile %>" media="print" onload="this.onload=null;this.media='all'">
+        <noscript><link rel="stylesheet" href="<%= cssFile %>"></noscript>
+      <% }); %>
+    <% } %>
     <!-- toogle dark mode -->
     <script defer>
         if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
@@ -41,6 +47,11 @@
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@500&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&display=swap" rel="stylesheet">
+        <% if (htmlWebpackPlugin.files && htmlWebpackPlugin.files.css) { %>
+          <% htmlWebpackPlugin.files.css.forEach(function(cssFile) { %>
+            <link rel="stylesheet" href="<%= cssFile %>">
+          <% }); %>
+        <% } %>
      </noscript>
 </head>
 
@@ -377,6 +388,12 @@
 
     <!-- library font awasome untuk icon -->
     <script src="https://kit.fontawesome.com/3941d04b00.js" crossorigin="anonymous" async></script>
+    <!-- webpack js bundles -->
+    <% if (htmlWebpackPlugin.files && htmlWebpackPlugin.files.js) { %>
+      <% htmlWebpackPlugin.files.js.forEach(function(jsFile) { %>
+        <script defer src="<%= jsFile %>"></script>
+      <% }); %>
+    <% } %>
 </body>
 
 </html>
