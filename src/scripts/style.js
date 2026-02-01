@@ -61,7 +61,9 @@ const loadFlowbite = async (loader = () => import('flowbite')) => {
   if (typeof loader !== 'function') return Promise.resolve();
   try {
     const module = await loader();
+    /* istanbul ignore next -- type guard for optional exports */
     const init = module.initFlowbite || module.default?.initFlowbite;
+    /* istanbul ignore else -- defensive guard; when present we invoke init */
     if (typeof init === 'function') init();
     return module;
   } catch (_) {

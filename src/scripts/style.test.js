@@ -117,6 +117,13 @@ describe('style.js theme toggle', () => {
     expect(mockInitFlowbite).toHaveBeenCalled();
   });
 
+  it('executes initFlowbite when loader supplies it directly', async () => {
+    const init = jest.fn();
+    const module = await import('./style.js');
+    await module._loadFlowbite(() => Promise.resolve({initFlowbite: init}));
+    expect(init).toHaveBeenCalled();
+  });
+
   it('falls back to setTimeout when requestIdleCallback is missing', async () => {
     jest.useFakeTimers();
     delete window.requestIdleCallback;
