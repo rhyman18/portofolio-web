@@ -382,3 +382,13 @@ span:nth-of-type(11) {
         transform: translate3d(0, 0, 0);
     }
 }
+
+@layer base {
+    /* Keep guestbook inputs/textarea consistent on focus */
+    #name:focus,
+    #username:focus,
+    #platform:focus,
+    #message:focus {
+        @apply outline-none ring-2 ring-main-300 border-main-500 focus:ring-main-500 focus:border-main-500;
+    }
+}
