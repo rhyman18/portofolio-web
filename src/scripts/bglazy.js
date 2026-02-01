@@ -1,3 +1,7 @@
+/**
+ * Lazy-load background images declared via `bg-lazy` attribute using
+ * IntersectionObserver (with a simple fallback).
+ */
 const initialiseStyleBackgroundIntersectionObserver = () => {
   const lazyBackgrounds = Array.from(
       document.querySelectorAll('[bg-lazy]'),
@@ -9,6 +13,11 @@ const initialiseStyleBackgroundIntersectionObserver = () => {
 
   let lazyBackgroundObserver;
 
+  /**
+   * Apply background when target enters viewport.
+   * @param {IntersectionObserverEntry} entry
+   * @return {void}
+   */
   const loadBackgroundIfElementOnScreen = (entry) => {
     if (entry.isIntersecting) {
       const bgLazyAttribute = entry.target.getAttribute('bg-lazy');
@@ -17,6 +26,11 @@ const initialiseStyleBackgroundIntersectionObserver = () => {
     }
   };
 
+  /**
+   * Observe a lazy background element.
+   * @param {Element} lazyBackground
+   * @return {void}
+   */
   const observeElementVisibility = (lazyBackground) => {
     lazyBackgroundObserver.observe(lazyBackground);
   };

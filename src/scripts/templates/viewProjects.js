@@ -1,8 +1,12 @@
 import formatDate from '../utils/formatDate';
 
+/**
+ * Skeleton placeholder for projects list while data loads or fails.
+ * @return {string} HTML string containing paired left/right placeholders.
+ */
 const createSkeletonProject = () => `
 <div class="left-bg md:border-e-2 border-main-500" role="status" tabindex="0" aria-label="failed fetch projects">
-    <article data-aos="zoom-in-right" class="animate-pulse flex flex-col md:me-4 lg:me-8 xl:flex-row xl:pe-6 text-left items-stretch xl:gap-5 border dark:border-gray-600 rounded dark:shadow-main-500 bg-primary dark:bg-secondary-com">
+    <article class="animate-pulse flex flex-col md:me-4 lg:me-8 xl:flex-row xl:pe-6 text-left items-stretch xl:gap-5 border dark:border-gray-600 rounded dark:shadow-main-500 bg-primary dark:bg-secondary-com anim-zoom-in-right">
         <div class="xl:basis-1/3 h-60 md:h-96 xl:h-60 flex justify-center items-center bg-gray-300 dark:bg-gray-700">
             <svg class="w-12 h-12 text-gray-200 dark:text-gray-600" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" fill="currentColor" viewBox="0 0 640 512">
                 <path d="M480 80C480 35.82 515.8 0 560 0C604.2 0 640 35.82 640 80C640 124.2 604.2 160 560 160C515.8 160 480 124.2 480 80zM0 456.1C0 445.6 2.964 435.3 8.551 426.4L225.3 81.01C231.9 70.42 243.5 64 256 64C268.5 64 280.1 70.42 286.8 81.01L412.7 281.7L460.9 202.7C464.1 196.1 472.2 192 480 192C487.8 192 495 196.1 499.1 202.7L631.1 419.1C636.9 428.6 640 439.7 640 450.9C640 484.6 612.6 512 578.9 512H55.91C25.03 512 .0006 486.1 .0006 456.1L0 456.1z" />
@@ -24,7 +28,7 @@ const createSkeletonProject = () => `
     </article>
 </div>
 <div class="right-bg md:border-s-2 border-main-500" role="status">
-    <article data-aos="zoom-in-left" class="animate-pulse flex flex-col xl:flex-row-reverse md:ms-4 lg:ms-8 xl:ps-6 text-left items-stretch xl:gap-5 border dark:border-gray-600 rounded dark:shadow-main-500 bg-primary dark:bg-secondary-com">
+    <article class="animate-pulse flex flex-col xl:flex-row-reverse md:ms-4 lg:ms-8 xl:ps-6 text-left items-stretch xl:gap-5 border dark:border-gray-600 rounded dark:shadow-main-500 bg-primary dark:bg-secondary-com anim-zoom-in-right">
         <div class="xl:basis-1/3 h-60 md:h-96 xl:h-60 flex justify-center items-center bg-gray-300 dark:bg-gray-700">
             <svg class="w-12 h-12 text-gray-200 dark:text-gray-600" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" fill="currentColor" viewBox="0 0 640 512">
                 <path d="M480 80C480 35.82 515.8 0 560 0C604.2 0 640 35.82 640 80C640 124.2 604.2 160 560 160C515.8 160 480 124.2 480 80zM0 456.1C0 445.6 2.964 435.3 8.551 426.4L225.3 81.01C231.9 70.42 243.5 64 256 64C268.5 64 280.1 70.42 286.8 81.01L412.7 281.7L460.9 202.7C464.1 196.1 472.2 192 480 192C487.8 192 495 196.1 499.1 202.7L631.1 419.1C636.9 428.6 640 439.7 640 450.9C640 484.6 612.6 512 578.9 512H55.91C25.03 512 .0006 486.1 .0006 456.1L0 456.1z" />
@@ -47,9 +51,23 @@ const createSkeletonProject = () => `
 </div>
 `;
 
+/**
+ * Render a project card with alternating layout and lazyloaded images.
+ * @param {object} project Project data
+ * @param {string} project.title Title text
+ * @param {string} project.desc Description
+ * @param {string|string[]} project.tags Tags list (array or JSON string)
+ * @param {string} project.updated_at Last updated ISO string
+ * @param {string} [project.url] Live site link
+ * @param {string} [project.repo] Repository URL
+ * @param {string} [project.img] Thumbnail image path
+ * @param {string} [project.img_hover] Hover image path
+ * @param {number} i Zero-based index for alternating layout
+ * @return {string} HTML string
+ */
 const createProject = (project, i) => `
 <div class="${(i % 2 === 0) ? 'left-bg md:border-e-2 border-main-500' : 'right-bg md:border-s-2 border-main-500'}">
-    <article data-aos="zoom-in-${(i % 2 === 0) ? 'right' : 'left'}" class="flex flex-col ${(i % 2 === 0) ? 'md:me-4 lg:me-8 xl:flex-row xl:pe-6' : 'xl:flex-row-reverse md:ms-4 lg:ms-8 xl:ps-6'} text-left items-stretch xl:gap-5 content-box border dark:border-gray-600 dark:hover:border-main-300 rounded dark:shadow-main-500 bg-primary dark:bg-secondary-com">
+    <article class="flex flex-col ${(i % 2 === 0) ? 'md:me-4 lg:me-8 xl:flex-row xl:pe-6 anim-zoom-in-right' : 'xl:flex-row-reverse md:ms-4 lg:ms-8 xl:ps-6 anim-zoom-in-right'} text-left items-stretch xl:gap-5 content-box border dark:border-gray-600 dark:hover:border-main-300 rounded dark:shadow-main-500 bg-primary dark:bg-secondary-com">
         <div class="overflow-hidden xl:basis-1/3 h-60 md:h-96 xl:h-auto">
             ${(project.url ?
                 `<a href="${project.url}" target="_blank" tabindex="-1" class="img-project-zoom h-full flex justify-center items-center">` :
@@ -84,6 +102,12 @@ const createProject = (project, i) => `
 </div>
 `;
 
+/**
+ * Pagination UI for projects.
+ * @param {number} page Current page number
+ * @param {number} [totalPages] Total pages when known
+ * @return {string} HTML string
+ */
 const createPagination = (page, totalPages) => `
   <button id="post-prev" class="px-4 py-2 border border-main-500 text-base text-main-500 dark:text-secondary-font bg-transparent transition hover:bg-main-500 hover:text-primary hover:dark:text-secondary-font disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-transparent disabled:text-primary-desc disabled:hover:text-primary-desc">Prev</button>
   <span class="text-primary-font dark:text-secondary-font text-sm">Page ${page}${totalPages ? ` / ${totalPages}` : ''}</span>

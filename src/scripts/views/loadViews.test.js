@@ -47,8 +47,9 @@ describe('LoadMessages', () => {
 
 describe('LoadSkills', () => {
   it('renders skills and popovers', async () => {
+    const svg = '<svg><path /></svg>';
     ApiFetch.getSkills.mockResolvedValueOnce({
-      data: [{id: 1, name: 'JS', icon: 'fa-js', cert_link: 'link', cert_img: 'img', cert_desc: 'desc'}],
+      data: [{id: 1, name: 'JS', icon: svg, cert_link: 'link', cert_img: 'img', cert_desc: 'desc'}],
     });
 
     const containers = {
@@ -137,8 +138,7 @@ describe('LoadGuestbooks', () => {
     document.body.appendChild(container);
     document.body.appendChild(form);
 
-    LoadGuestbooks.init({container, form, fields});
-    await flushPromises();
+    await LoadGuestbooks.init({container, form, fields, apiFetch: ApiFetch});
     expect(container.innerHTML).toContain('Tester');
 
     fields.name.value = 'Tester';
@@ -146,7 +146,7 @@ describe('LoadGuestbooks', () => {
     fields.platform.value = 'github';
     fields.message.value = 'A message longer than twenty characters';
 
-    form.dispatchEvent(new Event('submit'));
+    await LoadGuestbooks._handleSubmit(new Event('submit'));
     await flushPromises();
     jest.runAllTimers();
 

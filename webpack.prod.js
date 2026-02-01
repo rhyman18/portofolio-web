@@ -98,5 +98,14 @@ module.exports = merge(common, {
       minRatio: 0.8,
       deleteOriginalAssets: false,
     }),
+    new CompressionPlugin({
+      test: /\.(js|css|html|svg)$/,
+      filename: '[path][base].br',
+      algorithm: 'brotliCompress',
+      compressionOptions: {level: 11},
+      threshold: 10240,
+      minRatio: 0.8,
+      deleteOriginalAssets: false,
+    }),
   ],
 });

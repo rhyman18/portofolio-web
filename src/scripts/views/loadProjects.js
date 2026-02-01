@@ -1,20 +1,24 @@
-import ApiFetch from '../data/apiFetch';
 import ShowError from '../utils/showError';
 import GLOBAL_ELEMENT from '../global/globalElement';
 import {createSkeletonProject, createProject, createPagination} from '../templates/viewProjects';
+import {registerAnimationTargets} from '../utils/scrollAnimation';
 
 const LoadProjects = {
-  async init(container) {
+  async init(container, apiFetch) {
     this._container = container;
     this._page = 1;
     this._limit = undefined;
-    this._paginationContainer = GLOBAL_ELEMENT.ProjectsPagination;
+    this._paginationContainer = GLOBAL_ELEMENT.ProjectsPagination || document.getElementById('post-pagination');
+    this._apiFetch = apiFetch || null;
 
     await this._renderProjects();
   },
 
   _renderPagination(totalPages = 1) {
-    if (!this._paginationContainer) return;
+    if (!this._paginationContainer) {
+      this._paginationContainer = document.getElementById('post-pagination');
+      if (!this._paginationContainer) return;
+    }
     if (!totalPages || totalPages <= 1) {
       this._paginationContainer.innerHTML = '';
       return;
@@ -51,10 +55,12 @@ const LoadProjects = {
   async _renderProjects() {
     this._container.innerHTML = createSkeletonProject();
     try {
+      const ApiFetch = await this._getApiFetch();
       const apiProjects = await ApiFetch.getProjects({page: this._page});
       this._limit = apiProjects?.limit || this._limit;
       const projectsHTML = apiProjects?.data?.map((project, i) => createProject(project, i)).join('');
       this._container.innerHTML = projectsHTML || createSkeletonProject();
+      registerAnimationTargets(this._container.querySelectorAll('.anim-fade-up, .anim-zoom-in, .anim-zoom-in-up, .anim-zoom-in-right'));
       this._attachEventListeners(apiProjects?.data);
       this._renderPagination(apiProjects?.totalPages);
     } catch (error) {
@@ -83,6 +89,13 @@ const LoadProjects = {
       messageAlert: message,
       alertPriority: 3,
     });
+  },
+
+  async _getApiFetch() {
+    if (this._apiFetch) return this._apiFetch;
+    const module = await import('../data/apiFetch');
+    this._apiFetch = module.default || module;
+    return this._apiFetch;
   },
 };
 

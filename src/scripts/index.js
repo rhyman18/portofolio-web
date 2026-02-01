@@ -1,14 +1,12 @@
 import 'regenerator-runtime';
 import ShowError from './utils/showError';
-import swRegister from './utils/swRegister';
 import ScrollIndicator from './utils/scrollIndicator';
-import LoadMessages from './views/loadMessages';
-import LoadSkills from './views/loadSkills';
-import LoadProjects from './views/loadProjects';
-import LoadGuestbooks from './views/loadGuestbooks';
 import GLOBAL_ELEMENT from './global/globalElement';
 import loadRuntimeConfig from './global/runtimeConfig';
 
+/**
+ * App bootstrap: loads runtime config, initializes UI widgets, then registers SW.
+ */
 window.addEventListener('DOMContentLoaded', async () => {
   try {
     await loadRuntimeConfig();
@@ -23,6 +21,22 @@ window.addEventListener('DOMContentLoaded', async () => {
   }
 
   ScrollIndicator.init(GLOBAL_ELEMENT.MyBar);
+
+  const [
+    {default: LoadMessages},
+    {default: LoadSkills},
+    {default: LoadProjects},
+    {default: LoadGuestbooks},
+    {initScrollAnimation},
+    {default: swRegister},
+  ] = await Promise.all([
+    import('./views/loadMessages'),
+    import('./views/loadSkills'),
+    import('./views/loadProjects'),
+    import('./views/loadGuestbooks'),
+    import('./utils/scrollAnimation'),
+    import('./utils/swRegister'),
+  ]);
 
   LoadMessages.init({
     headline: GLOBAL_ELEMENT.Headline,
@@ -69,4 +83,6 @@ window.addEventListener('DOMContentLoaded', async () => {
   };
 
   initSwRegister();
+
+  initScrollAnimation();
 });

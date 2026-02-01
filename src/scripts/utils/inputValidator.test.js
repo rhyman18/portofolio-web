@@ -1,5 +1,5 @@
 import InputValidator from './inputValidator';
-import ViewEventFields from '../templates/viewEventFormClass';
+import ViewEventFields from '../global/viewEventFormClass';
 
 jest.useFakeTimers();
 

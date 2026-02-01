@@ -1,5 +1,18 @@
+/**
+ * Lightweight alert helper to display prioritized error banners.
+ */
 const ShowError = {
+  /**
+   * Initialize the alert with DOM refs and desired priority.
+   * @param {object} params
+   * @param {HTMLElement} params.containerAlert Wrapper element that holds the alert.
+   * @param {HTMLElement} params.bodyAlert Element where message text is injected.
+   * @param {string} params.messageAlert Message to show.
+   * @param {number} [params.alertPriority=0] Higher number overrides lower-priority alerts.
+   * @return {void}
+   */
   init({containerAlert, bodyAlert, messageAlert, alertPriority = 0}) {
+    if (!containerAlert || !bodyAlert) return;
     this._containerAlert = containerAlert;
     this._bodyAlert = bodyAlert;
     this._messageAlert = messageAlert;

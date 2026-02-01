@@ -7,8 +7,15 @@ describe('viewSkills templates', () => {
   });
 
   it('includes popover target when cert link exists', () => {
-    const html = createSkill({id: 1, name: 'JS', icon: 'fa-js', cert_link: 'http'});
+    const svg = '<svg><path /></svg>';
+    const html = createSkill({id: 1, name: 'JS', icon: svg, cert_link: 'http'});
     expect(html).toContain('data-popover-target');
+    expect(html).toContain('<svg>');
+  });
+
+  it('falls back to default svg when icon missing', () => {
+    const html = createSkill({id: 2, name: 'NoIcon'});
+    expect(html).toContain('viewBox="0 0 640 640"');
   });
 
   it('renders popover body', () => {

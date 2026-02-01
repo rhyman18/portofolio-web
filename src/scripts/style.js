@@ -1,7 +1,7 @@
 import '../styles/app.css';
-import 'flowbite';
 import GLOBAL_ELEMENT from './global/globalElement';
 
+/** Theme toggle controller for swapping light/dark UI assets. */
 const themeToggleDarkIcon = GLOBAL_ELEMENT.ToggleDarkIcon;
 const shapeDividerDark = GLOBAL_ELEMENT.DividerLight;
 const themeToggleLightIcon = GLOBAL_ELEMENT.ToggleLightIcon;
@@ -18,6 +18,9 @@ if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localS
 
 const themeToggleBtn = GLOBAL_ELEMENT.ThemeToggle;
 
+/**
+ * Toggle theme between light/dark while syncing button icons and dividers.
+ */
 themeToggleBtn.addEventListener('click', function() {
   // toggle icons inside button
   themeToggleDarkIcon.classList.toggle('hidden');
@@ -46,3 +49,21 @@ themeToggleBtn.addEventListener('click', function() {
     }
   }
 });
+
+// Defer Flowbite JS to after paint to reduce initial bundle size.
+const loadFlowbite = (loader = () => import('flowbite')) => {
+  if (typeof loader !== 'function') return Promise.resolve();
+  return loader().catch(() => {});
+};
+const scheduleFlowbite = () => {
+  if ('requestIdleCallback' in window) {
+    window.requestIdleCallback(() => loadFlowbite());
+  } else {
+    setTimeout(() => loadFlowbite(), 0);
+  }
+};
+scheduleFlowbite();
+
+// Exported for test coverage of lazy loaders.
+export const _loadFlowbite = loadFlowbite;
+export const _scheduleFlowbite = scheduleFlowbite;

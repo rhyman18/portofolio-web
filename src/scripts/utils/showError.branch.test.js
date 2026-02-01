@@ -17,5 +17,12 @@ describe('ShowError branches', () => {
     expect(body.innerHTML).toBe('old message');
     expect(container.classList.contains('hidden')).toBe(false);
   });
-});
 
+  it('gracefully no-ops when required elements are missing', () => {
+    expect(() => ShowError.init({
+      containerAlert: null,
+      bodyAlert: null,
+      messageAlert: 'ignore',
+    })).not.toThrow();
+  });
+});

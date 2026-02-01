@@ -53,8 +53,9 @@ describe('LoadSkills branches', () => {
   });
 
   it('skips popover creation when no cert_link and still calls Popover for existing targets', async () => {
+    const svg = '<svg><path /></svg>';
     ApiFetch.getSkills.mockResolvedValue({
-      data: [{id: 1, name: 'NoCert', icon: 'fa', cert_link: '', cert_img: '', cert_desc: ''}],
+      data: [{id: 1, name: 'NoCert', icon: svg, cert_link: '', cert_img: '', cert_desc: ''}],
     });
     await LoadSkills.init({
       basic: GLOBAL_ELEMENT.SkillBasic,
@@ -86,5 +87,30 @@ describe('LoadSkills branches', () => {
 
     expect(GLOBAL_ELEMENT.AlertBody.classList.contains('hidden')).toBe(false);
     LoadSkills._renderSkill = original;
+  });
+
+  it('returns cached api fetch without re-importing', async () => {
+    const sentinel = {};
+    LoadSkills._apiFetch = sentinel;
+    const result = await LoadSkills._getApiFetch();
+    expect(result).toBe(sentinel);
+  });
+
+  it('falls back to module export when default is missing', async () => {
+    jest.resetModules();
+    jest.doMock('../data/apiFetch', () => ({__esModule: true, default: undefined, getSkills: jest.fn()}));
+    await jest.isolateModulesAsync(async () => {
+      const FreshLoadSkills = require('./loadSkills').default;
+      FreshLoadSkills._apiFetch = null;
+      const result = await FreshLoadSkills._getApiFetch();
+      expect(result.getSkills).toBeDefined();
+    });
+  });
+
+  it('silently handles Flowbite import failure in popover setup', async () => {
+    const failingImporter = jest.fn(() => Promise.reject(new Error('fail flowbite')));
+
+    await expect(LoadSkills._addPopoverEvents(failingImporter)).resolves.toBeUndefined();
+    expect(failingImporter).toHaveBeenCalled();
   });
 });

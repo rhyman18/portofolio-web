@@ -5,6 +5,8 @@ import API_CONFIG from '../global/apiConfig';
 /**
  * Thin wrapper around Supabase JS client used by the portfolio site.
  * Handles client initialization, error mapping, and consistent return shape.
+ *
+ * Public methods return `{data, ...meta}` to simplify view usage.
  */
 class ApiFetch {
   /**

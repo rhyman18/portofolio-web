@@ -36,7 +36,7 @@ describe('LoadProjects pagination branches', () => {
       limit: 5,
     });
 
-    await LoadProjects.init(container);
+    await LoadProjects.init(container, ApiFetch);
 
     expect(pagination.innerHTML).toBe('');
   });
@@ -52,7 +52,7 @@ describe('LoadProjects pagination branches', () => {
       limit: 5,
     });
 
-    await LoadProjects.init(container);
+    await LoadProjects.init(container, ApiFetch);
 
     const prevBtn = document.getElementById('post-prev');
     const nextBtn = document.getElementById('post-next');
@@ -69,5 +69,49 @@ describe('LoadProjects pagination branches', () => {
     await flush();
     const updatedNextBtn = document.getElementById('post-next');
     expect(updatedNextBtn.disabled).toBe(true);
+  });
+
+  it('returns cached api fetch without import', async () => {
+    const pagination = document.getElementById('post-pagination');
+    GLOBAL_ELEMENT.ProjectsPagination = pagination;
+
+    const sentinel = {};
+    const lp = require('./loadProjects').default;
+    lp._apiFetch = sentinel;
+    const result = await lp._getApiFetch();
+    expect(result).toBe(sentinel);
+  });
+
+  it('falls back to module export when default is missing', async () => {
+    jest.resetModules();
+    jest.doMock('../data/apiFetch', () => ({__esModule: true, default: undefined, getProjects: jest.fn()}));
+    await jest.isolateModulesAsync(async () => {
+      const Fresh = require('./loadProjects').default;
+      Fresh._apiFetch = null;
+      const result = await Fresh._getApiFetch();
+      expect(result.getProjects).toBeDefined();
+    });
+  });
+
+  it('returns early when pagination container is missing', async () => {
+    const lp = require('./loadProjects').default;
+    lp._paginationContainer = null;
+    const paginationEl = document.getElementById('post-pagination');
+    paginationEl.remove();
+    expect(() => lp._renderPagination(0)).not.toThrow();
+
+    // also cover branch where container exists but totalPages <=1
+    lp._paginationContainer = document.createElement('div');
+    expect(() => lp._renderPagination(0)).not.toThrow();
+    expect(lp._paginationContainer.innerHTML).toBe('');
+  });
+
+  it('restores pagination container from DOM when missing', async () => {
+    const lp = require('./loadProjects').default;
+    lp._paginationContainer = null;
+    GLOBAL_ELEMENT.ProjectsPagination = null;
+    // body still has post-pagination from beforeEach
+    expect(() => lp._renderPagination(2)).not.toThrow();
+    expect(lp._paginationContainer).toBe(document.getElementById('post-pagination'));
   });
 });

@@ -62,8 +62,29 @@ describe('sw.js service worker handlers', () => {
   it('registers fetch and revalidates cache', async () => {
     const handler = getHandler('fetch');
     const respondWith = jest.fn();
-    await handler({request: '/asset', respondWith});
+    const request = {url: 'https://example.com/asset.js', destination: 'script'};
+    await handler({request, respondWith});
     expect(respondWith).toHaveBeenCalledWith(expect.any(Promise));
-    expect(CacheHelper.revalidateCache).toHaveBeenCalledWith('/asset');
+    expect(CacheHelper.revalidateCache).toHaveBeenCalledWith(request);
+  });
+
+  it('falls back to cache handler when URL parsing fails', async () => {
+    const handler = getHandler('fetch');
+    const respondWith = jest.fn();
+    const request = {destination: 'script'}; // missing url triggers catch
+    await handler({request, respondWith});
+    expect(respondWith).toHaveBeenCalledWith(expect.any(Promise));
+    expect(CacheHelper.revalidateCache).toHaveBeenCalledWith(request);
+  });
+
+  it('skips caching for image requests under /images/', async () => {
+    const handler = getHandler('fetch');
+    const respondWith = jest.fn();
+    await handler({
+      request: {url: 'https://example.com/images/bg.webp', destination: 'image'},
+      respondWith,
+    });
+    expect(respondWith).not.toHaveBeenCalled();
+    expect(CacheHelper.revalidateCache).not.toHaveBeenCalled();
   });
 });

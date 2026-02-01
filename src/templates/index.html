@@ -16,7 +16,6 @@
     <!-- font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://ka-f.fontawesome.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" media="print" onload="this.onload=null;this.removeAttribute('media');" fetchpriority="high">
     <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@500&display=swap" rel="stylesheet" media="print" onload="this.onload=null;this.removeAttribute('media');" fetchpriority="high">
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&display=swap" rel="stylesheet" media="print" onload="this.onload=null;this.removeAttribute('media');" fetchpriority="high">
@@ -165,7 +164,7 @@
     <section id="about" class="pt-28">
         <!-- tampilkan profil saya -->
         <div class="max-w-screen-2xl flex flex-wrap md:flex-nowrap items-center justify-center mx-auto gap-6 md:gap-12 xl:gap-30 2xl:gap-64 px-6">
-            <div data-aos="fade-up">
+            <div class="anim-fade-up">
                 <div class="uppercase text-main-500 text-sm xl:text-lg font-medium tracking-widest">Tentang Saya</div>
                 <h1 class="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-semibold capitalize leading-tight mb-6 xl:mb-12" tabindex="0">
                     Hai, Saya Ari Budiman<br>
@@ -177,7 +176,7 @@
                 </div>
                 <div class="dancing-script text-2xl xl:text-4xl text-main-gray">AriBudiman</div>
             </div>
-            <div class="w-4/5 rounded-full img-hover-zoom overflow-hidden cursor-pointer" data-aos="zoom-in">
+            <div class="w-4/5 rounded-full img-hover-zoom overflow-hidden cursor-pointer anim-zoom-in">
                 <img data-src="profile.webp" class="lazyload w-full" alt="Ari Budiman">
             </div>
         </div>
@@ -188,13 +187,13 @@
         <!-- bagian skill saya -->
         <div class="max-w-screen-2xl text-center mx-auto font-medium px-6">
             <div class="text-main-gray uppercase tracking-widest py-6" tabindex="0">Skill Saya</div>
-            <div id="skill-dasar" data-aos="zoom-in-up" class="flex flex-wrap justify-center gap-8 font-semibold mb-6"></div>
+            <div id="skill-dasar" class="flex flex-wrap justify-center gap-8 font-semibold mb-6 anim-zoom-in-up"></div>
 
             <div class="text-main-gray uppercase tracking-widest py-6" tabindex="0">Frontend Dev</div>
-            <div id="skill-frontend" data-aos="zoom-in-up" class="flex flex-wrap justify-center gap-8 font-semibold mb-6"></div>
+            <div id="skill-frontend" class="flex flex-wrap justify-center gap-8 font-semibold mb-6 anim-zoom-in-up"></div>
 
             <div class="text-main-gray uppercase tracking-widest py-6" tabindex="0">Backend Dev</div>
-            <div id="skill-backend" data-aos="zoom-in-up" class="flex flex-wrap justify-center gap-8 font-semibold mb-6"></div>
+            <div id="skill-backend" class="flex flex-wrap justify-center gap-8 font-semibold mb-6 anim-zoom-in-up"></div>
         </div>
     </section>
 
@@ -202,10 +201,10 @@
     <main id="project" class="pt-28">
         <!-- judul bagian content -->
         <div class="max-w-screen-xl text-center mx-auto font-medium px-6">
-            <div class="uppercase text-main-500 text-sm xl:text-lg font-medium tracking-widest" data-aos="fade-up">
+            <div class="uppercase text-main-500 text-sm xl:text-lg font-medium tracking-widest anim-fade-up">
                 Project & Event
             </div>
-            <h1 class="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-semibold capitalize leading-tight mb-6 xl:mb-12" data-aos="fade-up" tabindex="0">
+            <h1 class="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-semibold capitalize leading-tight mb-6 xl:mb-12 anim-fade-up" tabindex="0">
                 Kegiatan Terbaru
             </h1>
 
@@ -219,10 +218,10 @@
     <section id="tamu" class="pt-14">
         <div class="bg-primary-com dark:bg-secondary-com py-14">
             <div class="max-w-screen-xl text-center mx-auto font-medium px-6">
-                <div class="uppercase text-main-500 text-sm xl:text-lg font-semibold tracking-widest" data-aos="fade-up" data-aos-offset="0">
+                <div class="uppercase text-main-500 text-sm xl:text-lg font-semibold tracking-widest anim-fade-up">
                     Buku Tamu
                 </div>
-                <h1 class="text-2xl md:text-3xl lg:text-4xl xl:text-5xl text-secondary-font font-bold capitalize leading-tight" data-aos="fade-up" data-aos-offset="0" tabindex="0">
+                <h1 class="text-2xl md:text-3xl lg:text-4xl xl:text-5xl text-secondary-font font-bold capitalize leading-tight anim-fade-up" tabindex="0">
                     Pesan &amp; Kesan Pengunjug
                 </h1>
                 <div class="flex flex-col items-center text-secondary-font">
@@ -230,7 +229,7 @@
                     <div id="guestbook" class="flex flex-wrap justify-center gap-6 my-12"></div>
 
                     <!-- tombol ke tulis -->
-                    <button data-modal-target="form-modal" data-modal-toggle="form-modal" class="py-2 lg:py-3 px-6 lg:px-10 border-2 border-main-500 text-base lg:text-lg hover:bg-main-500 ease-in-out duration-300" data-aos="zoom-in-up" data-aos-offset="0" type="button">
+                    <button data-modal-target="form-modal" data-modal-toggle="form-modal" class="py-2 lg:py-3 px-6 lg:px-10 border-2 border-main-500 text-base lg:text-lg hover:bg-main-500 ease-in-out duration-300 anim-zoom-in-up" type="button">
                         Tinggalkan Pesan
                     </button>
                 </div>
@@ -242,16 +241,25 @@
     <footer id="contact">
         <!-- bagian info hubungi saya -->
         <div class="bg-primary dark:bg-secondary p-6 md:p-14">
-            <div class="w-full lg:w-4/5 2xl:w-1/2 bg-primary-com dark:bg-secondary-com p-5 text-justify text-secondary-font rounded-xl flex flex-col gap-1.5 border dark:border-main-500 qr" data-aos="zoom-in-right" data-aos-offset="0" bg-lazy="contact.75be82d57295a15d4e7e.webp">
+            <div class="w-full lg:w-4/5 2xl:w-1/2 bg-primary-com dark:bg-secondary-com p-5 text-justify text-secondary-font rounded-xl flex flex-col gap-1.5 border dark:border-main-500 qr anim-zoom-in-right" bg-lazy="contact.75be82d57295a15d4e7e.webp">
                 <a href="#" class="mb-3">
                     <h1 class="source-code-pro text-3xl font-semibold brand-text-shadow">
                         <span class="dancing-script text-4xl text-main-500 font-bold">A</span>ri Budiman
                     </h1>
                 </a>
                 <p>Jika anda mempunyai pertanyaan, jangan ragu untuk menghubungi saya.</p>
-                <p><i class="fa-solid fa-location-dot me-2"></i>Ciamis, Jawa Barat, Indonesia</p>
-                <p><i class="fa-brands fa-whatsapp me-2"></i>+6289 538 418 2298</p>
-                <p><i class="fa-solid fa-at me-2"></i>iaid.aribudiman@gmail.com</p>
+                <p class="flex items-center gap-2">
+                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a8 8 0 0 0-8 8c0 5.25 5.15 10.22 7.16 11.86a1.2 1.2 0 0 0 1.68 0C14.85 20.22 20 15.25 20 10a8 8 0 0 0-8-8Zm0 11.5a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7Z"/></svg>
+                    Ciamis, Jawa Barat, Indonesia
+                </p>
+                <p class="flex items-center gap-2">
+                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.47 14.39c-.29-.15-1.7-.83-1.96-.92-.26-.1-.45-.15-.64.15-.19.29-.74.92-.9 1.11-.17.19-.33.21-.62.07-.29-.15-1.22-.45-2.32-1.44-.86-.77-1.44-1.72-1.61-2-.17-.29-.02-.45.13-.6.13-.13.29-.33.45-.5.15-.17.19-.29.29-.48.1-.19.05-.36-.02-.51-.07-.15-.64-1.54-.87-2.1-.23-.56-.46-.49-.64-.49-.17 0-.36-.02-.55-.02-.19 0-.51.07-.78.36-.26.29-1.02.99-1.02 2.41 0 1.42 1.04 2.8 1.19 2.99.15.19 2.06 3.14 5 4.4.7.3 1.25.48 1.68.61.71.23 1.35.2 1.86.12.57-.08 1.7-.7 1.94-1.38.24-.67.24-1.25.17-1.38-.07-.12-.26-.2-.55-.35Z"/></svg>
+                    +6289 538 418 2298
+                </p>
+                <p class="flex items-center gap-2">
+                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a7 7 0 0 0 0 14h1.25a1 1 0 1 0 0-2H12a5 5 0 1 1 4.9-6h-3.15a1 1 0 0 0 0 2h4.45c.4 0 .8-.24.93-.65.1-.3.17-.61.17-.94A7 7 0 0 0 12 2Z"/><path d="M19 13.5a1 1 0 0 0-1 1V17a2 2 0 0 1-2 2h-3v-1.59l1.3 1.3a1 1 0 1 0 1.42-1.42l-3-3a1 1 0 0 0-1.42 0l-3 3a1 1 0 0 0 1.42 1.42L9 17.41V19H6a4 4 0 0 1-4-4V9a4 4 0 0 1 4-4h1.5a1 1 0 0 0 0-2H6a6 6 0 0 0-6 6v6a6 6 0 0 0 6 6h10a4 4 0 0 0 4-4v-2.5a1 1 0 0 0-1-1Z"/></svg>
+                    <a href="mailto:iaid.aribudiman@gmail.com">iaid.aribudiman@gmail.com</a>
+                </p>
             </div>
         </div>
 
@@ -260,10 +268,18 @@
             <div class="max-w-screen-2xl border-t text-secondary-font border-main-gray mx-auto flex justify-between py-3 px-6 2xl:px-0">
                 <div>Dibuat Oleh Ari Budiman | &copy; 2023</div>
                 <div class="flex gap-3">
-                    <a href="https://facebook.com/RhyMan18" aria-label="My Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="https://twitter.com/RhyMan18" aria-label="My Twitter"><i class="fa-brands fa-twitter"></i></a>
-                    <a href="https://www.linkedin.com/in/rhyman18" aria-label="My Linkedin"><i class="fa-brands fa-linkedin-in"></i></a>
-                    <a href="https://github.com/rhyman18" aria-label="My Github"><i class="fa-brands fa-github"></i></a>
+                    <a href="https://facebook.com/RhyMan18" aria-label="My Facebook">
+                        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12a10 10 0 1 0-11.57 9.88v-6.99H7.9V12h2.53V9.79c0-2.5 1.49-3.88 3.77-3.88 1.09 0 2.24.2 2.24.2v2.47h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99A10 10 0 0 0 22 12Z"/></svg>
+                    </a>
+                    <a href="https://twitter.com/RhyMan18" aria-label="My Twitter">
+                        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.54 6.07a4.13 4.13 0 0 1-1.78.2 3.08 3.08 0 0 0 1.36-1.7 6.2 6.2 0 0 1-2.02.77 3.08 3.08 0 0 0-5.4 2.1c0 .24.03.48.08.7a8.72 8.72 0 0 1-6.33-3.2 3.08 3.08 0 0 0 .95 4.11 3.07 3.07 0 0 1-1.39-.39v.04a3.08 3.08 0 0 0 2.47 3.02 3.1 3.1 0 0 1-1.39.05 3.08 3.08 0 0 0 2.88 2.14A6.2 6.2 0 0 1 3 17.26a8.76 8.76 0 0 0 4.74 1.39c5.69 0 8.8-4.71 8.8-8.8l-.01-.4a6.3 6.3 0 0 0 1.54-1.6Z"/></svg>
+                    </a>
+                    <a href="https://www.linkedin.com/in/rhyman18" aria-label="My Linkedin">
+                        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.18c0-1.24-.02-2.83-1.73-2.83-1.74 0-2.01 1.36-2.01 2.74v5.27H9.59V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.62 0 4.29 2.38 4.29 5.47v6.27ZM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14Zm1.78 13.02H3.56V9h3.56v11.45Z"/></svg>
+                    </a>
+                    <a href="https://github.com/rhyman18" aria-label="My Github">
+                        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5a12 12 0 0 0-3.79 23.4c.6.11.82-.26.82-.58v-2.25c-3.34.73-4.04-1.41-4.04-1.41-.55-1.39-1.34-1.76-1.34-1.76-1.1-.75.08-.74.08-.74 1.22.09 1.86 1.25 1.86 1.25 1.08 1.85 2.83 1.32 3.52 1 .11-.78.42-1.32.76-1.62-2.66-.3-5.47-1.34-5.47-5.95 0-1.32.47-2.39 1.24-3.23-.12-.3-.54-1.52.12-3.17 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.3-1.55 3.3-1.23 3.3-1.23.66 1.65.24 2.87.12 3.17.77.84 1.24 1.91 1.24 3.23 0 4.62-2.81 5.64-5.49 5.94.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.82.58A12 12 0 0 0 12 .5Z"/></svg>
+                    </a>
                 </div>
             </div>
         </div>
@@ -275,8 +291,8 @@
     <!-- Fixed alert and button to Top -->
     <div class="fixed bottom-0 left-0 right-0">
         <div class="flex justify-end w-full p-2">
-            <a href="#" class="bg-main-500 hover:bg-main-700 text-white font-semibold rounded-xl py-5 px-3.5 text-sm text-center inline-flex items-center" aria-label="Back to Top" data-aos="zoom-in-up">
-                <i class="fa-solid fa-arrow-up fa-xl"></i>
+            <a href="#" class="bg-main-500 hover:bg-main-700 text-white font-semibold rounded-xl py-2 px-2 text-sm inline-flex items-center justify-center leading-none anim-zoom-in-up" aria-label="Back to Top">
+                <svg class="w-6 h-6 block" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 4.5 4.5 12 6 13.5l4.5-4.5V20h3V9l4.5 4.5L19.5 12 12 4.5Z"/></svg>
             </a>
         </div>
         <div id="alert-body" class="hidden p-4 text-red-800 border-t-4 border-red-300 bg-primary dark:text-red-400 dark:bg-secondary-com dark:border-red-800" role="alert" alert-priority="0">
@@ -385,8 +401,7 @@
         </div>
     </div>
 
-    <!-- library font awasome untuk icon -->
-    <script src="https://kit.fontawesome.com/3941d04b00.js" crossorigin="anonymous" async></script>
+    <!-- ikon svg inline, tidak lagi memuat fontawesome eksternal -->
     <!-- webpack js bundles -->
     <% if (htmlWebpackPlugin.files && htmlWebpackPlugin.files.js) { %>
       <% htmlWebpackPlugin.files.js.forEach(function(jsFile) { %>

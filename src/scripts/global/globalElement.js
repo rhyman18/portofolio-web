@@ -1,3 +1,6 @@
+/**
+ * Centralized DOM lookups used across modules to avoid repeated selectors.
+ */
 const GLOBAL_ELEMENT = {
   MyBar: document.querySelector('#myBar'),
 

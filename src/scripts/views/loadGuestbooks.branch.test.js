@@ -179,4 +179,23 @@ describe('LoadGuestbooks branches', () => {
     expect(fields.toastSuccess.classList.contains('hidden')).toBe(true);
     expect(fields.toastFailed.classList.contains('hidden')).toBe(true);
   });
+
+  it('returns cached api fetch without import', async () => {
+    const mod = require('./loadGuestbooks').default;
+    const sentinel = {};
+    mod._apiFetch = sentinel;
+    const result = await mod._getApiFetch();
+    expect(result).toBe(sentinel);
+  });
+
+  it('falls back to module export when default is missing', async () => {
+    jest.resetModules();
+    jest.doMock('../data/apiFetch', () => ({__esModule: true, default: undefined, getGuestbooks: jest.fn(), postGuestbook: jest.fn()}));
+    await jest.isolateModulesAsync(async () => {
+      const mod = require('./loadGuestbooks').default;
+      mod._apiFetch = null;
+      const result = await mod._getApiFetch();
+      expect(result.getGuestbooks).toBeDefined();
+    });
+  });
 });
