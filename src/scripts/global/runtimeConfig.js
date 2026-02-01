@@ -3,9 +3,9 @@ import CONFIG from './config';
 const CONFIG_ENDPOINT = '/.netlify/functions/runtime-config';
 
 /**
- * Fetch runtime configuration from a Netlify Function and populate CONFIG.
+ * Fetches runtime configuration from a Netlify Function and populates CONFIG.
  * Falls back to any existing values to support unit tests.
- * @return {Promise<typeof CONFIG>} populated CONFIG object
+ * @return {Promise<object>} Populated CONFIG object.
  */
 const loadRuntimeConfig = async () => {
   // Avoid refetch when values are already present (e.g., tests)
