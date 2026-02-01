@@ -8,11 +8,16 @@ Membuat landing page situs Portofolio saya. Berikut framework dan library yang d
 - `Flowbite` : styling components untuk tailwind
 - `Aos` : styling animasi saat scrolling
 - `Eslint` : membantu clean code javascript
-- `REST API` : ~~integrasi api dengan Laravel 10. repo : **[https://github.com/rhyman18/portofolio-api](https://github.com/rhyman18/portofolio-api)**~~ migrasi api ke aws Api Gateway.
-- `Install SSL` : update ssl certificate sehingga dapat diakses menggunakan https
+- `Supabase` : backend database + storage terintegrasi (menggantikan REST API/SSL manual) untuk data proyek, guestbook, dan media.
 - `Accessibility` : menambahkan fitur untuk pengguna screen reader
 - `PWAs` : menambahkan fitur untuk bisa diakses secara online dan dapat di install
 
+# Testing & Quality
+
+- `npm test` : menjalankan Jest dengan cakupan penuh (current 100% statements/branches/functions/lines).
+- `npm run lint` : menjalankan ESLint (config Google) untuk menjaga konsistensi kode.
+- CI: GitHub Actions menjalankan lint + test pada push/PR ke `main` di Node 18 & 20.
+
 # Deployment Web
 
-Silahkan kunjungi **[https://www.aribudiman.site](https://www.aribudiman.site)** untuk melihat hasil jadi Website. Sebagai keterangan website di deploy di Amazon Web Services, lebih tepatnya Amazon S3 Bucket. dan akan menggunakan cache CDN amazon CloudFront.
+Silahkan kunjungi **[https://www.aribudiman.site](https://www.aribudiman.site)** untuk melihat hasil jadi Website. Saat ini static asset di-deploy ke Amazon S3 + CloudFront untuk CDN, sementara data dan media dikelola via Supabase (database + storage) sehingga backend dan bucket terintegrasi.

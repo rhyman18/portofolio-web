@@ -10,6 +10,7 @@ const GLOBAL_ELEMENT = {
   SkillPopover: document.querySelector('#popover-container'),
 
   Projects: document.querySelector('#post'),
+  ProjectsPagination: document.querySelector('#post-pagination'),
 
   GuestbookContainer: document.querySelector('#guestbook'),
   GuestbookForm: document.querySelector('#inputGuest'),
