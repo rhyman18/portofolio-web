@@ -38,11 +38,13 @@ const LoadProjects = {
       }
     };
     nextBtn.onclick = () => {
-      if (!isLast) {
-        this._page += 1;
-        this._renderProjects();
-        window.location.hash = '#project';
-      }
+      const atLast = this._page >= totalPages;
+      if (atLast) return;
+      // Prevent rapid double-clicks from bumping the page past the end
+      nextBtn.disabled = true;
+      this._page += 1;
+      this._renderProjects();
+      window.location.hash = '#project';
     };
   },
 
