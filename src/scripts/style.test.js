@@ -1,4 +1,4 @@
-/** 
+/**
  * Tests for theme toggle logic in style.js.
  * We build the minimal DOM structure that GLOBAL_ELEMENT queries on import.
  */
@@ -171,5 +171,4 @@ describe('style.js theme toggle', () => {
     const module = await import('./style.js');
     await expect(module._loadFlowbite('not-a-function')).resolves.toBeUndefined();
   });
-
 });

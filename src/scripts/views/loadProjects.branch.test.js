@@ -72,7 +72,6 @@ describe('LoadProjects pagination branches', () => {
   });
 
   it('returns cached api fetch without import', async () => {
-    const container = document.getElementById('post');
     const pagination = document.getElementById('post-pagination');
     GLOBAL_ELEMENT.ProjectsPagination = pagination;
 
