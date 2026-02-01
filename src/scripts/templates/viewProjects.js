@@ -1,5 +1,9 @@
 import formatDate from '../utils/formatDate';
 
+/**
+ * Skeleton placeholder for projects list while data loads or fails.
+ * @return {string} HTML string containing paired left/right placeholders.
+ */
 const createSkeletonProject = () => `
 <div class="left-bg md:border-e-2 border-main-500" role="status" tabindex="0" aria-label="failed fetch projects">
     <article class="animate-pulse flex flex-col md:me-4 lg:me-8 xl:flex-row xl:pe-6 text-left items-stretch xl:gap-5 border dark:border-gray-600 rounded dark:shadow-main-500 bg-primary dark:bg-secondary-com anim-zoom-in-right">
@@ -47,6 +51,20 @@ const createSkeletonProject = () => `
 </div>
 `;
 
+/**
+ * Render a project card with alternating layout and lazyloaded images.
+ * @param {object} project Project data
+ * @param {string} project.title Title text
+ * @param {string} project.desc Description
+ * @param {string|string[]} project.tags Tags list (array or JSON string)
+ * @param {string} project.updated_at Last updated ISO string
+ * @param {string} [project.url] Live site link
+ * @param {string} [project.repo] Repository URL
+ * @param {string} [project.img] Thumbnail image path
+ * @param {string} [project.img_hover] Hover image path
+ * @param {number} i Zero-based index for alternating layout
+ * @return {string} HTML string
+ */
 const createProject = (project, i) => `
 <div class="${(i % 2 === 0) ? 'left-bg md:border-e-2 border-main-500' : 'right-bg md:border-s-2 border-main-500'}">
     <article class="flex flex-col ${(i % 2 === 0) ? 'md:me-4 lg:me-8 xl:flex-row xl:pe-6 anim-zoom-in-right' : 'xl:flex-row-reverse md:ms-4 lg:ms-8 xl:ps-6 anim-zoom-in-right'} text-left items-stretch xl:gap-5 content-box border dark:border-gray-600 dark:hover:border-main-300 rounded dark:shadow-main-500 bg-primary dark:bg-secondary-com">
@@ -84,6 +102,12 @@ const createProject = (project, i) => `
 </div>
 `;
 
+/**
+ * Pagination UI for projects.
+ * @param {number} page Current page number
+ * @param {number} [totalPages] Total pages when known
+ * @return {string} HTML string
+ */
 const createPagination = (page, totalPages) => `
   <button id="post-prev" class="px-4 py-2 border border-main-500 text-base text-main-500 dark:text-secondary-font bg-transparent transition hover:bg-main-500 hover:text-primary hover:dark:text-secondary-font disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-transparent disabled:text-primary-desc disabled:hover:text-primary-desc">Prev</button>
   <span class="text-primary-font dark:text-secondary-font text-sm">Page ${page}${totalPages ? ` / ${totalPages}` : ''}</span>

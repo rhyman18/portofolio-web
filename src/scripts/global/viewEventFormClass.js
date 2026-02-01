@@ -1,3 +1,7 @@
+/**
+ * Tailwind class presets used for form fields, buttons, and loading states
+ * on the event view modal. Keeps visual states consistent across validations.
+ */
 const ViewEventFields = {
   defaultNameField: 'bg-main-50 border border-main-500 text-main-900 dark:text-main-400 placeholder-main-700 dark:placeholder-main-500 text-sm rounded-lg focus:ring-main-500 focus:border-main-500 block w-full p-2.5 dark:bg-gray-700 dark:border-main-500',
   errorNameField: 'bg-red-50 border border-red-500 text-red-900 placeholder-red-700 text-sm rounded-lg focus:ring-red-500 dark:bg-gray-700 focus:border-red-500 block w-full p-2.5 dark:text-red-500 dark:placeholder-red-500 dark:border-red-500',

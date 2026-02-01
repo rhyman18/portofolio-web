@@ -1,6 +1,11 @@
 import 'regenerator-runtime';
 import CacheHelper from './utils/cacheHelper';
 
+/**
+ * Service worker entry: pre-caches static assets and responds with cache-first
+ * strategy while keeping cache fresh in the background.
+ */
+/** @type {string[]} */
 const assetsToCache = [
   './',
   './icons/favicon-32x32.png',
@@ -19,14 +24,23 @@ const assetsToCache = [
   './sw.bundle.js',
 ];
 
+/**
+ * Install: pre-cache the app shell.
+ */
 self.addEventListener('install', (event) => {
   event.waitUntil(CacheHelper.cachingAppShell([...assetsToCache]));
 });
 
+/**
+ * Activate: remove outdated caches.
+ */
 self.addEventListener('activate', (event) => {
   event.waitUntil(CacheHelper.deleteOldCache());
 });
 
+/**
+ * Fetch: serve cache-first, revalidating in the background.
+ */
 self.addEventListener('fetch', (event) => {
   event.respondWith(CacheHelper.revalidateCache(event.request));
 });

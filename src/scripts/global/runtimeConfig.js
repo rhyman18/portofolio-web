@@ -1,11 +1,19 @@
 import CONFIG from './config';
 
+/** Remote endpoint that returns runtime secrets for the frontend. */
 const CONFIG_ENDPOINT = '/.netlify/functions/runtime-config';
 
 /**
- * Fetches runtime configuration from a Netlify Function and populates CONFIG.
- * Falls back to any existing values to support unit tests.
- * @return {Promise<object>} Populated CONFIG object.
+ * Fetches runtime configuration (Supabase keys, bucket, cache name) and merges
+ * it into the shared CONFIG object.
+ *
+ * Resolution order:
+ * 1) Build-time env vars injected by webpack (local dev/CI).
+ * 2) Cached CONFIG values from a prior call.
+ * 3) Remote Netlify Function fetch (browser only).
+ * 4) Safe defaults on fetch failure.
+ *
+ * @return {Promise<object>} Populated CONFIG object (same reference each call).
  */
 const loadRuntimeConfig = async () => {
   // 1) Build-time env (injected by dotenv-webpack) for local dev

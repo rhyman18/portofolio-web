@@ -2,6 +2,12 @@ import ANIM_CLASSES from '../global/animationClasses';
 
 let observer;
 
+/**
+ * Attach visibility observer to the provided nodes and toggle animation classes.
+ * Falls back to instantly showing targets when IntersectionObserver is unavailable.
+ * @param {NodeList|Element[]|null} nodes Collection of candidate elements.
+ * @return {void}
+ */
 const registerAnimationTargets = (nodes) => {
   if (!nodes) return;
   const list = Array.from(nodes).filter((el) => el && el.classList &&
@@ -30,6 +36,11 @@ const registerAnimationTargets = (nodes) => {
   list.forEach((el) => observer.observe(el));
 };
 
+/**
+ * Query document for elements that carry animation classes and observe them.
+ * Intended to be called once on page load.
+ * @return {void}
+ */
 const initScrollAnimation = () => {
   const targets = document.querySelectorAll(
       ANIM_CLASSES.map((cls) => `.${cls}`).join(','),

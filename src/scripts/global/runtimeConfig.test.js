@@ -118,8 +118,7 @@ describe('loadRuntimeConfig', () => {
   it('falls back to default cache name when response omits it', async () => {
     jest.resetModules();
     const configModule = await import('./config');
-    const CONFIG = configModule.default || configModule;
-    CONFIG.CACHE_NAME = '';
+    (configModule.default || configModule).CACHE_NAME = '';
 
     global.fetch = jest.fn(async () => ({
       ok: true,
@@ -148,5 +147,6 @@ describe('loadRuntimeConfig', () => {
     expect(result.SUPABASE_ANON_KEY).toBe('env-anon');
     expect(result.SUPABASE_STORAGE_BUCKET).toBe('');
     expect(result.CACHE_NAME).toBe('aribudiman-site');
+    expect(result).toBe(CONFIG);
   });
 });

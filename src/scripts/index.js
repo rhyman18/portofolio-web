@@ -10,6 +10,9 @@ import GLOBAL_ELEMENT from './global/globalElement';
 import loadRuntimeConfig from './global/runtimeConfig';
 import {initScrollAnimation} from './utils/scrollAnimation';
 
+/**
+ * App bootstrap: loads runtime config, initializes UI widgets, then registers SW.
+ */
 window.addEventListener('DOMContentLoaded', async () => {
   try {
     await loadRuntimeConfig();

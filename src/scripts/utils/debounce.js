@@ -1,4 +1,14 @@
+/**
+ * Debounce utility: delays function execution until inactivity for `wait` ms.
+ */
 const Debounce = {
+  /**
+   * Create a debounced wrapper around `func`.
+   * @param {object} params
+   * @param {Function} params.func Function to debounce.
+   * @param {number} params.wait Delay in milliseconds.
+   * @return {Function} Debounced function retaining `this` and arguments.
+   */
   init({func, wait}) {
     let timeout;
     return function(...args) {

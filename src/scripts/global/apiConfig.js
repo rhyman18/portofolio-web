@@ -1,3 +1,6 @@
+/**
+ * Static configuration for Supabase table names, storage paths, and queries.
+ */
 const API_CONFIG = {
   TABLE: {
     skills: 'skills',

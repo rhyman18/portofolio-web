@@ -1,5 +1,11 @@
 import * as WorkboxWindow from 'workbox-window';
 
+/**
+ * Registers the compiled service worker bundle using Workbox.
+ * Gracefully throws when the browser lacks service-worker support.
+ * @throws {Error} When service workers are unsupported or registration fails.
+ * @return {Promise<void>}
+ */
 const swRegister = async () => {
   if (!('serviceWorker' in navigator)) {
     throw new Error('Service Worker not supported in the browser');
