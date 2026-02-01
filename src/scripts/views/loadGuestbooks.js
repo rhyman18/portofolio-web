@@ -2,7 +2,7 @@ import ApiFetch from '../data/apiFetch';
 import ShowError from '../utils/showError';
 import GLOBAL_ELEMENT from '../global/globalElement';
 import InputValidator from '../utils/inputValidator';
-import ViewEventFields from '../templates/viewEventFormClass';
+import ViewEventFields from '../global/viewEventFormClass';
 import {emptyGuestbook, createGuestbook} from '../templates/viewGuestbooks';
 
 /**

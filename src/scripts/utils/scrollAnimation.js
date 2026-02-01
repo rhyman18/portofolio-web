@@ -1,9 +1,4 @@
-const ANIM_CLASSES = [
-  'anim-fade-up',
-  'anim-zoom-in',
-  'anim-zoom-in-up',
-  'anim-zoom-in-right',
-];
+import ANIM_CLASSES from '../global/animationClasses';
 
 let observer;
 

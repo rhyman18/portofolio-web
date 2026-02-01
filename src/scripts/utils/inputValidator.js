@@ -1,4 +1,4 @@
-import ViewEventFields from '../templates/viewEventFormClass';
+import ViewEventFields from '../global/viewEventFormClass';
 import Debounce from './debounce';
 
 const InputValidator = {
