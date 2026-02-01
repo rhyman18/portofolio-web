@@ -92,7 +92,7 @@ describe('ApiFetch', () => {
 
   it('fetches skills with signed image urls', async () => {
     createClient.__setResponse('skills', {
-      data: [{id: 1, name: 'JS', icon: 'fa', cert_img: 'img.png', cert_link: 'http', type: 'basic', sort: 1}],
+      data: [{id: 1, name: 'JS', icon: '<svg></svg>', cert_img: 'img.png', cert_link: 'http', type: 'basic', sort: 1}],
     });
     const result = await ApiFetch.getSkills('basic');
     expect(result.data[0].cert_img).toBe('https://signed.test/path');

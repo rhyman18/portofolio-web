@@ -113,6 +113,10 @@ html::-webkit-scrollbar {
     box-shadow: 0 2px 20px 5px rgba(28, 195, 178, .3);
 }
 
+.skill-icon svg {
+    fill: currentColor;
+}
+
 .left-bg {
     background: var(--left-bg-url);
     background-position: right;

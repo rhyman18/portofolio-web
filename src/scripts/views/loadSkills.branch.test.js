@@ -53,8 +53,9 @@ describe('LoadSkills branches', () => {
   });
 
   it('skips popover creation when no cert_link and still calls Popover for existing targets', async () => {
+    const svg = '<svg><path /></svg>';
     ApiFetch.getSkills.mockResolvedValue({
-      data: [{id: 1, name: 'NoCert', icon: 'fa', cert_link: '', cert_img: '', cert_desc: ''}],
+      data: [{id: 1, name: 'NoCert', icon: svg, cert_link: '', cert_img: '', cert_desc: ''}],
     });
     await LoadSkills.init({
       basic: GLOBAL_ELEMENT.SkillBasic,

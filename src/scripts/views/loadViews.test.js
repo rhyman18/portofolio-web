@@ -47,8 +47,9 @@ describe('LoadMessages', () => {
 
 describe('LoadSkills', () => {
   it('renders skills and popovers', async () => {
+    const svg = '<svg><path /></svg>';
     ApiFetch.getSkills.mockResolvedValueOnce({
-      data: [{id: 1, name: 'JS', icon: 'js', cert_link: 'link', cert_img: 'img', cert_desc: 'desc'}],
+      data: [{id: 1, name: 'JS', icon: svg, cert_link: 'link', cert_img: 'img', cert_desc: 'desc'}],
     });
 
     const containers = {

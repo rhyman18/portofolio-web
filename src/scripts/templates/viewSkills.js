@@ -13,10 +13,12 @@ const createSkeletonSkill = () => `
 </div>
 `;
 
+const FALLBACK_SVG = '<svg aria-hidden="true" class="w-12 h-12 text-main-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><path d="M320 576C461.4 576 576 461.4 576 320C576 178.6 461.4 64 320 64C178.6 64 64 178.6 64 320C64 461.4 178.6 576 320 576zM320 240C302.3 240 288 254.3 288 272C288 285.3 277.3 296 264 296C250.7 296 240 285.3 240 272C240 227.8 275.8 192 320 192C364.2 192 400 227.8 400 272C400 319.2 364 339.2 344 346.5L344 350.3C344 363.6 333.3 374.3 320 374.3C306.7 374.3 296 363.6 296 350.3L296 342.2C296 321.7 310.8 307 326.1 302C332.5 299.9 339.3 296.5 344.3 291.7C348.6 287.5 352 281.7 352 272.1C352 254.4 337.7 240.1 320 240.1zM288 432C288 414.3 302.3 400 320 400C337.7 400 352 414.3 352 432C352 449.7 337.7 464 320 464C302.3 464 288 449.7 288 432z"/></svg>';
+
 const createSkill = (skill) => `
-<div ${skill.cert_link ? `data-popover-target="popover-target-${skill.id}"` : ''} class="flex flex-col gap-3 w-40 bg-primary border dark:bg-secondary-com dark:border-gray-600 dark:hover:border-main-300 rounded py-8 tracking-widest skill-box dark:shadow-main-500 hover:text-main-500 ease-in-out duration-300 cursor-pointer" tabindex="0" aria-label="${skill.name}">
-    <div class="w-12 h-12 mx-auto rounded-full bg-main-50 dark:bg-gray-700 flex items-center justify-center text-main-500 font-semibold">
-        ${(skill.icon || skill.name || '?').slice(0, 3).toUpperCase()}
+<div ${skill.cert_link ? `data-popover-target="popover-target-${skill.id}"` : ''} class="flex flex-col gap-3 w-40 bg-primary border dark:bg-secondary-com dark:border-gray-600 dark:hover-border-main-300 rounded py-8 tracking-widest skill-box dark:shadow-main-500 hover:text-main-500 ease-in-out duration-300 cursor-pointer" tabindex="0" aria-label="${skill.name}">
+    <div class="skill-icon w-14 h-14 mx-auto flex items-center justify-center text-main-500">
+        ${skill.icon || FALLBACK_SVG}
     </div>${skill.name}
 </div>
 `;
