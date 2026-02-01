@@ -20,12 +20,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" media="print" onload="this.onload=null;this.removeAttribute('media');" fetchpriority="high">
     <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@500&display=swap" rel="stylesheet" media="print" onload="this.onload=null;this.removeAttribute('media');" fetchpriority="high">
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&display=swap" rel="stylesheet" media="print" onload="this.onload=null;this.removeAttribute('media');" fetchpriority="high">
-    <!-- preload + async load webpack css bundles -->
+    <!-- preload + immediate apply webpack css bundles -->
     <% if (htmlWebpackPlugin.files && htmlWebpackPlugin.files.css) { %>
       <% htmlWebpackPlugin.files.css.forEach(function(cssFile) { %>
-        <link rel="preload" href="<%= cssFile %>" as="style">
-        <link rel="stylesheet" href="<%= cssFile %>" media="print" onload="this.onload=null;this.media='all'">
-        <noscript><link rel="stylesheet" href="<%= cssFile %>"></noscript>
+        <link rel="preload" href="<%= cssFile %>" as="style" fetchpriority="high">
+        <link rel="stylesheet" href="<%= cssFile %>">
       <% }); %>
     <% } %>
     <!-- toogle dark mode -->
