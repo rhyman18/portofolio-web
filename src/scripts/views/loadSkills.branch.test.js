@@ -88,4 +88,22 @@ describe('LoadSkills branches', () => {
     expect(GLOBAL_ELEMENT.AlertBody.classList.contains('hidden')).toBe(false);
     LoadSkills._renderSkill = original;
   });
+
+  it('returns cached api fetch without re-importing', async () => {
+    const sentinel = {};
+    LoadSkills._apiFetch = sentinel;
+    const result = await LoadSkills._getApiFetch();
+    expect(result).toBe(sentinel);
+  });
+
+  it('falls back to module export when default is missing', async () => {
+    jest.resetModules();
+    jest.doMock('../data/apiFetch', () => ({__esModule: true, default: undefined, getSkills: jest.fn()}));
+    await jest.isolateModulesAsync(async () => {
+      const FreshLoadSkills = require('./loadSkills').default;
+      FreshLoadSkills._apiFetch = null;
+      const result = await FreshLoadSkills._getApiFetch();
+      expect(result.getSkills).toBeDefined();
+    });
+  });
 });

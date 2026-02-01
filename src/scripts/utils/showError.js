@@ -12,6 +12,7 @@ const ShowError = {
    * @return {void}
    */
   init({containerAlert, bodyAlert, messageAlert, alertPriority = 0}) {
+    if (!containerAlert || !bodyAlert) return;
     this._containerAlert = containerAlert;
     this._bodyAlert = bodyAlert;
     this._messageAlert = messageAlert;

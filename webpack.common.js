@@ -16,7 +16,7 @@ module.exports = {
     },
     lazysizes: './src/scripts/lazysizes.js',
     bglazy: './src/scripts/bglazy.js',
-    shared: ['./src/scripts/global/globalElement.js', 'flowbite'],
+    shared: ['./src/scripts/global/globalElement.js'],
   },
   output: {
     path: path.resolve(__dirname, 'public'),
@@ -54,13 +54,46 @@ module.exports = {
     splitChunks: {
       chunks: 'all',
       minSize: 20000,
-      maxSize: 70000,
+      // Keep chunks smaller for better initial loads
+      maxSize: 50000,
       minChunks: 1,
       maxAsyncRequests: 30,
       maxInitialRequests: 30,
       automaticNameDelimiter: '~',
-      enforceSizeThreshold: 50000,
+      enforceSizeThreshold: 40000,
+      cacheGroups: {
+        supabase: {
+          test: /[\\/]node_modules[\\/]@supabase[\\/]/,
+          name: 'supabase',
+          chunks: 'all',
+          priority: 40,
+          maxSize: 200000, // allow a single supabase chunk instead of many small ones
+          enforce: true,
+        },
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendor',
+          chunks: 'all',
+          priority: 20,
+        },
+        flowbite: {
+          test: /[\\/]node_modules[\\/]flowbite[\\/]/,
+          name: 'flowbite',
+          chunks: 'all',
+          priority: 30,
+        },
+        default: {
+          minChunks: 2,
+          priority: -20,
+          reuseExistingChunk: true,
+        },
+      },
     },
+  },
+  performance: {
+    maxEntrypointSize: 400000, // 400 KB
+    maxAssetSize: 350000, // 350 KB
+    assetFilter: (assetFilename) => !assetFilename.endsWith('.map'),
   },
   plugins: [
     new HtmlWebpackPlugin({

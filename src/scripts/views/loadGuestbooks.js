@@ -1,4 +1,3 @@
-import ApiFetch from '../data/apiFetch';
 import ShowError from '../utils/showError';
 import GLOBAL_ELEMENT from '../global/globalElement';
 import InputValidator from '../utils/inputValidator';
@@ -14,19 +13,21 @@ import {emptyGuestbook, createGuestbook} from '../templates/viewGuestbooks';
  * button: {DOM} button fields
  */
 const LoadGuestbooks = {
-  init({container, form, fields}) {
+  async init({container, form, fields, apiFetch}) {
     this._container = container;
     this._form = form;
     this._fields = fields;
+    this._apiFetch = apiFetch || null;
 
     this._bindEvents();
-    this._renderGuestbooks();
-    this._initInputValidation();
+    await this._renderGuestbooks();
+    await this._initInputValidation();
   },
 
   async _renderGuestbooks() {
     this._container.innerHTML = emptyGuestbook();
     try {
+      const ApiFetch = await this._getApiFetch();
       const apiGuestbooks = await ApiFetch.getGuestbooks();
       const html = apiGuestbooks?.data?.map((guest) => createGuestbook(guest, this._createLinkSosmed(guest.platform))).join('');
       this._container.innerHTML = html || emptyGuestbook();
@@ -53,6 +54,7 @@ const LoadGuestbooks = {
 
       if (validatedInput.status) {
         const formData = this._convertInputValues();
+        const ApiFetch = await this._getApiFetch();
         await ApiFetch.postGuestbook(formData);
         this._renderSubmitButtonSuccess();
       } else {
@@ -153,6 +155,13 @@ const LoadGuestbooks = {
       github: 'https://github.com/',
     };
     return linkMap[link] || '';
+  },
+
+  async _getApiFetch() {
+    if (this._apiFetch) return this._apiFetch;
+    const module = await import('../data/apiFetch');
+    this._apiFetch = module.default || module;
+    return this._apiFetch;
   },
 };
 

@@ -21,6 +21,7 @@ const createToggleDom = () => {
 
 describe('style.js theme toggle', () => {
   const originalMatchMedia = window.matchMedia;
+  const originalRIC = window.requestIdleCallback;
 
   beforeEach(() => {
     jest.resetModules();
@@ -36,6 +37,7 @@ describe('style.js theme toggle', () => {
 
   afterAll(() => {
     window.matchMedia = originalMatchMedia;
+    window.requestIdleCallback = originalRIC;
   });
 
   it('shows light icon when stored theme is dark and toggles to light on click', async () => {
@@ -88,5 +90,23 @@ describe('style.js theme toggle', () => {
 
     expect(document.documentElement.classList.contains('dark')).toBe(false);
     expect(localStorage.getItem('color-theme')).toBe('light');
+  });
+
+  it('uses requestIdleCallback when available for Flowbite load', async () => {
+    const ric = jest.fn((cb) => cb());
+    window.requestIdleCallback = ric;
+
+    await import('./style.js');
+    expect(ric).toHaveBeenCalled();
+  });
+
+  it('falls back to setTimeout when requestIdleCallback is missing', async () => {
+    jest.useFakeTimers();
+    delete window.requestIdleCallback;
+    const setTimeoutSpy = jest.spyOn(window, 'setTimeout');
+    await import('./style.js');
+    jest.runAllTimers();
+    expect(setTimeoutSpy).toHaveBeenCalled();
+    jest.useRealTimers();
   });
 });

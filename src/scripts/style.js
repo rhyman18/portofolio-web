@@ -1,5 +1,4 @@
 import '../styles/app.css';
-import 'flowbite';
 import GLOBAL_ELEMENT from './global/globalElement';
 
 /** Theme toggle controller for swapping light/dark UI assets. */
@@ -50,3 +49,11 @@ themeToggleBtn.addEventListener('click', function() {
     }
   }
 });
+
+// Defer Flowbite JS to after paint to reduce initial bundle size.
+const loadFlowbite = () => import('flowbite').catch(() => {});
+if ('requestIdleCallback' in window) {
+  window.requestIdleCallback(loadFlowbite);
+} else {
+  setTimeout(loadFlowbite, 0);
+}

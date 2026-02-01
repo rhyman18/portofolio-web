@@ -186,6 +186,12 @@ html::-webkit-scrollbar {
     transform: translate(0,0) scale(1);
 }
 
+#popover-container {
+    position: relative;
+    height: 0;
+    overflow: visible;
+}
+
 .custom-shape-divider-bottom-1682761876 {
     position: absolute;
     bottom: 0;
