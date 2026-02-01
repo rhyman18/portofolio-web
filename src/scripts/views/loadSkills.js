@@ -42,8 +42,8 @@ const LoadSkills = {
     this._skillPopover.insertAdjacentHTML('beforeend', popoverHTML);
   },
 
-  _addPopoverEvents() {
-    import('flowbite').then(({Popover}) => {
+  _addPopoverEvents(importer = () => import('flowbite')) {
+    return importer().then(({Popover}) => {
       document.querySelectorAll('[data-popover-target]').forEach((element) => {
         const popoverId = element.getAttribute('data-popover-target');
         const popoverBody = document.getElementById(popoverId);

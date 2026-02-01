@@ -51,9 +51,19 @@ themeToggleBtn.addEventListener('click', function() {
 });
 
 // Defer Flowbite JS to after paint to reduce initial bundle size.
-const loadFlowbite = () => import('flowbite').catch(() => {});
-if ('requestIdleCallback' in window) {
-  window.requestIdleCallback(loadFlowbite);
-} else {
-  setTimeout(loadFlowbite, 0);
-}
+const loadFlowbite = (loader = () => import('flowbite')) => {
+  if (typeof loader !== 'function') return Promise.resolve();
+  return loader().catch(() => {});
+};
+const scheduleFlowbite = () => {
+  if ('requestIdleCallback' in window) {
+    window.requestIdleCallback(() => loadFlowbite());
+  } else {
+    setTimeout(() => loadFlowbite(), 0);
+  }
+};
+scheduleFlowbite();
+
+// Exported for test coverage of lazy loaders.
+export const _loadFlowbite = loadFlowbite;
+export const _scheduleFlowbite = scheduleFlowbite;

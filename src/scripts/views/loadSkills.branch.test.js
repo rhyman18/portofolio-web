@@ -106,4 +106,11 @@ describe('LoadSkills branches', () => {
       expect(result.getSkills).toBeDefined();
     });
   });
+
+  it('silently handles Flowbite import failure in popover setup', async () => {
+    const failingImporter = jest.fn(() => Promise.reject(new Error('fail flowbite')));
+
+    await expect(LoadSkills._addPopoverEvents(failingImporter)).resolves.toBeUndefined();
+    expect(failingImporter).toHaveBeenCalled();
+  });
 });
