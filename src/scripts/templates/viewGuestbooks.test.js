@@ -16,6 +16,6 @@ describe('viewGuestbooks templates', () => {
     const html = createGuestbook(guest, 'https://github.com/');
     expect(html).toContain('Tester');
     expect(html).toContain('@tester');
-    expect(html).toContain('fa-github');
+    expect(html).toContain('data-icon="github"');
   });
 });

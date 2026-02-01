@@ -8,26 +8,43 @@ const CONFIG_ENDPOINT = '/.netlify/functions/runtime-config';
  * @return {Promise<object>} Populated CONFIG object.
  */
 const loadRuntimeConfig = async () => {
-  // Avoid refetch when values are already present (e.g., tests)
-  if (CONFIG.SUPABASE_URL && CONFIG.SUPABASE_ANON_KEY) {
+  // 1) Build-time env (injected by dotenv-webpack) for local dev
+  const envUrl = process.env.SUPABASE_URL;
+  const envAnon = process.env.SUPABASE_ANON_KEY;
+  const envBucket = process.env.SUPABASE_STORAGE_BUCKET;
+  const envCache = process.env.CACHE_NAME;
+
+  if (envUrl && envAnon) {
+    CONFIG.SUPABASE_URL = envUrl;
+    CONFIG.SUPABASE_ANON_KEY = envAnon;
+    CONFIG.SUPABASE_STORAGE_BUCKET = envBucket || CONFIG.SUPABASE_STORAGE_BUCKET;
+    CONFIG.CACHE_NAME = envCache || CONFIG.CACHE_NAME;
     return CONFIG;
   }
 
-  const response = await fetch(CONFIG_ENDPOINT, {
-    headers: {
-      Accept: 'application/json',
-    },
-  });
+  // Avoid refetch when values are already present (e.g., tests or previous call)
+  if (CONFIG.SUPABASE_URL && CONFIG.SUPABASE_ANON_KEY) return CONFIG;
 
-  if (!response.ok) {
-    throw new Error('Failed to load runtime configuration');
+  // In non-browser test environments, skip remote fetch
+  if (typeof fetch === 'undefined') return CONFIG;
+
+  try {
+    const response = await fetch(CONFIG_ENDPOINT, {
+      headers: {Accept: 'application/json'},
+    });
+
+    if (!response.ok) {
+      throw new Error('Failed to load runtime configuration');
+    }
+
+    const data = await response.json();
+    CONFIG.SUPABASE_URL = data.SUPABASE_URL || '';
+    CONFIG.SUPABASE_ANON_KEY = data.SUPABASE_ANON_KEY || '';
+    CONFIG.SUPABASE_STORAGE_BUCKET = data.SUPABASE_STORAGE_BUCKET || '';
+    CONFIG.CACHE_NAME = data.CACHE_NAME || CONFIG.CACHE_NAME || 'aribudiman-site';
+  } catch (err) {
+    console.warn('Runtime config not loaded; falling back to defaults', err);
   }
-
-  const data = await response.json();
-  CONFIG.SUPABASE_URL = data.SUPABASE_URL || '';
-  CONFIG.SUPABASE_ANON_KEY = data.SUPABASE_ANON_KEY || '';
-  CONFIG.SUPABASE_STORAGE_BUCKET = data.SUPABASE_STORAGE_BUCKET || '';
-  CONFIG.CACHE_NAME = data.CACHE_NAME || CONFIG.CACHE_NAME || 'aribudiman-site';
 
   return CONFIG;
 };

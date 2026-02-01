@@ -7,8 +7,9 @@ describe('viewSkills templates', () => {
   });
 
   it('includes popover target when cert link exists', () => {
-    const html = createSkill({id: 1, name: 'JS', icon: 'fa-js', cert_link: 'http'});
+    const html = createSkill({id: 1, name: 'JS', icon: 'js', cert_link: 'http'});
     expect(html).toContain('data-popover-target');
+    expect(html).toContain('JS');
   });
 
   it('renders popover body', () => {
