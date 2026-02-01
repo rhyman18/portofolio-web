@@ -2,6 +2,7 @@ import ApiFetch from '../data/apiFetch';
 import ShowError from '../utils/showError';
 import GLOBAL_ELEMENT from '../global/globalElement';
 import {createSkeletonProject, createProject, createPagination} from '../templates/viewProjects';
+import {registerAnimationTargets} from '../utils/scrollAnimation';
 
 const LoadProjects = {
   async init(container) {
@@ -55,6 +56,7 @@ const LoadProjects = {
       this._limit = apiProjects?.limit || this._limit;
       const projectsHTML = apiProjects?.data?.map((project, i) => createProject(project, i)).join('');
       this._container.innerHTML = projectsHTML || createSkeletonProject();
+      registerAnimationTargets(this._container.querySelectorAll('.anim-fade-up, .anim-zoom-in, .anim-zoom-in-up, .anim-zoom-in-right'));
       this._attachEventListeners(apiProjects?.data);
       this._renderPagination(apiProjects?.totalPages);
     } catch (error) {

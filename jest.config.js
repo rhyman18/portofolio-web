@@ -19,7 +19,6 @@ module.exports = {
     'src/scripts/**/*.{js,jsx}',
     '!src/scripts/**/*.{spec,test}.js',
     '!src/scripts/**/index.js',
-    '!src/scripts/aos.js',
     '!src/scripts/lazysizes.js',
     '!src/scripts/bglazy.js',
   ],

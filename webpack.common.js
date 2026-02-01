@@ -14,7 +14,6 @@ module.exports = {
       import: './src/scripts/style.js',
       dependOn: 'shared',
     },
-    aos: './src/scripts/aos.js',
     lazysizes: './src/scripts/lazysizes.js',
     bglazy: './src/scripts/bglazy.js',
     shared: ['./src/scripts/global/globalElement.js', 'flowbite'],

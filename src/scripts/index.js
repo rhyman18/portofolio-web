@@ -8,6 +8,7 @@ import LoadProjects from './views/loadProjects';
 import LoadGuestbooks from './views/loadGuestbooks';
 import GLOBAL_ELEMENT from './global/globalElement';
 import loadRuntimeConfig from './global/runtimeConfig';
+import {initScrollAnimation} from './utils/scrollAnimation';
 
 window.addEventListener('DOMContentLoaded', async () => {
   try {
@@ -69,4 +70,6 @@ window.addEventListener('DOMContentLoaded', async () => {
   };
 
   initSwRegister();
+
+  initScrollAnimation();
 });
