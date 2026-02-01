@@ -17,10 +17,11 @@ const CONFIG_ENDPOINT = '/.netlify/functions/runtime-config';
  */
 const loadRuntimeConfig = async () => {
   // 1) Build-time env (injected by dotenv-webpack) for local dev
-  const envUrl = process.env.SUPABASE_URL;
-  const envAnon = process.env.SUPABASE_ANON_KEY;
-  const envBucket = process.env.SUPABASE_STORAGE_BUCKET;
-  const envCache = process.env.CACHE_NAME;
+  const env = (typeof process !== 'undefined' && process.env) || {};
+  const envUrl = env.SUPABASE_URL;
+  const envAnon = env.SUPABASE_ANON_KEY;
+  const envBucket = env.SUPABASE_STORAGE_BUCKET;
+  const envCache = env.CACHE_NAME;
 
   if (envUrl && envAnon) {
     CONFIG.SUPABASE_URL = envUrl;

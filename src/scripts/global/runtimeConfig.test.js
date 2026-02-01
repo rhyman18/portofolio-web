@@ -13,15 +13,20 @@ const loadModules = async () => {
 
 describe('loadRuntimeConfig', () => {
   let warnSpy;
+  const originalProcess = global.process;
 
   beforeEach(() => {
+    global.process = originalProcess;
     process.env = {...originalEnv};
     global.fetch = originalFetch;
     warnSpy = jest.spyOn(console, 'warn').mockImplementation(() => {});
   });
 
   afterEach(() => {
-    process.env = {...originalEnv};
+    global.process = originalProcess;
+    if (global.process) {
+      process.env = {...originalEnv};
+    }
     global.fetch = originalFetch;
     warnSpy.mockRestore();
   });
@@ -148,5 +153,14 @@ describe('loadRuntimeConfig', () => {
     expect(result.SUPABASE_STORAGE_BUCKET).toBe('');
     expect(result.CACHE_NAME).toBe('aribudiman-site');
     expect(result).toBe(CONFIG);
+  });
+
+  it('guards when process is undefined in browser builds', async () => {
+    // Simulate environment where process is not defined (typical browsers)
+    global.process = undefined;
+    const {loadRuntimeConfig, CONFIG} = await loadModules();
+    const result = await loadRuntimeConfig();
+    expect(result).toBe(CONFIG);
+    expect(result.SUPABASE_URL).toBe('');
   });
 });
