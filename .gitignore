@@ -2,3 +2,11 @@
 /postimg/
 /public/
 .env
+/coverage
+/*.log
+npm-debug.log*
+pnpm-debug.log*
+*.tgz
+.DS_Store
+.vscode/
+.idea/

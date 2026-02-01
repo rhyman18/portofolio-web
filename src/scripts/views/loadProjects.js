@@ -21,7 +21,7 @@ const LoadProjects = {
     }
 
     const isFirst = this._page <= 1;
-    const isLast = totalPages ? this._page >= totalPages : false;
+    const isLast = this._page >= totalPages;
 
     this._paginationContainer.innerHTML = createPagination(this._page, totalPages);
 
