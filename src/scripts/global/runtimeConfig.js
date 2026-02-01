@@ -16,12 +16,25 @@ const CONFIG_ENDPOINT = '/.netlify/functions/runtime-config';
  * @return {Promise<object>} Populated CONFIG object (same reference each call).
  */
 const loadRuntimeConfig = async () => {
-  // 1) Build-time env (injected by dotenv-webpack) for local dev
-  const env = (typeof process !== 'undefined' && process.env) || {};
-  const envUrl = env.SUPABASE_URL;
-  const envAnon = env.SUPABASE_ANON_KEY;
-  const envBucket = env.SUPABASE_STORAGE_BUCKET;
-  const envCache = env.CACHE_NAME;
+  /**
+   * Safely read build-time env vars injected by webpack (dev/prod). Guards
+   * against `process` being undefined at runtime while still allowing inlining.
+   * @return {{url: (string|undefined), anon: (string|undefined), bucket: (string|undefined), cache: (string|undefined)}} env snapshot
+   */
+  const readEnv = () => {
+    try {
+      return {
+        url: process.env.SUPABASE_URL,
+        anon: process.env.SUPABASE_ANON_KEY,
+        bucket: process.env.SUPABASE_STORAGE_BUCKET,
+        cache: process.env.CACHE_NAME,
+      };
+    } catch {
+      return {};
+    }
+  };
+
+  const {url: envUrl, anon: envAnon, bucket: envBucket, cache: envCache} = readEnv();
 
   if (envUrl && envAnon) {
     CONFIG.SUPABASE_URL = envUrl;

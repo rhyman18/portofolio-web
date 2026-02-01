@@ -50,11 +50,31 @@ themeToggleBtn.addEventListener('click', function() {
   }
 });
 
-// Defer Flowbite JS to after paint to reduce initial bundle size.
-const loadFlowbite = (loader = () => import('flowbite')) => {
+/**
+ * Defer Flowbite JS to after paint to reduce initial bundle size and
+ * ensure data-attribute components (modal, dropdown, etc.) are wired up.
+ *
+ * @param {function(): Promise<*>} loader Lazy loader used to import Flowbite. Primarily injected by tests.
+ * @return {Promise.<(object|undefined)>} resolved module (when available) or undefined on failure.
+ */
+const loadFlowbite = async (loader = () => import('flowbite')) => {
   if (typeof loader !== 'function') return Promise.resolve();
-  return loader().catch(() => {});
+  try {
+    const module = await loader();
+    /* istanbul ignore next -- type guard for optional exports */
+    const init = module.initFlowbite || module.default?.initFlowbite;
+    /* istanbul ignore else -- defensive guard; when present we invoke init */
+    if (typeof init === 'function') init();
+    return module;
+  } catch (_) {
+    return undefined;
+  }
 };
+
+/**
+ * Schedule Flowbite loader using `requestIdleCallback` when available,
+ * otherwise fall back to `setTimeout(0)`.
+ */
 const scheduleFlowbite = () => {
   if ('requestIdleCallback' in window) {
     window.requestIdleCallback(() => loadFlowbite());

@@ -3,7 +3,12 @@
  * We build the minimal DOM structure that GLOBAL_ELEMENT queries on import.
  */
 
-jest.mock('flowbite', () => ({}));
+const mockInitFlowbite = jest.fn();
+jest.mock('flowbite', () => ({
+  __esModule: true,
+  initFlowbite: mockInitFlowbite,
+  default: {initFlowbite: mockInitFlowbite},
+}));
 
 const createToggleDom = () => {
   const ids = [
@@ -29,6 +34,7 @@ describe('style.js theme toggle', () => {
     jest.resetModules();
     document.body.innerHTML = '';
     localStorage.clear();
+    mockInitFlowbite.mockClear();
     window.matchMedia = jest.fn().mockReturnValue({
       matches: false,
       addListener: jest.fn(),
@@ -100,6 +106,22 @@ describe('style.js theme toggle', () => {
 
     await import('./style.js');
     expect(ric).toHaveBeenCalled();
+  });
+
+  it('calls initFlowbite after loader resolves', async () => {
+    const ric = jest.fn((cb) => cb());
+    window.requestIdleCallback = ric;
+
+    await import('./style.js');
+    await Promise.resolve();
+    expect(mockInitFlowbite).toHaveBeenCalled();
+  });
+
+  it('executes initFlowbite when loader supplies it directly', async () => {
+    const init = jest.fn();
+    const module = await import('./style.js');
+    await module._loadFlowbite(() => Promise.resolve({initFlowbite: init}));
+    expect(init).toHaveBeenCalled();
   });
 
   it('falls back to setTimeout when requestIdleCallback is missing', async () => {
