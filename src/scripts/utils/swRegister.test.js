@@ -1,6 +1,7 @@
 import swRegister from './swRegister';
 
 // use var to avoid temporal dead zone when jest hoists mocks
+// eslint-disable-next-line no-var
 var mockRegister;
 
 jest.mock('workbox-window', () => {
