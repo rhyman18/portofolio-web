@@ -78,7 +78,8 @@ module.exports = merge(common, {
       swDest: './sw.bundle.js',
       runtimeCaching: [
         {
-          urlPattern: new RegExp(`^${process.env.SUPABASE_URL}`),
+          // Match any Supabase project domain without embedding a specific URL
+          urlPattern: /^https?:\/\/[a-zA-Z0-9-]+\.supabase\.co\/.*/,
           handler: 'StaleWhileRevalidate',
           options: {
             cacheName: 'aribudiman-site',

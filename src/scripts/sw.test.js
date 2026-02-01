@@ -1,7 +1,7 @@
 /**
  * Minimal service worker tests to ensure lifecycle handlers call CacheHelper.
  */
-import CacheHelper from './utils/cacheHelper';
+let CacheHelper;
 
 jest.mock('./utils/cacheHelper', () => {
   const mock = {
@@ -16,7 +16,7 @@ describe('sw.js service worker handlers', () => {
   let originalSelf;
   let listeners;
 
-  beforeEach(() => {
+  beforeEach(async () => {
     jest.resetModules();
     originalSelf = global.self;
     listeners = {};
@@ -29,7 +29,8 @@ describe('sw.js service worker handlers', () => {
       writable: true,
       configurable: true,
     });
-    return import('./sw.js');
+    CacheHelper = (await import('./utils/cacheHelper')).default;
+    await import('./sw.js');
   });
 
   afterEach(() => {

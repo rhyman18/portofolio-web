@@ -1,7 +1,7 @@
 import swRegister from './swRegister';
 
 // use var to avoid temporal dead zone when jest hoists mocks
-let mockRegister;
+var mockRegister;
 
 jest.mock('workbox-window', () => {
   mockRegister = jest.fn();
@@ -35,7 +35,7 @@ describe('swRegister', () => {
   });
 
   it('throws when service worker unsupported', async () => {
-    await expect(swRegister()).rejects.toThrow('Service Worker not supported');
+    await expect(swRegister()).rejects.toThrow(/Service Worker not supported/i);
   });
 
   it('throws user-friendly error when registration fails', async () => {
