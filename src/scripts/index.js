@@ -8,6 +8,16 @@ import loadRuntimeConfig from './global/runtimeConfig';
  * App bootstrap: loads runtime config, initializes UI widgets, then registers SW.
  */
 window.addEventListener('DOMContentLoaded', async () => {
+  if (GLOBAL_ELEMENT.ContactEmail) {
+    const user = GLOBAL_ELEMENT.ContactEmail.dataset.user;
+    const domain = GLOBAL_ELEMENT.ContactEmail.dataset.domain;
+    if (user && domain) {
+      const email = `${user}@${domain}`;
+      GLOBAL_ELEMENT.ContactEmail.href = `mailto:${email}`;
+      GLOBAL_ELEMENT.ContactEmail.textContent = email;
+    }
+  }
+
   try {
     await loadRuntimeConfig();
   } catch (error) {
