@@ -20,4 +20,4 @@ Membuat landing page situs Portofolio saya. Berikut framework dan library yang d
 
 # Deployment Web
 
-Silahkan kunjungi **[https://www.aribudiman.site](https://www.aribudiman.site)** untuk melihat hasil jadi Website. Saat ini static asset di-deploy ke Amazon S3 + CloudFront untuk CDN, sementara data dan media dikelola via Supabase (database + storage) sehingga backend dan bucket terintegrasi.
+Silahkan kunjungi **[https://www.aribudiman.my.id](https://www.aribudiman.my.id)** untuk melihat hasil jadi Website. Saat ini static asset di-deploy ke Amazon S3 + CloudFront untuk CDN, sementara data dan media dikelola via Supabase (database + storage) sehingga backend dan bucket terintegrasi.

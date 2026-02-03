@@ -185,6 +185,59 @@ describe('LoadGuestbooks branches', () => {
     expect(pagination.innerHTML).toBe('');
   });
 
+  it('shows pagination when totalPages missing but page is full', async () => {
+    const {container, form, fields} = buildDom();
+    const pagination = document.createElement('div');
+    pagination.id = 'guestbook-pagination';
+    document.body.appendChild(pagination);
+
+    ApiFetch.getGuestbooks.mockResolvedValue({
+      data: [{platform: 'github', name: 'Tester', username: 'me', message: 'Hello world message content', updated_at: '2024-01-01'}],
+      totalPages: undefined,
+      limit: 1,
+      page: 1,
+    });
+    InputValidator.initInput.mockResolvedValue();
+
+    await LoadGuestbooks.init({container, form, fields, pagination});
+    await flush();
+
+    const nextBtn = pagination.querySelector('#guest-next');
+    expect(pagination.innerHTML).toContain('Page 1');
+    expect(nextBtn.disabled).toBe(false);
+  });
+
+  it('uses hasMore flag when totalPages missing and paginates forward', async () => {
+    const {container, form, fields} = buildDom();
+    const pagination = document.createElement('div');
+    pagination.id = 'guestbook-pagination';
+    document.body.appendChild(pagination);
+
+    ApiFetch.getGuestbooks.mockImplementation(({page, limit}) => Promise.resolve({
+      data: page === 1 ? undefined : [],
+      hasMore: page === 1,
+      totalPages: undefined,
+      limit: limit || 1,
+      page,
+    }));
+    InputValidator.initInput.mockResolvedValue();
+
+    await LoadGuestbooks.init({container, form, fields, pagination});
+    await flush();
+
+    let nextBtn = pagination.querySelector('#guest-next');
+    expect(pagination.innerHTML).toContain('Page 1');
+    expect(nextBtn.disabled).toBe(false);
+
+    nextBtn.click();
+    await flush();
+
+    expect(ApiFetch.getGuestbooks).toHaveBeenLastCalledWith({page: 2, limit: 1});
+    expect(pagination.innerHTML).toContain('Page 2');
+    nextBtn = pagination.querySelector('#guest-next');
+    expect(nextBtn.disabled).toBe(true);
+  });
+
   it('uses DOM pagination container when none passed and renders controls', async () => {
     const {container, form, fields} = buildDom();
     const pagination = document.createElement('div');
