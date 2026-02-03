@@ -49,13 +49,18 @@ class ApiFetch {
   }
 
   /**
-   * Get all projects.
-   * @return {Promise<{data: any[]}>} List of projects
+   * Get projects with pagination support.
+   * @param {object} [options] Pagination options
+   * @param {number} [options.page=1] Page number (1-indexed)
+   * @param {number} [options.limit=API_CONFIG.PAGINATION.projects] Items per page
+   * @return {Promise<{data: any[], page: number, limit: number, total: number, totalPages: (number|undefined)}>} Resolves with project data and pagination meta
    */
   static async getProjects({page = 1, limit = API_CONFIG.PAGINATION.projects} = {}) {
     try {
-      const from = (page - 1) * limit;
-      const to = from + limit - 1;
+      const safePage = Math.max(1, parseInt(page, 10) || 1);
+      const safeLimit = Math.max(1, parseInt(limit, 10) || API_CONFIG.PAGINATION.projects);
+      const from = (safePage - 1) * safeLimit;
+      const to = from + safeLimit - 1;
       const {data, error, count} = await this.#client()
           .from(API_CONFIG.TABLE.projects)
           .select(API_CONFIG.SELECT.projects, {count: 'exact'})
@@ -67,12 +72,14 @@ class ApiFetch {
         img: await this.#signedUrl(this.#withPrefix(project.img, API_CONFIG.IMG_PATH.projectThumb)),
         img_hover: await this.#signedUrl(this.#withPrefix(project.img_hover, API_CONFIG.IMG_PATH.projectHover)),
       })));
+      const total = typeof count === 'number' ? count : data?.length ?? 0;
+      const totalPages = typeof count === 'number' && count > 0 ? Math.ceil(count / safeLimit) : undefined;
       return {
         data: withImages,
-        page,
-        limit,
-        total: count ?? data?.length ?? 0,
-        totalPages: count ? Math.ceil(count / limit) : undefined,
+        page: safePage,
+        limit: safeLimit,
+        total,
+        totalPages,
       };
     } catch (error) {
       console.log('Failed to fetch projects Api', error);
