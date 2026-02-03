@@ -1,5 +1,6 @@
 import ApiFetch from './apiFetch';
 import CONFIG from '../global/config';
+import API_CONFIG from '../global/apiConfig';
 import {createClient} from '@supabase/supabase-js';
 
 let mockResponses = {};
@@ -110,9 +111,13 @@ describe('ApiFetch', () => {
   });
 
   it('returns guestbooks data', async () => {
-    createClient.__setResponse('guestbooks', {data: [{id: 1, name: 'A'}]});
+    createClient.__setResponse('guestbooks', {data: [{id: 1, name: 'A'}], count: 3});
     const result = await ApiFetch.getGuestbooks();
     expect(result.data).toHaveLength(1);
+    expect(result.limit).toBe(API_CONFIG.PAGINATION.guestbooks);
+    expect(result.page).toBe(1);
+    expect(result.total).toBe(3);
+    expect(result.totalPages).toBe(1);
   });
 
   it('posts guestbook successfully', async () => {

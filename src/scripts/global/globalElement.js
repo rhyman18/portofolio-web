@@ -16,6 +16,7 @@ const GLOBAL_ELEMENT = {
   ProjectsPagination: document.querySelector('#post-pagination'),
 
   GuestbookContainer: document.querySelector('#guestbook'),
+  GuestbookPagination: document.querySelector('#guestbook-pagination'),
   GuestbookForm: document.querySelector('#inputGuest'),
   InputName: document.querySelector('#name'),
   InputUsername: document.querySelector('#username'),

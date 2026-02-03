@@ -81,17 +81,34 @@ class ApiFetch {
   }
 
   /**
-   * Get all guestbook entries.
-   * @return {Promise<{data: any[]}>} List of guestbook entries
+   * Get guestbook entries with pagination.
+   * @param {object} [options] Pagination options
+   * @param {number} [options.page=1] Page number (1-indexed)
+   * @param {number} [options.limit=API_CONFIG.PAGINATION.guestbooks] Items per page
+   * @return {Promise<{data: any[], page: number, limit: number, total: number, totalPages: (number|undefined)}>} Resolves with guestbook data and pagination meta
    */
-  static async getGuestbooks() {
+  static async getGuestbooks({page = 1, limit = API_CONFIG.PAGINATION.guestbooks} = {}) {
     try {
-      const {data, error} = await this.#client()
+      const safePage = Math.max(1, parseInt(page, 10) || 1);
+      const safeLimit = Math.max(1, parseInt(limit, 10) || API_CONFIG.PAGINATION.guestbooks);
+      const from = (safePage - 1) * safeLimit;
+      const to = from + safeLimit - 1;
+
+      const {data, error, count} = await this.#client()
           .from(API_CONFIG.TABLE.guestbooks)
-          .select(API_CONFIG.SELECT.guestbooks)
-          .order('updated_at', {ascending: false});
+          .select(API_CONFIG.SELECT.guestbooks, {count: 'exact'})
+          .order('updated_at', {ascending: false})
+          .range(from, to);
       if (error) throw error;
-      return {data};
+      const total = typeof count === 'number' ? count : data?.length ?? 0;
+      const totalPages = typeof count === 'number' && count > 0 ? Math.ceil(count / safeLimit) : undefined;
+      return {
+        data,
+        page: safePage,
+        limit: safeLimit,
+        total,
+        totalPages,
+      };
     } catch (error) {
       console.log('Failed to fetch guestbooks Api', error);
       throw new Error('An error occurred while loading the guestbook data');

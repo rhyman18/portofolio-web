@@ -67,6 +67,7 @@ window.addEventListener('DOMContentLoaded', async () => {
       toastSuccess: GLOBAL_ELEMENT.ToastSuccess,
       toastFailed: GLOBAL_ELEMENT.ToastFailed,
     },
+    pagination: GLOBAL_ELEMENT.GuestbookPagination,
   });
 
   const initSwRegister = async () => {
