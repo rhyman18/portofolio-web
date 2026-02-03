@@ -383,6 +383,16 @@ span:nth-of-type(11) {
     }
 }
 
+/* Fallback for animate-spin when Tailwind utilities are tree-shaken */
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+.animate-spin {
+    animation: spin 1s linear infinite;
+}
+
 @layer base {
     /* Keep guestbook inputs/textarea consistent on focus */
     #name:focus,

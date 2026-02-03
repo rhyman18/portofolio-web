@@ -36,4 +36,16 @@ const createGuestbook = (guest, link) => `
     </div>
 </div>
 `;
-export {emptyGuestbook, createGuestbook};
+/**
+ * Pagination UI for guestbook section.
+ * @param {number} page Current page number
+ * @param {number} [totalPages] Total pages when known
+ * @return {string} HTML string
+ */
+const createGuestbookPagination = (page, totalPages) => `
+  <button id="guest-prev" class="px-4 py-2 border border-main-500 text-base text-main-500 dark:text-secondary-font bg-transparent transition hover:bg-main-500 hover:text-primary dark:hover:text-secondary-font disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-transparent disabled:text-primary-desc">Prev</button>
+  <span class="text-secondary-font text-sm">Page ${page}${totalPages ? ` / ${totalPages}` : ''}</span>
+  <button id="guest-next" class="px-4 py-2 border border-main-500 text-base text-main-500 dark:text-secondary-font bg-transparent transition hover:bg-main-500 hover:text-primary dark:hover:text-secondary-font disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-transparent disabled:text-primary-desc">Next</button>
+`;
+
+export {emptyGuestbook, createGuestbook, createGuestbookPagination};

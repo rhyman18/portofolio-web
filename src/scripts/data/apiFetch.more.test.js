@@ -209,4 +209,44 @@ describe('ApiFetch additional branches', () => {
     expect(result.data[0].img).toBe('');
     API_CONFIG.IMG_PATH.projectThumb = original;
   });
+
+  it('sanitizes project pagination inputs', async () => {
+    createClient.__setResponse('projects', {
+      data: [{id: 1, title: 'Test', img: 'img.png', img_hover: 'img2.png', tags: '[]', desc: '', updated_at: '2024', url: '', repo: ''}],
+      count: 1,
+    });
+    const result = await ApiFetch.getProjects({page: 'abc', limit: 'bad'});
+    expect(result.page).toBe(1);
+    expect(result.limit).toBe(API_CONFIG.PAGINATION.projects);
+  });
+
+  it('sanitizes guestbook pagination inputs and handles missing count', async () => {
+    createClient.__setResponse('guestbooks', {data: [{id: 1, name: 'A'}], count: undefined});
+    const result = await ApiFetch.getGuestbooks({page: -3, limit: 'bad'});
+    expect(result.page).toBe(1);
+    expect(result.limit).toBe(API_CONFIG.PAGINATION.guestbooks);
+    expect(result.totalPages).toBeUndefined();
+  });
+
+  it('clamps pagination limit to minimum of one', async () => {
+    createClient.__setResponse('projects', {data: [{id: 1, title: 'Test', img: 'img.png', img_hover: 'img2.png', tags: '[]', desc: '', updated_at: '2024', url: '', repo: ''}], count: 2});
+    const result = await ApiFetch.getProjects({page: 2, limit: -10});
+    expect(result.limit).toBe(1);
+    expect(result.page).toBe(2);
+  });
+
+  it('returns undefined totalPages when count is zero', async () => {
+    createClient.__setResponse('guestbooks', {data: [{id: 1, name: 'A'}], count: 0});
+    const result = await ApiFetch.getGuestbooks({page: 1, limit: 3});
+    expect(result.total).toBe(0);
+    expect(result.totalPages).toBeUndefined();
+  });
+
+  it('handles guestbook response without length gracefully', async () => {
+    createClient.__setResponse('guestbooks', {data: {length: undefined}, count: undefined});
+    const result = await ApiFetch.getGuestbooks({page: 'abc', limit: 3});
+    expect(result.total).toBe(0);
+    expect(result.page).toBe(1);
+    expect(result.totalPages).toBeUndefined();
+  });
 });

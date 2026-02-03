@@ -1,4 +1,4 @@
-import {createGuestbook, emptyGuestbook} from './viewGuestbooks';
+import {createGuestbook, createGuestbookPagination, emptyGuestbook} from './viewGuestbooks';
 
 describe('viewGuestbooks templates', () => {
   it('renders empty guestbook text', () => {
@@ -47,5 +47,18 @@ describe('viewGuestbooks templates', () => {
 
     expect(html).toContain('data-icon="fallback"');
     expect(html).toContain('?');
+  });
+
+  it('renders pagination with total pages', () => {
+    const html = createGuestbookPagination(2, 5);
+    expect(html).toContain('guest-prev');
+    expect(html).toContain('guest-next');
+    expect(html).toContain('Page 2 / 5');
+  });
+
+  it('renders pagination without total pages', () => {
+    const html = createGuestbookPagination(1);
+    expect(html).toContain('Page 1');
+    expect(html).not.toContain(' / ');
   });
 });

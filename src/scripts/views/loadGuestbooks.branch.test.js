@@ -134,6 +134,154 @@ describe('LoadGuestbooks branches', () => {
     expect(fields.toastFailed.classList.contains('flex')).toBe(false);
   });
 
+  it('renders pagination and navigates pages', async () => {
+    const {container, form, fields} = buildDom();
+    const pagination = document.createElement('div');
+    pagination.id = 'guestbook-pagination';
+    document.body.appendChild(pagination);
+
+    ApiFetch.getGuestbooks.mockImplementation(({page, limit}) => Promise.resolve({
+      data: [{platform: 'github', name: `Tester ${page}`, username: 'me', message: 'Hello world message content', updated_at: '2024-01-01'}],
+      totalPages: 3,
+      limit: limit || 2,
+      page,
+    }));
+    InputValidator.initInput.mockResolvedValue();
+
+    await LoadGuestbooks.init({container, form, fields, pagination});
+    await flush();
+
+    expect(pagination.innerHTML).toContain('Page 1 / 3');
+
+    const nextBtn = pagination.querySelector('#guest-next');
+    nextBtn.click();
+    await flush();
+    expect(ApiFetch.getGuestbooks).toHaveBeenLastCalledWith({page: 2, limit: 2});
+
+    const prevBtn = pagination.querySelector('#guest-prev');
+    prevBtn.click();
+    await flush();
+    expect(ApiFetch.getGuestbooks).toHaveBeenLastCalledWith({page: 1, limit: 2});
+  });
+
+  it('clears pagination when only one page exists', async () => {
+    const {container, form, fields} = buildDom();
+    const pagination = document.createElement('div');
+    pagination.id = 'guestbook-pagination';
+    pagination.innerHTML = '<span>Existing</span>';
+    document.body.appendChild(pagination);
+
+    ApiFetch.getGuestbooks.mockResolvedValue({
+      data: [{platform: 'github', name: 'Tester', username: 'me', message: 'Hello world message content', updated_at: '2024-01-01'}],
+      totalPages: 1,
+      limit: 1,
+      page: 1,
+    });
+    InputValidator.initInput.mockResolvedValue();
+
+    await LoadGuestbooks.init({container, form, fields, pagination});
+    await flush();
+
+    expect(pagination.innerHTML).toBe('');
+  });
+
+  it('uses DOM pagination container when none passed and renders controls', async () => {
+    const {container, form, fields} = buildDom();
+    const pagination = document.createElement('div');
+    pagination.id = 'guestbook-pagination';
+    document.body.appendChild(pagination);
+
+    ApiFetch.getGuestbooks.mockResolvedValue({
+      data: [{platform: 'github', name: 'Tester', username: 'me', message: 'Hello world message content', updated_at: '2024-01-01'}],
+      totalPages: 2,
+      limit: 1,
+      page: 1,
+    });
+    InputValidator.initInput.mockResolvedValue();
+
+    await LoadGuestbooks.init({container, form, fields});
+    await flush();
+
+    expect(pagination.innerHTML).toContain('Page 1 / 2');
+  });
+
+  it('returns early when pagination buttons are missing from the DOM', async () => {
+    const mod = require('./loadGuestbooks').default;
+    const pagination = document.createElement('div');
+    mod._paginationContainer = pagination;
+    mod._page = 1;
+
+    expect(() => mod._renderPagination(2)).not.toThrow();
+  });
+
+  it('does not paginate backward from the first page', () => {
+    const mod = require('./loadGuestbooks').default;
+    const pagination = document.createElement('div');
+    pagination.id = 'guestbook-pagination';
+    document.body.appendChild(pagination);
+    mod._paginationContainer = pagination;
+    mod._page = 1;
+
+    mod._renderPagination(2);
+    const prevBtn = document.getElementById('guest-prev');
+    prevBtn.onclick();
+
+    expect(mod._page).toBe(1);
+  });
+
+  it('does not paginate forward past the last page', () => {
+    const mod = require('./loadGuestbooks').default;
+    const pagination = document.createElement('div');
+    pagination.id = 'guestbook-pagination';
+    document.body.appendChild(pagination);
+    mod._paginationContainer = pagination;
+    mod._page = 2;
+
+    mod._renderPagination(2);
+    const nextBtn = document.getElementById('guest-next');
+    nextBtn.onclick();
+
+    expect(mod._page).toBe(2);
+  });
+
+  it('clears pagination when default totalPages is used', () => {
+    const mod = require('./loadGuestbooks').default;
+    const pagination = document.createElement('div');
+    pagination.id = 'guestbook-pagination';
+    pagination.innerHTML = '<span>Existing</span>';
+    document.body.appendChild(pagination);
+    mod._paginationContainer = pagination;
+
+    mod._renderPagination();
+    expect(pagination.innerHTML).toBe('');
+  });
+
+  it('returns early when pagination container is missing from the DOM', () => {
+    const mod = require('./loadGuestbooks').default;
+    const existing = document.getElementById('guestbook-pagination');
+    if (existing) existing.remove();
+    const originalPagination = GLOBAL_ELEMENT.GuestbookPagination;
+    GLOBAL_ELEMENT.GuestbookPagination = null;
+    mod._paginationContainer = null;
+
+    expect(() => mod._renderPagination(2)).not.toThrow();
+    GLOBAL_ELEMENT.GuestbookPagination = originalPagination;
+  });
+
+  it('initializes pagination container from DOM inside _renderPagination', () => {
+    const mod = require('./loadGuestbooks').default;
+    const pagination = document.createElement('div');
+    pagination.id = 'guestbook-pagination';
+    document.body.appendChild(pagination);
+    mod._paginationContainer = null;
+    mod._page = 1;
+
+    mod._renderPagination(2);
+
+    expect(mod._paginationContainer).toBe(pagination);
+    expect(pagination.innerHTML).toContain('Page 1 / 2');
+  });
+
   it('createLinkSosmed returns empty string for unknown platform', () => {
     const mod = require('./loadGuestbooks').default;
     expect(mod._createLinkSosmed('unknown')).toBe('');

@@ -2,7 +2,7 @@ import ShowError from '../utils/showError';
 import GLOBAL_ELEMENT from '../global/globalElement';
 import InputValidator from '../utils/inputValidator';
 import ViewEventFields from '../global/viewEventFormClass';
-import {emptyGuestbook, createGuestbook} from '../templates/viewGuestbooks';
+import {emptyGuestbook, createGuestbook, createGuestbookPagination} from '../templates/viewGuestbooks';
 
 /**
  * {object} fields input form
@@ -13,11 +13,14 @@ import {emptyGuestbook, createGuestbook} from '../templates/viewGuestbooks';
  * button: {DOM} button fields
  */
 const LoadGuestbooks = {
-  async init({container, form, fields, apiFetch}) {
+  async init({container, form, fields, pagination, apiFetch}) {
     this._container = container;
     this._form = form;
     this._fields = fields;
     this._apiFetch = apiFetch || null;
+    this._paginationContainer = pagination || GLOBAL_ELEMENT.GuestbookPagination || document.getElementById('guestbook-pagination');
+    this._page = 1;
+    this._limit = undefined;
 
     this._bindEvents();
     await this._renderGuestbooks();
@@ -28,11 +31,14 @@ const LoadGuestbooks = {
     this._container.innerHTML = emptyGuestbook();
     try {
       const ApiFetch = await this._getApiFetch();
-      const apiGuestbooks = await ApiFetch.getGuestbooks();
+      const apiGuestbooks = await ApiFetch.getGuestbooks({page: this._page, limit: this._limit});
+      this._limit = apiGuestbooks?.limit || this._limit;
       const html = apiGuestbooks?.data?.map((guest) => createGuestbook(guest, this._createLinkSosmed(guest.platform))).join('');
       this._container.innerHTML = html || emptyGuestbook();
+      this._renderPagination(apiGuestbooks?.totalPages ?? (apiGuestbooks?.data?.length ? 1 : 0));
     } catch (error) {
       this._showError(`${error}. However, this will not impact your user experience. Please disregard this message.`);
+      this._renderPagination(0);
     }
   },
 
@@ -143,6 +149,47 @@ const LoadGuestbooks = {
       messageAlert: message,
       alertPriority: 2,
     });
+  },
+
+  _renderPagination(totalPages = 1) {
+    if (!this._paginationContainer) {
+      this._paginationContainer = GLOBAL_ELEMENT.GuestbookPagination || document.getElementById('guestbook-pagination');
+      if (!this._paginationContainer) return;
+    }
+
+    if (!totalPages || totalPages <= 1) {
+      this._paginationContainer.innerHTML = '';
+      return;
+    }
+
+    const isFirst = this._page <= 1;
+    const isLast = this._page >= totalPages;
+
+    this._paginationContainer.innerHTML = createGuestbookPagination(this._page, totalPages);
+
+    const prevBtn = document.getElementById('guest-prev');
+    const nextBtn = document.getElementById('guest-next');
+    if (!prevBtn || !nextBtn) return;
+
+    prevBtn.disabled = isFirst;
+    nextBtn.disabled = isLast;
+
+    prevBtn.onclick = () => {
+      if (this._page > 1) {
+        this._page -= 1;
+        this._renderGuestbooks();
+        window.location.hash = '#tamu';
+      }
+    };
+
+    nextBtn.onclick = () => {
+      const atLast = this._page >= totalPages;
+      if (atLast) return;
+      nextBtn.disabled = true;
+      this._page += 1;
+      this._renderGuestbooks();
+      window.location.hash = '#tamu';
+    };
   },
 
   _createLinkSosmed(link) {

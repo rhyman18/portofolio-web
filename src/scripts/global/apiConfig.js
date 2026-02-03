@@ -19,6 +19,7 @@ const API_CONFIG = {
   },
   PAGINATION: {
     projects: 5,
+    guestbooks: 5,
   },
 };
 
