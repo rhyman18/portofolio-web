@@ -32,6 +32,8 @@ const GLOBAL_ELEMENT = {
   AlertBody: document.querySelector('#alert-body'),
   AlertMessage: document.querySelector('#alert-msg'),
 
+  ContactEmail: document.querySelector('#contact-email'),
+
   ToggleDarkIcon: document.querySelector('#theme-toggle-dark-icon'),
   ToggleLightIcon: document.querySelector('#theme-toggle-light-icon'),
   DividerLight: document.querySelector('#shape-divider-light'),
