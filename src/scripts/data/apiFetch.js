@@ -92,7 +92,7 @@ class ApiFetch {
    * @param {object} [options] Pagination options
    * @param {number} [options.page=1] Page number (1-indexed)
    * @param {number} [options.limit=API_CONFIG.PAGINATION.guestbooks] Items per page
-   * @return {Promise<{data: any[], page: number, limit: number, total: number, totalPages: (number|undefined)}>} Resolves with guestbook data and pagination meta
+   * @return {Promise<{data: any[], page: number, limit: number, total: number, totalPages: (number|undefined), hasMore: boolean}>} Resolves with guestbook data and pagination meta
    */
   static async getGuestbooks({page = 1, limit = API_CONFIG.PAGINATION.guestbooks} = {}) {
     try {
@@ -109,12 +109,16 @@ class ApiFetch {
       if (error) throw error;
       const total = typeof count === 'number' ? count : data?.length ?? 0;
       const totalPages = typeof count === 'number' && count > 0 ? Math.ceil(count / safeLimit) : undefined;
+      const hasMore = typeof totalPages === 'number' ?
+        safePage < totalPages :
+        (data?.length ?? 0) >= safeLimit;
       return {
         data,
         page: safePage,
         limit: safeLimit,
         total,
         totalPages,
+        hasMore,
       };
     } catch (error) {
       console.log('Failed to fetch guestbooks Api', error);

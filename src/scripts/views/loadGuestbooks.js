@@ -35,7 +35,14 @@ const LoadGuestbooks = {
       this._limit = apiGuestbooks?.limit || this._limit;
       const html = apiGuestbooks?.data?.map((guest) => createGuestbook(guest, this._createLinkSosmed(guest.platform))).join('');
       this._container.innerHTML = html || emptyGuestbook();
-      this._renderPagination(apiGuestbooks?.totalPages ?? (apiGuestbooks?.data?.length ? 1 : 0));
+      const totalPages = apiGuestbooks?.totalPages;
+      const dataLength = apiGuestbooks?.data?.length ?? 0;
+      const hasMore = typeof apiGuestbooks?.hasMore === 'boolean' ?
+        apiGuestbooks.hasMore :
+        (typeof totalPages === 'number' ?
+          this._page < totalPages :
+          (this._limit ? dataLength >= this._limit : false));
+      this._renderPagination(totalPages, hasMore);
     } catch (error) {
       this._showError(`${error}. However, this will not impact your user experience. Please disregard this message.`);
       this._renderPagination(0);
@@ -151,21 +158,29 @@ const LoadGuestbooks = {
     });
   },
 
-  _renderPagination(totalPages = 1) {
+  _renderPagination(totalPages, hasMore = false) {
     if (!this._paginationContainer) {
       this._paginationContainer = GLOBAL_ELEMENT.GuestbookPagination || document.getElementById('guestbook-pagination');
       if (!this._paginationContainer) return;
     }
 
-    if (!totalPages || totalPages <= 1) {
+    if (arguments.length === 0) {
+      this._paginationContainer.innerHTML = '';
+      return;
+    }
+
+    const hasKnownTotal = typeof totalPages === 'number' && !Number.isNaN(totalPages);
+    const shouldShowPagination = hasKnownTotal ? totalPages > 1 : (this._page > 1 || hasMore);
+
+    if (!shouldShowPagination) {
       this._paginationContainer.innerHTML = '';
       return;
     }
 
     const isFirst = this._page <= 1;
-    const isLast = this._page >= totalPages;
+    const isLast = hasKnownTotal ? this._page >= totalPages : !hasMore;
 
-    this._paginationContainer.innerHTML = createGuestbookPagination(this._page, totalPages);
+    this._paginationContainer.innerHTML = createGuestbookPagination(this._page, hasKnownTotal ? totalPages : undefined);
 
     const prevBtn = document.getElementById('guest-prev');
     const nextBtn = document.getElementById('guest-next');
@@ -183,7 +198,7 @@ const LoadGuestbooks = {
     };
 
     nextBtn.onclick = () => {
-      const atLast = this._page >= totalPages;
+      const atLast = hasKnownTotal ? this._page >= totalPages : !hasMore;
       if (atLast) return;
       nextBtn.disabled = true;
       this._page += 1;
